@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="estilos/style.css">
+  <link rel="stylesheet" href="estilos/barra.css">
+
+</head>
+
+<body>
+
+  <nav class="sidebar">
+    <div class="logo-nombre">
+      <div class="logo-imagen">
+        <img src="images/logo.png" alt="">
+      </div>
+
+      <span class="logo_name">BluzuPetsSpa</span>
+    </div>
+
+    <div class="menu-elementos">
+      <ul class="menu-links">
+        <li><a id="dashboard-inicio" href="index.html">
+            <i class="ri-home-8-line"></i>
+            <span class="link-nombre">Dahsboard</span>
+          </a></li>
+        <li><a id="opcion-empleados" href="empleados.html">
+            <i class="ri-team-fill"></i>
+            <span class="link-nombre">Empleados</span>
+          </a></li>
+        <li><a id="opcion-proveedores" href="proveedores.html">
+            <i class="ri-luggage-cart-fill"></i>
+            <span class="link-nombre">Proveedores</span>
+          </a></li>
+        <li><a id="opcion-categorias" href="categorias.html">
+            <i class="ri-article-line"></i>
+            <span class="link-nombre">Categorias</span>
+          </a></li>
+        <li><a id="opcion-servicios" href="servicios.html">
+            <i class="ri-service-line"></i>
+            <span class="link-nombre">Servicios</span>
+          </a></li>
+        <li><a id="opcion-productos" href="productos.html">
+            <i class="ri-shopping-bag-2-fill"></i>
+            <span class="link-nombre">Productos</span>
+          </a></li>
+        <li><a href="">
+            <i class="ri-user-2-fill"></i>
+            <span class="link-nombre">Clientes</span>
+          </a></li>
+      </ul>
+
+
+      <ul class="logout-mode">
+        <li><a href="login.html">
+            <i class="ri-logout-box-r-line"></i>
+            <span class="link-nombre">Logout</span>
+          </a></li>
+
+        <li class="mode">
+          <a href="#">
+            <i class="ri-moon-fill"></i>
+            <span class="link-nombre">Dark Mode</span>
+          </a>
+
+          <div class="mode-toggle">
+            <span class="switch"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="dashboard-principal">
+    <div class="top">
+      <i class="ri-bar-chart-horizontal-fill sidebar-toggle"></i>
+      <img src="images/logo.png" alt="">
+    </div>
+
+
+    <div id="principal" class="dash-content">
+
+      <!-- tabla -->
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar...">
+        <button class="btn btn-outline-secondary" type="button">Buscar</button>
+      </div>
+      <div class="table-wrapper">
+
+        <div class="table-title">
+          <div class="row align-items-center">
+            <div class="col-12 col-sm-6">
+              <h2 class="ml-lg-2">Empleados</h2>
+            </div>
+            <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
+              <div class="button-container">
+                <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
+                  data-bs-target="#eliminarEmpleadoModal">
+                  <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
+                  <span class="d-none d-sm-inline"><i class="ri-delete-bin-line me-1"></i>Eliminar</span>
+                </button>
+                <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
+                  data-bs-target="#modalAgregarEmpleado">
+                  <span class="d-sm-none"><i class="ri-add-circle-line me-1"></i></span>
+                  <span class="d-none d-sm-inline"><i class="ri-add-circle-line me-1"></i>Agregar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <table class="table table-striped table-hover" id="tabla-empleados">
+          <thead>
+            <tr>
+              <th></th>
+              <th>N°</th>
+              <th class="table-text-wrap">Nombre</th>
+              <th class="table-text-wrap">Apellidos</th>
+              <th class="table-text-wrap">DNI</th>
+              <th class="table-text-wrap">Correo</th>
+              <th class="table-text-wrap">Celular</th>
+              <th class="table-text-wrap">Categoría</th>
+              <th>Imagen</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+
+          </tbody>
+
+
+        </table>
+      </div>
+
+      <!-- tabla -->
+
+      <!-- paginacion -->
+      <div class="clearfix">
+        <div class="hint-text">showing <b>5</b> out of <b>25</b></div>
+        <ul class="pagination">
+          <li class="page-item "><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item "><a href="#" class="page-link">1</a></li>
+          <li class="page-item "><a href="#" class="page-link">2</a></li>
+          <li class="page-item active"><a href="#" class="page-link">3</a></li>
+          <li class="page-item "><a href="#" class="page-link">4</a></li>
+          <li class="page-item "><a href="#" class="page-link">5</a></li>
+          <li class="page-item "><a href="#" class="page-link">Next</a></li>
+        </ul>
+      </div>
+      <!-- paginacion -->
+
+
+
+
+
+      <!-- Modal agregar empleado-->
+      <div class="my-custom-modal modal fade" id="modalAgregarEmpleado" tabindex="-1"
+        aria-labelledby="modalEmpleadoLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header d-flex flex-column align-items-center">
+              <h3 class="text-center">Agregar empleado</h3>
+              <div class="container-progreso">
+                <div class="pasos-container">
+                  <span class="paso paso-activo">1</span>
+                  <span class="paso">2</span>
+                  <span class="paso">3</span>
+                  <div class="progress-bar">
+                    <span class="indicator"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-body">
+              <div id="paso1" class="step">
+                <form>
+                  <div class="row mb-3">
+                    <div class="col-md-12">
+                      <label for="nombreEmpleadoInput" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" id="nombreEmpleadoInput" placeholder="" />
+                      <div class="error-message error-mensajito" id="nombreEmpleadoInputError"></div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-12">
+                      <label for="apellidoEmpleadoInput" class="form-label">Apellido</label>
+                      <input type="text" class="form-control" id="apellidoEmpleadoInput" placeholder="" />
+                      <div class="error-message error-mensajito" id="apellidoEmpleadoInputError"></div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-12">
+                      <label for="dniEmpleadoInput" class="form-label">DNI</label>
+                      <input type="text" class="form-control" id="dniEmpleadoInput" placeholder="" />
+                      <div class="error-message error-mensajito" id="dniEmpleadoInputError"></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div id="paso2" class="step" style="display: none">
+                <form>
+                  <div class="row mb-3">
+                    <div class="col-md-8">
+                      <label for="correoEmpleadoInput" class="form-label">Correo</label>
+                      <input type="text" class="form-control" id="correoEmpleadoInput" placeholder="" />
+                      <div class="error-message error-mensajito" id="correoEmpleadoInputError"></div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-8">
+                      <label for="celularEmpleadoInput" class="form-label">Celular</label>
+                      <input type="text" class="form-control" id="celularEmpleadoInput" placeholder="" />
+                      <div class="error-message error-mensajito" id="ccelularEmpleadoInputError"></div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="categoriaEmpleadoInput" class="form-label">Categoría</label>
+                      <select class="form-select" id="categoriaEmpleadoInput">
+                        <option selected>Seleccionar categoría</option>
+                        <option>Seleccionar 1</option>
+                      </select>
+                      <div class="error-message error-mensajito" id="categoriaEmpleadoInputError"></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div id="paso3" class="step" style="display: none">
+                <form>
+                  <div class="mb-3">
+                    <label for="imagenEmpleadoInput" class="form-label">Imagen</label>
+                    <input type="file" class="form-control-file" id="imagenEmpleadoInput" name="empleadoImagen" />
+                    <div class="error-message error-mensajito" id="imagenEmpleadoInputError"></div>
+                    <div class="imagenPreview" id="imagenEmpleadoPreview"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button type="button" class="btn btn-secondary" id="prevBtnEmpleado" style="display: none">
+                Anterior
+              </button>
+              <div>
+                <button type="button" class="btn btn-danger" id="" data-bs-toggle="modal"
+                  data-bs-target="#eliminarDatosModal">
+                  Cancelar
+                </button>
+              </div>
+              <button type="button" class="btn btn-primary" id="nextBtnEmpleado">
+                Siguiente
+              </button>
+              <button type="button" class="btn btn-success" id="guardarEmpleadoBtn" style="display: none">
+                Guardar
+              </button>
+            </div>
+          </div>
+          <div data-bs-dismiss="modal"></div>
+        </div>
+
+      </div>
+
+      <!-- Fin Modal agregar empleado-->
+
+      <!-- Modal empleado registrado exito -->
+      <div class="my-custom-modal modal fade" id="agregarEmpleadoExito" tabindex="-1" role="dialog"
+        aria-labelledby="agregarEmpleadoExitoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exitoModalLabel">Éxito</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Empleado registrado exitosamente</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fin Modal empleado registrado exito -->
+
+
+      <!-- Modal para Confirmacion Cancelacion de registro de empleado-->
+
+      <div class="my-custom-modal modal fade" id="eliminarDatosModal" tabindex="-1"
+        aria-labelledby="eliminarDatosModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="eliminarDatosModalLabel">
+                Cancelar agregar empleado
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Esta accion eliminara todos los datos ingresados ¿estas seguro?
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                No
+              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmarCancelarGuardarEmpBtn">
+                Si
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fin Modal para Confirmacion Cancelacion de registro de empleado-->
+
+
+      <!-- modal editar empleado-->
+      <div class="my-custom-modal modal fade" id="modalEditarEmpleado" tabindex="-1"
+        aria-labelledby="modalEditarEmpleadoLabel" aria-hidden="true" data-bs-backdrop="static"
+        data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalEditarEmpleadoLabel">Editar empleado</h5>
+            </div>
+            <form class="modal-form">
+              <div class="modal-body row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="nombreEditarEmpleado" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombreEditarEmpleado" name="">
+                    <div class="error-message error-mensajito" id="nombreEditarEmpleadoError"></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="apellidoEditarEmpleado" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellidoEditarEmpleado" name="">
+                    <div class="error-message error-mensajito" id="apellidoEditarEmpleadoError"></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="dniEmpleadoEditar" class="form-label">DNI</label>
+                    <input type="text" class="form-control" id="dniEmpleadoEditar" name="">
+                    <div class="error-message error-mensajito" id="dniEmpleadoEditarError"></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="correoEmpleadoEditar" class="form-label">Correo</label>
+                    <input type="text" class="form-control" id="correoEmpleadoEditar" name="">
+                    <div class="error-message error-mensajito" id="correoEmpleadoEditarError"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="celularEmpleadoEditar" class="form-label">Celular</label>
+                    <input type="text" class="form-control" id="celularEmpleadoEditar" name="">
+                    <div class="error-message error-mensajito" id="celularEmpleadoEditarError"></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="categoriaEmpleadoEditar" class="form-label">Categoría</label>
+                    <select class="form-select" aria-label="Default select example" id="categoriaEmpleadoEditar"
+                      name="">
+                      <option selected>Seleccionar categoría</option>
+                      <option value="">Estilista</option>
+                      <option value="">Vendedor</option>
+                    </select>
+                    <div class="error-message error-mensajito" id="categoriaEmpleadoEditarError"></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="imagenEmpleadoEditar" class="form-label">Imagen</label>
+                    <input type="file" class="form-control-file" id="imagenEmpleadoEditar" name="empleadoImagen" />
+                    <div class="error-message error-mensajito" id="imagenEmpleadoEditarError"></div>
+                    <div class="imagenPreview" id="imagenEmpleadoEditarPreview"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                  data-bs-target="#cancelarEditarEmpleadoModal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarEditarEmpleado">
+                  Guardar Cambios
+                </button>
+              </div>
+              <div data-bs-dismiss="modal"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fin modal editar empleado -->
+
+      <!-- Modal para Confirmacion Cancelacion de Editar Empleado -->
+
+      <div class="my-custom-modal modal fade" id="cancelarEditarEmpleadoModal" tabindex="-1"
+        aria-labelledby="cancelarEditarEmpleadoModalLabel" aria-hidden="true" data-bs-backdrop="static"
+        data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cancelarEditarEmpleadoModalLabel">
+                Cancelar editar producto
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Esta accion eliminara todos los datos ingresados ¿estas seguro?
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                No
+              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancelarEditarEmpleadoBtn">
+                Si
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fin Modal para Confirmacion Cancelacion de Agregar Empleado -->
+
+
+      <!-- modal editado exitosa -->
+
+      <div class="modal fade" id="empleadoEditadoModal" tabindex="-1" aria-labelledby="empleadoEditadoModalLabel"
+        aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="empleadoEditadoModalLabel">Empleado editado</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>La informacion ha sido editada exitosamente</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- modal editado exitosa -->
+
+      <!-- modal eliminar -->
+      <div class="my-custom-modal modal fade" id="eliminarEmpleadoModal" tabindex="-1"
+        aria-labelledby="eliminarEmpleadoModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="eliminarEmpleadoModalLabel">Eliminar empleado</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <b class="alerta-delete">Esta acción eliminará permanentemente los datos del empleado.</b> ¿Estás seguro
+              de que quieres continuar?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <form class="modal-form">
+                <input type="hidden" name="id_empleado" value="1">
+                <!-- Cambiar el valor según el ID del empleado a eliminar -->
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                  data-bs-target="#empleadoEliminadoExitoModal">Eliminar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal eliminar -->
+
+
+      <!-- modal elimicacion exitosa -->
+
+      <div class="modal fade" id="empleadoEliminadoExitoModal" tabindex="-1"
+        aria-labelledby="empleadoEliminadoModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="empleadoEliminadoModalLabel">Empleado eliminado</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>El empleado ha sido eliminado exitosamente</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- modal elimicacion exitosa -->
+
+
+    </div>
+
+  </section>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="scripts/script.js"></script>
+  <script src="scripts/modalEmpleado.js"></script>
+  <script src="scripts/empleados.js"></script>
+</body>
+
+</html>

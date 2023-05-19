@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!----======== CSS ======== -->
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="estilos/style.css">
+
+
+  <title>Bluzul Pets</title>
+</head>
+
+<body>
+  <nav class="sidebar">
+    <div class="logo-nombre">
+      <div class="logo-imagen">
+        <img src="images/logo.png" alt="">
+      </div>
+
+      <span class="logo_name">BluzuPetsSpa</span>
+    </div>
+
+    <div class="menu-elementos">
+      <ul class="menu-links">
+        <li><a id="dashboard-inicio" href="index.html">
+            <i class="ri-home-8-line"></i>
+            <span class="link-nombre">Dahsboard</span>
+          </a></li>
+        <li><a id="opcion-empleados" href="empleados.html">
+            <i class="ri-team-fill"></i>
+            <span class="link-nombre">Empleados</span>
+          </a></li>
+        <li><a id="opcion-proveedores" href="proveedores.html">
+            <i class="ri-luggage-cart-fill"></i>
+            <span class="link-nombre">Proveedores</span>
+          </a></li>
+        <li><a id="opcion-categorias" href="categorias.html">
+            <i class="ri-article-line"></i>
+            <span class="link-nombre">Categorias</span>
+          </a></li>
+        <li><a id="opcion-servicios" href="servicios.html">
+            <i class="ri-service-line"></i>
+            <span class="link-nombre">Servicios</span>
+          </a></li>
+        <li><a id="opcion-productos" href="productos.html">
+            <i class="ri-shopping-bag-2-fill"></i>
+            <span class="link-nombre">Productos</span>
+          </a></li>
+        <li><a href="">
+            <i class="ri-user-2-fill"></i>
+            <span class="link-nombre">Clientes</span>
+          </a></li>
+      </ul>
+
+
+      <ul class="logout-mode">
+        <li><a href="login.html">
+            <i class="ri-logout-box-r-line"></i>
+            <span class="link-nombre">Logout</span>
+          </a></li>
+
+        <li class="mode">
+          <a href="#">
+            <i class="ri-moon-fill"></i>
+            <span class="link-nombre">Dark Mode</span>
+          </a>
+
+          <div class="mode-toggle">
+            <span class="switch"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="dashboard-principal">
+    <div class="top">
+      <i class="ri-bar-chart-horizontal-fill sidebar-toggle"></i>
+      <img src="images/logo.png" alt="">
+    </div>
+
+
+    <div id="principal" class="dash-content">
+
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar...">
+        <button class="btn btn-outline-secondary" type="button">Buscar</button>
+      </div>
+      <div class="table-wrapper" id="tabla-categorias">
+        <!-- tabla categorias -->
+
+        <div class="table-title">
+          <div class="row align-items-center">
+            <div class="col-12 col-sm-6">
+              <h2 class="ml-lg-2">Categorías de productos</h2>
+            </div>
+            <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
+              <div class="button-container">
+                <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
+                  data-bs-target="#eliminarCategoriaModal">
+                  <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
+                  <span class="d-none d-sm-inline"><i class="ri-delete-bin-line me-1"></i>Eliminar</span>
+                </button>
+                <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
+                  data-bs-target="#modalCategoria">
+                  <span class="d-sm-none"><i class="ri-add-circle-line me-1"></i></span>
+                  <span class="d-none d-sm-inline"><i class="ri-add-circle-line me-1"></i>Agregar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th></th>
+              <th>N°</th>
+              <th class="table-text-wrap">Nombre</th>
+              <th class="descripcion-text-wrap">Descripción</th>
+              <th>Imagen</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                <div class="">
+                  <input class="form-check-input" type="checkbox" value="" id="" name="">
+                </div>
+              </td>
+              <td>1</td>
+              <td class="table-text-wrap">Alimentos</td>
+              <td class="descripcion-text-wrap">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut nisi ab
+                architecto cum numquam velit et quisquam, exercitationem itaque voluptatibus voluptas vero illo
+                similique
+                ducimus sapiente perspiciatis autem. Voluptatum, velit.</td>
+              <td><img class="medium-image" src="images/perro1.jpg" alt=""></td>
+              <th>
+                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria">
+                  <i class="ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
+                </a>
+                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarCategoriaModal">
+                  <i class="ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
+                </a>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <div class="">
+                  <input class="form-check-input" type="checkbox" value="" id="" name="">
+                </div>
+              </td>
+              <td>1</td>
+              <td class="table-text-wrap">Alimentos</td>
+              <td class="descripcion-text-wrap">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut nisi ab
+                architecto cum numquam velit et quisquam, exercitationem itaque voluptatibus voluptas vero illo
+                similique
+                ducimus sapiente perspiciatis autem. Voluptatum, velit.</td>
+              <td><img class="medium-image" src="images/perro1.jpg" alt=""></td>
+              <th>
+                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria">
+                  <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
+                </a>
+                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarCategoriaModal">
+                  <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
+                </a>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <div class="">
+                  <input class="form-check-input" type="checkbox" value="" id="" name="">
+                </div>
+              </td>
+              <td>1</td>
+              <td class="table-text-wrap">Alimentos</td>
+              <td class="descripcion-text-wrap">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut nisi ab
+                architecto cum numquam velit et quisquam, exercitationem itaque voluptatibus voluptas vero illo
+                similique
+                ducimus sapiente perspiciatis autem. Voluptatum, velit.</td>
+              <td><img class="medium-image" src="images/perro1.jpg" alt=""></td>
+              <th>
+                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria">
+                  <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
+                </a>
+                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarCategoriaModal">
+                  <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
+                </a>
+              </th>
+            </tr>
+
+
+          </tbody>
+
+
+        </table>
+      </div>
+
+      <!-- FIn tabla categorias -->
+
+      <!-- paginacion -->
+      <div class="clearfix">
+        <div class="hint-text">showing <b>5</b> out of <b>25</b></div>
+        <ul class="pagination">
+          <li class="page-item "><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item "><a href="#" class="page-link">1</a></li>
+          <li class="page-item "><a href="#" class="page-link">2</a></li>
+          <li class="page-item active"><a href="#" class="page-link">3</a></li>
+          <li class="page-item "><a href="#" class="page-link">4</a></li>
+          <li class="page-item "><a href="#" class="page-link">5</a></li>
+          <li class="page-item "><a href="#" class="page-link">Next</a></li>
+        </ul>
+      </div>
+      <!-- paginacion -->
+
+
+
+
+      <!-- Modal Agregar Categoría -->
+
+      <div class="my-custom-modal modal fade" id="modalCategoria" tabindex="-1" aria-labelledby="modalCategoriaLabel"
+        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCategoriaLabel">Agregar Categoría</h5>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="categoriaNombre" class="col-form-label">Nombre:</label>
+                  <input type="text" class="form-control" id="categoriaNombre">
+                  <div class="error-message error-mensajito" id="categoriaNombreError"></div>
+                </div>
+                <div class="mb-3">
+                  <label for="categoriaDescripcion" class="col-form-label">Descripción:</label>
+                  <textarea class="form-control" id="categoriaDescripcion"></textarea>
+                  <div class="error-message error-mensajito" id="categoriaDescripcionError"></div>
+                </div>
+                <div class="mb-3">
+                  <label for="imagenCategoria" class="form-label">Imagen</label>
+                  <input type="file" class="form-control-file" id="imagenCategoria" name="" />
+                  <div class="error-message error-mensajito" id="imagenCategoriaError"></div>
+                  <div class="imagenPreview" id="imagenCategoriaPreview"></div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#CancelarGuardarCategoriaModal">Cancelar</button>
+              <button type="button" class="btn btn-primary" id="guardarCategoriaBtn">Guardar</button>
+            </div>
+            <div data-bs-dismiss="modal"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin Modal Agregar Categoría -->
+
+      <!-- Modal para Confirmacion Cancelacion de Agregar Categoria -->
+
+      <div class="my-custom-modal modal fade" id="CancelarGuardarCategoriaModal" tabindex="-1"
+        aria-labelledby="CancelarGuardarCategoriaModalLabel" aria-hidden="true" data-bs-backdrop="static"
+        data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="CancelarGuardarCategoriaModalLabel">
+                Cancelar agregar proveedor
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Esta accion eliminara todos los datos ingresados ¿estas seguro?
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                No
+              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                id="confirmarCancelarGuardarCategoriaBtn">
+                Si
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fin Modal para Confirmacion Cancelacion de Agregar Categoria -->
+
+      <!-- modal categoria  guardado exitoso-->
+
+      <div class="my-custom-modal modal fade" id="categoriaRegistradaModal" tabindex="-1"
+        aria-labelledby="categoriaRegistradaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="categoriaRegistradaModalLabel">Categoría registrada</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>La categoría ha sido registrada exitosamente.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Fin modal categoria guardado exitoso-->
+
+
+
+      <!-- Modal editar Categoría -->
+      <div class="my-custom-modal modal fade" id="modalEditarCategoria" tabindex="-1"
+        aria-labelledby="modalEditarCategoriaLabel" aria-hidden="true" data-bs-backdrop="static"
+        data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalEditarCategoriaLabel">Editar Categoría</h5>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="editCategoriaNombre" class="col-form-label">Nombre:</label>
+                  <input type="text" class="form-control" id="editCategoriaNombre">
+                  <div class="error-message error-mensajito" id="editCategoriaNombreError"></div>
+                </div>
+                <div class="mb-3">
+                  <label for="editCategoriaDescripcion" class="col-form-label">Descripción:</label>
+                  <textarea class="form-control" id="editCategoriaDescripcion"></textarea>
+                  <div class="error-message error-mensajito" id="editCategoriaDescripcionError"></div>
+                </div>
+                <div class="mb-3">
+                  <label for="imagenCategoriaEdit" class="form-label">Imagen</label>
+                  <input type="file" class="form-control-file" id="imagenCategoriaEdit" name="" />
+                  <div class="error-message error-mensajito" id="imagenCategoriaEditError"></div>
+                  <div class="imagenPreview" id="imagenCategoriaEditPreview"></div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#cancelarEditarCategoriaModal">Cancelar</button>
+              <button type="button" class="btn btn-primary" id="guardarEditCategoriaBtn">Guardar Cambios</button>
+            </div>
+            <div data-bs-dismiss="modal"> </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Modal Editar Categoría -->
+
+      <!-- modal editado exitosa -->
+
+      <div class="modal fade" id="categoriaEditExitoModal" tabindex="-1" aria-labelledby="categoriaEditExitoModalLabel"
+        aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="categoriaEditExitoModalLabel">Categoría editada</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>La informacion ha sido editada exitosamente</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- modal editado exitosa -->
+
+
+      <!-- Modal para Confirmacion Cancelacion de Editar Producto -->
+
+      <div class="my-custom-modal modal fade" id="cancelarEditarCategoriaModal" tabindex="-1"
+        aria-labelledby="cancelarEditarCategoriaModalLabel" aria-hidden="true" data-bs-backdrop="static"
+        data-bs-keyboard="false">
+        <div class="modal-dialog ">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cancelarEditarCategoriaModalLabel">
+                Cancelar editar categoria
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Esta accion eliminara todos los datos ingresados ¿estas seguro?
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                No
+              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancelarEditarCategoriaBtn">
+                Si
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fin Modal para Confirmacion Cancelacion de Editar Producto -->
+
+
+
+      <!-- Modal Eliminar -->
+      <div class="modal fade" id="eliminarCategoriaModal" tabindex="-1" aria-labelledby="eliminarCategoriaModalLabel"
+        aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="eliminarCategoriaModalLabel">Eliminar categoría</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>
+              <p>¿Estás seguro de que quieres eliminar esta categoría?</p>
+            </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                data-bs-target="#categoriaEliminadaModal">Eliminar</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Eliminar -->
+
+      <!-- modal elimicacion exitosa -->
+
+      <div class="modal fade" id="categoriaEliminadaModal" tabindex="-1" aria-labelledby="categoriaEliminadaModalLabel"
+        aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="categoriaEliminadaModalLabel">Categoría eliminada</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>La categoría ha sido eliminada exitosamente</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- modal elimicacion exitosa -->
+
+
+    </div>
+
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="scripts/script.js"></script>
+  <script src="scripts/modalCategoria.js"></script>
+
+
+
+</body>
+
+</html>

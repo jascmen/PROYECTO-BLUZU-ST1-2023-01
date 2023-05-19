@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Responsive Login and Signup Form </title>
+  
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+   <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    
+  <link rel="stylesheet" href="estilos/loginRegistro.css" />
+  <link rel="stylesheet" href="estilos/style.css" />
+</head>
+
+<body>
+  <section class="containerGeneral_loginRegistro formularios_LoginRegistro">
+    
+    <div class="containerFormularios login">
+      <div class="loguito-img"><img  src="images/logo.png"></div>
+      
+      <div class="formulario-contenido">
+        
+        <header class="TituloLoginRegistro">Iniciar Sesion</header>
+        <form class="camposLOginRegistro" >
+          <div class="LoginRegistrofield input-field">
+            <input type="email" placeholder="Usuario" class="input" name="email">
+          </div>
+
+          <div class="LoginRegistrofield input-field">
+            <input type="password" placeholder="Contraseña" class="password" name="password">
+            <i class='bx bx-hide eye-icon'></i>
+          </div>
+
+          <div class="links-LoginRegistro">
+            <a href="#" class="forgot-pass">Olvido su contraseña?</a>
+          </div>
+
+          <div class="LoginRegistrofield button-field">
+            <div class="nombrecito" ><a href="index.html">Ingresar</a></div>
+          </div>
+        </form>
+
+
+
+
+    </div>
+
+    <!-- Signup Form -->
+    
+    <script src="js/validar.js"></script>
+    <div class="containerFormularios signup">
+      <div class="form-content">
+        <header class="TituloLoginRegistro">Ingrese datos</header>
+        <form class="camposLOginRegistro" id="formLogin">
+
+          <div class="LoginRegistrofield input-field">
+            <input type="text" id="nombres" placeholder="Nombre" class="input" name="nombres">
+          </div>
+
+          <div class="LoginRegistrofield input-field">
+            <input type="text" id="email" placeholder="Email" class="input" name="email">
+          </div>
+
+          <div class="LoginRegistrofield input-field">
+            <input type="text" id="celular" placeholder="Ingrese su celular" class="input" name="celular">
+          </div>
+
+          <div class="LoginRegistrofield input-field">
+            <input type="password" id="password" placeholder="Crear contraseña" class="password" name="password">
+          </div>
+
+          <div class="LoginRegistrofield input-field">
+            <input type="password" id="password2" placeholder="Confirmar contraseña" class="password" name="password2">
+            <i class='bx bx-hide eye-icon'></i>
+          </div>
+
+          <div class="LoginRegistrofield button-field">
+            <button type="button" name="registro">Registrese</button>
+          </div>
+        </form>
+
+        <div class="links-LoginRegistro">
+          <span>Ya tiene una cuenta? <a href="#" class="enlace-LoginRegistro login-link">Inciar sesion</a></span>
+        </div>
+      </div>
+
+      <div class="linea-Or"></div>
+
+
+
+    </div>
+  </section>
+
+  <script src="scripts/LoginRegistro.js"></script>
+</body>
+
+</html>
