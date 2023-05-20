@@ -11,4 +11,9 @@ public interface ProveedorDao {
     void eliminar(Long id);
 
     void registrarProveedor(Proveedor proveedor);
+
+
+    void editarProveedor(Long idProveedor, Proveedor proveedor);
+
+    Proveedor obtenerDatosProveedor(Long idProveedor);
 }

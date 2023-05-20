@@ -104,7 +104,7 @@
             <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
               <div class="button-container">
                 <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
-                  data-bs-target="#eliminarProveedorModal">
+                  data-bs-target="#eliminarProveedoresModal">
                   <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
                   <span class="d-none d-sm-inline"><i class="ri-delete-bin-line me-1"></i>Eliminar</span>
                 </button>
@@ -282,7 +282,7 @@
                 Cancelar
               </button>
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
-                data-bs-target="#proveedorEliminadoModal" id="btnEliminarProveedor" data-id-proveedor="">
+                data-bs-target="#proveedorEliminadoExitoModal" id="btnEliminarProveedor" data-id-proveedor="">
                 Eliminar
               </button>
             </div>
@@ -293,7 +293,7 @@
 
       <!-- modal elimicacion exitosa -->
 
-      <div class="my-custom-modal modal fade" id="proveedorEliminadoModal" tabindex="-1"
+      <div class="my-custom-modal modal fade" id="proveedorEliminadoExitoModal" tabindex="-1"
         aria-labelledby="proveedorEliminadoModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -316,6 +316,61 @@
       </div>
 
       <!-- modal elimicacion exitosa -->
+
+      <!-- modal eliminar proveedores -->
+      <div class="my-custom-modal modal fade" id="eliminarProveedoresModal" tabindex="-1"
+           aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">
+                Eliminar proveedores
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>¿Está seguro de que desea
+              eliminar estos proveedores?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancelar
+              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                      data-bs-target="#proveedoresEliminadosExitoModal" id="btnEliminarProveedores" data-id-proveedor="">
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin modal eliminar proveedores -->
+
+      <!-- modal elimicacion Proveedores exitosa -->
+
+      <div class="my-custom-modal modal fade" id="proveedoresEliminadosExitoModal" tabindex="-1"
+           aria-labelledby="proveedorEliminadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >
+                Proveedores eliminados
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>Los proveedores ha sido eliminado exitosamente</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                Aceptar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin modal elimicacion Proveedores exitosa -->
 
       <!-- modal editar proveedor -->
       <div class="my-custom-modal modal fade" id="editarProveedorModal" tabindex="-1"
@@ -357,7 +412,7 @@
                 data-bs-target="#cancelarEditarProveedorModal">
                 Cancelar
               </button>
-              <button type="button" class="btn btn-primary" id="guardarEditProveedorBtn">
+              <button type="button" class="btn btn-primary" id="guardarEditProveedorBtn" data-id-proveedor="">
                 Guardar cambios
               </button>
             </div>

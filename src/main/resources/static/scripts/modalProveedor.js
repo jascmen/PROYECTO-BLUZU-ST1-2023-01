@@ -120,6 +120,8 @@ $(document).ready(function () {
       .off()
       .click(function () {
         if (validateFormEdit()) {
+          const id_proveedor = this.getAttribute('data-id-proveedor');
+          editarProveedor(id_proveedor);
           resetFormEdit();
           $("#editarProveedorModal")
             .find('[data-bs-dismiss="modal"]')
@@ -163,13 +165,26 @@ $(document).ready(function () {
     resetForm();
   });
 
-  $("#editarProveedorModal").on("shown.bs.modal", function () {
+  $("#editarProveedorModal").on("hidden.bs.modal", function () {
     resetFormEdit();
   });
 
   $("#proveedorRegistradoModal").on("hidden.bs.modal", function () {
     location.reload();
   });
+
+  $("#proveedorEditadoModal").on("hidden.bs.modal", function () {
+      location.reload();
+   });
+
+  $("#proveedorEliminadoExitoModal").on("hidden.bs.modal", function () {
+        //location.reload();
+     });
+
+  $("#proveedoresEliminadosExitoModal").on("hidden.bs.modal", function () {
+        //location.reload();
+     });
+
 
 
   bindEventHandlers();
@@ -195,5 +210,27 @@ async function registrarProveedor(){
   const proveedores = await request.json();
 
 
+}
+
+
+
+async function editarProveedor(id_proveedor) {
+
+  let datos ={};
+
+  datos.nombre_prov = document.getElementById('nombreProveedorEdit').value;
+  datos.celular_prov = document.getElementById('celularProveedorEdit').value;
+  datos.correo_prov = document.getElementById('correoProveedorEdit').value;
+  datos.direccion_prov = document.getElementById('direccionProveedorEdit').value;
+
+  const request = await fetch('api/proveedores/' + id_proveedor,  {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+  const proveedores = await request.json();
 }
 
