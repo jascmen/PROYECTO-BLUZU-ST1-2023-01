@@ -97,11 +97,13 @@ $(document).ready(function () {
       .off()
       .click(function () {
         if (validateForm()) {
+          registrarProveedor();
           resetForm();
           $("#modalAgregarProveedor")
             .find('[data-bs-dismiss="modal"]')
             .trigger("click");
           $(proveedorRegistradoModal).modal("show");
+
         }
       });
 
@@ -156,6 +158,7 @@ $(document).ready(function () {
   }
 
 
+
   $("#modalAgregarProveedor").on("shown.bs.modal", function () {
     resetForm();
   });
@@ -164,5 +167,33 @@ $(document).ready(function () {
     resetFormEdit();
   });
 
+  $("#proveedorRegistradoModal").on("hidden.bs.modal", function () {
+    location.reload();
+  });
+
+
   bindEventHandlers();
 });
+
+async function registrarProveedor(){
+
+  let datos ={};
+
+  datos.nombre_prov = document.getElementById('nombreProveedor').value;
+  datos.celular_prov = document.getElementById('celularProveedor').value;
+  datos.correo_prov = document.getElementById('correoProveedor').value;
+  datos.direccion_prov = document.getElementById('direccionProveedor').value;
+
+  const request = await fetch('api/proveedores', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+  const proveedores = await request.json();
+
+
+}
+
