@@ -1,6 +1,48 @@
 $(document).ready(function(){
 cargarProveedores();
+ bindEventHandlers();
+
 });
+function bindEventHandlers() {
+
+    $("#guardarProveedorBtn")
+      .off()
+      .click(function () {
+        if (validateForm()) {
+          registrarProveedor();
+          resetForm();
+          $("#modalAgregarProveedor").modal("hide");
+          $(proveedorRegistradoModal).modal("show");
+
+        }
+      });
+
+    $("#confirmarCancelarGuardarProveedorBtn")
+      .off()
+      .click(function () {
+        $("#modalAgregarProveedor").modal("hide");
+        resetForm();
+      });
+
+    $("#guardarEditProveedorBtn")
+      .off()
+      .click(function () {
+        if (validateFormEdit()) {
+          const id_proveedor = this.getAttribute('data-id-proveedor');
+          editarProveedor(id_proveedor);
+          resetFormEdit();
+          $("#editarProveedorModal").modal("hide");
+          $(proveedorEditadoModal).modal("show");
+        }
+      });
+
+    $("#cancelarEditarProveedorBtn")
+      .off()
+      .click(function () {
+        resetFormEdit();
+        $("#editarProveedorModal").modal("hide");
+      });
+  }
 
  async function cargarProveedores(){
 
@@ -35,7 +77,7 @@ document.querySelector('#tabla-proveedores tbody').outerHTML= listadoProveedores
       botonEliminarProveedor.setAttribute('data-id-proveedor', id_proveedor);
     });
   }
-
+// Evento click para capturar el id_proveedor al editar
   const botonesEditar = document.querySelectorAll('.edit');
     for (let boton of botonesEditar) {
       boton.addEventListener('click', function() {
@@ -53,6 +95,21 @@ document.getElementById('btnEliminarProveedor').addEventListener('click', functi
   const id_proveedor = this.getAttribute('data-id-proveedor');
   eliminarProveedor(id_proveedor);
 });
+
+// Evento click para validar modal eliminar proveedores
+document.getElementById('btnValidarModalEliminar').addEventListener('click', function() {
+  const checkboxesSeleccionados = Array.from(document.querySelectorAll('.checkbox-proveedor:checked'));
+  const ids_proveedores = checkboxesSeleccionados.map(function(checkbox) {
+    return checkbox.getAttribute('data-id-proveedor');
+  });
+
+  if (ids_proveedores.length > 0) {
+    $('#eliminarProveedoresModal').modal("show");
+  } else {
+    $('#proveedoresEliminadosVacio').modal("show");
+  }
+});
+
 // Evento click para eliminar  proveedores
 document.getElementById('btnEliminarProveedores').addEventListener('click', function() {
     // Obtener los checkboxes de proveedor seleccionados
@@ -61,9 +118,12 @@ document.getElementById('btnEliminarProveedores').addEventListener('click', func
     const ids_proveedores = checkboxesSeleccionados.map(function(checkbox) {
       return checkbox.getAttribute('data-id-proveedor');
     });
+
     // Llamar a la función para eliminar los proveedores seleccionados
     eliminarProveedores(ids_proveedores);
 });
+
+
 
 async function eliminarProveedor(id_proveedor) {
   // Lógica para eliminar el proveedor con el id_proveedor correspondiente
@@ -116,3 +176,170 @@ function asignarDatosProveedorModal(proveedor) {
   document.getElementById('celularProveedorEdit').value = proveedor.celular_prov;
   document.getElementById('direccionProveedorEdit').value = proveedor.direccion_prov;
 }
+
+ const nombreProveedor = /^[A-Za-z\s]{10,50}$/;
+  const direccionProveedor = /^([A-Za-z0-9\s\-\#\.\,]+)$/;
+  const correoProveedor = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
+  const celularProveedor = /^9\d{8}$/;
+
+  function validateForm() {
+    let isValid = true;
+
+      // Validar el formulario del paso 1
+      if (!nombreProveedor.test($("#nombreProveedor").val())) {
+        isValid = false;
+        $("#nombreProveedorError").text(
+          "Por favor, ingresa un nombre valido."
+        );
+      } else {
+        $("#nombreProveedorError").text("");
+      }
+
+      if (!direccionProveedor.test($("#direccionProveedor").val())) {
+        isValid = false;
+        $("#direccionProveedorError").text(
+          "Por favor, ingresa una direccioon válido."
+        );
+      } else {
+        $("#direccionProveedorError").text("");
+      }
+
+      if (!correoProveedor.test($("#correoProveedor").val())) {
+        isValid = false;
+        $("#correoProveedorError").text(
+          "Por favor, ingresa un correo válido."
+        );
+      } else {
+        $("#correoProveedorError").text("");
+      }
+
+       if (!celularProveedor.test($("#celularProveedor").val())) {
+        isValid = false;
+        $("#celularProveedorError").text(
+          "Por favor, ingresa un celular válido."
+        );
+      } else {
+        $("#celularProveedorError").text("");
+      }
+
+    return isValid;
+  }
+
+   function validateFormEdit() {
+     let isValid2 = true;
+
+     // Validar el formulario del paso 1
+     if (!nombreProveedor.test($("#nombreProveedorEdit").val())) {
+       isValid2 = false;
+       $("#nombreProveedorEditError").text(
+         "Por favor, ingresa un nombre valido."
+       );
+     } else {
+       $("#nombreProveedorEditError").text("");
+     }
+
+     if (!direccionProveedor.test($("#direccionProveedorEdit").val())) {
+       isValid2 = false;
+       $("#direccionProveedorEditError").text(
+         "Por favor, ingresa una direccioon válido."
+       );
+     } else {
+       $("#direccionProveedorEditError").text("");
+     }
+
+     if (!correoProveedor.test($("#correoProveedorEdit").val())) {
+       isValid2 = false;
+       $("#correoProveedorEditError").text(
+         "Por favor, ingresa un correo válido."
+       );
+     } else {
+       $("#correoProveedorEditError").text("");
+     }
+
+     if (!celularProveedor.test($("#celularProveedorEdit").val())) {
+       isValid2 = false;
+       $("#celularProveedorEditError").text(
+         "Por favor, ingresa un celular válido."
+       );
+     } else {
+       $("#celularProveedorEditError").text("");
+     }
+
+     return isValid2;
+   }
+
+
+  function resetForm() {
+    $("#nombreProveedor").val("");
+    $("#direccionProveedor").val("");
+    $("#correoProveedor").val("");
+    $("#celularProveedor").val("");
+
+    $(".error-message").text("");
+  }
+
+  function resetFormEdit() {
+    $("#nombreProveedorEdit").val("");
+    $("#direccionProveedorEdit").val("");
+    $("#correoProveedorEdit").val("");
+    $("#celularProveedorEdit").val("");
+
+    $(".error-message").text("");
+  }
+
+  $("#modalAgregarProveedor").on("hidden.bs.modal", function () {
+    cargarProveedores();
+  });
+
+  $("#editarProveedorModal").on("hidden.bs.modal", function () {
+    cargarProveedores();
+  });
+
+
+async function registrarProveedor(){
+
+  let datos ={};
+
+  datos.nombre_prov = document.getElementById('nombreProveedor').value;
+  datos.celular_prov = document.getElementById('celularProveedor').value;
+  datos.correo_prov = document.getElementById('correoProveedor').value;
+  datos.direccion_prov = document.getElementById('direccionProveedor').value;
+
+  const request = await fetch('api/proveedores', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+    const responseText = await request.text();
+    const proveedores = responseText ? JSON.parse(responseText) : null;
+
+}
+
+
+
+async function editarProveedor(id_proveedor) {
+
+
+  let datos ={};
+
+  datos.nombre_prov = document.getElementById('nombreProveedorEdit').value;
+  datos.celular_prov = document.getElementById('celularProveedorEdit').value;
+  datos.correo_prov = document.getElementById('correoProveedorEdit').value;
+  datos.direccion_prov = document.getElementById('direccionProveedorEdit').value;
+
+  const request = await fetch('api/proveedores/' + id_proveedor,  {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+  //const proveedores = await request.json();
+  const responseText = await request.text();
+    const proveedores = responseText ? JSON.parse(responseText) : null;
+}
+

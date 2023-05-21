@@ -25,7 +25,8 @@ public class ProveedorController {
 
     @RequestMapping(value = "api/proveedores", method = RequestMethod.POST)
     public void registrarProveedor(@RequestBody Proveedor proveedor) {
-         proveedorDao.registrarProveedor(proveedor);
+
+        proveedorDao.registrarProveedor(proveedor);
     }
 
     @RequestMapping(value = "api/proveedores/{id_proveedor}", method = RequestMethod.PUT)
@@ -37,7 +38,6 @@ public class ProveedorController {
     public Proveedor obtenerDatosProveedor(@PathVariable Long id_proveedor) {
         return proveedorDao.obtenerDatosProveedor(id_proveedor);
     }
-
 
 
 }

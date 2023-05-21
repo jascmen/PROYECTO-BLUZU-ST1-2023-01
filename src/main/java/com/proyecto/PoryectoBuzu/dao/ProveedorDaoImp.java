@@ -44,6 +44,7 @@ public class ProveedorDaoImp implements ProveedorDao {
             proveedorExistente.setDireccion_prov(proveedor.getDireccion_prov());
             proveedorExistente.setCelular_prov(proveedor.getCelular_prov());
             proveedorExistente.setCorreo_prov(proveedor.getCorreo_prov());
+
             registrarProveedor(proveedorExistente);
     }
 

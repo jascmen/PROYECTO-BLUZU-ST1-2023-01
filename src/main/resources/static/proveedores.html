@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -103,8 +103,7 @@
             </div>
             <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
               <div class="button-container">
-                <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
-                  data-bs-target="#eliminarProveedoresModal">
+                <button type="button" class="btn btn-danger me-2"  id="btnValidarModalEliminar">
                   <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
                   <span class="d-none d-sm-inline"><i class="ri-delete-bin-line me-1"></i>Eliminar</span>
                 </button>
@@ -195,7 +194,7 @@
                 Agregar
               </button>
             </div>
-            <div data-bs-dismiss="modal"></div>
+
           </div>
         </div>
       </div>
@@ -346,6 +345,33 @@
       </div>
       <!-- Fin modal eliminar proveedores -->
 
+      <!-- modal No se selecciono ningun proveedor Proveedores  -->
+
+      <div class="my-custom-modal modal fade" id="proveedoresEliminadosVacio" tabindex="-1"
+           aria-labelledby="proveedoresEliminadosVacioLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >
+                No se selecciono proveedores
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>Debe seleccionar al menos 1 proveedor para eliminar</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                Aceptar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin No se selecciono ningun proveedor Proveedores  -->
+
+
       <!-- modal elimicacion Proveedores exitosa -->
 
       <div class="my-custom-modal modal fade" id="proveedoresEliminadosExitoModal" tabindex="-1"
@@ -416,7 +442,7 @@
                 Guardar cambios
               </button>
             </div>
-            <div data-bs-dismiss="modal"></div>
+
           </div>
         </div>
       </div>
@@ -495,7 +521,7 @@
     crossorigin="anonymous"></script>
   <script src="scripts/script.js"></script>
   <script src="scripts/proveedor.js"></script>
-  <script src="scripts/modalProveedor.js"></script>
+
 
 
 </body>

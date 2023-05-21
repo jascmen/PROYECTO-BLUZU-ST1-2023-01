@@ -1,7 +1,64 @@
-$(document).ready(function () {
+$(document).ready(function(){
 
-  bindEventHandlers();
+ bindEventHandlers();
+
 });
+  function bindEventHandlers() {
+    $("#guardarCategoriaBtn")
+      .off()
+      .click(function () {
+        if (validateForm()) {
+        registrarCategProduct();
+          resetForm();
+          $("#modalCategoria").modal("hide");
+          $(categoriaRegistradaModal).modal("show");
+        }
+      });
+
+    $("#confirmarCancelarGuardarCategoriaBtn")
+      .off()
+      .click(function () {
+        $("#modalCategoria").modal("hide");
+        resetForm();
+      });
+
+    $("#guardarEditCategoriaBtn")
+      .off()
+      .click(function () {
+        if (validateFormEdit()) {
+          resetFormEdit();
+          $("#modalEditarCategoria").modal("hide");
+          $(categoriaEditExitoModal).modal("show");
+        }
+      });
+
+    $("#cancelarEditarCategoriaBtn")
+      .off()
+      .click(function () {
+        resetFormEdit();
+        $("#modalEditarCategoria").modal("hide");
+      });
+  }
+
+async function registrarCategProduct(){
+
+ let datos ={};
+
+  datos.name_categ_prod = document.getElementById('categoriaNombre').value;
+  datos.descrip_categ_pro = document.getElementById('categoriaDescripcion').value;
+
+  const request = await fetch('api/categorias', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+    const responseText = await request.text();
+    const categorias = responseText ? JSON.parse(responseText) : null;
+
+}
 
 
 const nombreCategoria = /^[A-Za-z\s]{4,50}$/;
@@ -30,8 +87,19 @@ const nombreCategoria = /^[A-Za-z\s]{4,50}$/;
       isValid = false;
       $("#imagenCategoriaError").text("Por favor, selecciona una imagen.");
     } else {
-      $("#imagenCategoriaError").text("");
+      // Obtener la extensión del archivo de imagen
+      let extension = imagenInput.split('.').pop().toLowerCase();
+
+      // Validar la extensión permitida (ejemplo: JPEG, PNG, GIF, SVG)
+      let extensionesPermitidas = ["jpeg", "jpg", "png", "gif", "svg"];
+      if (!extensionesPermitidas.includes(extension)) {
+        isValid = false;
+        $("#imagenCategoriaError").text("El formato de imagen seleccionado no es válido.");
+      } else {
+        $("#imagenCategoriaError").text("");
+      }
     }
+
 
     return isValid;
   }
@@ -68,41 +136,7 @@ const nombreCategoria = /^[A-Za-z\s]{4,50}$/;
     return isValid2;
   }
 
-  function bindEventHandlers() {
-    $("#guardarCategoriaBtn")
-      .off()
-      .click(function () {
-        if (validateForm()) {
-          resetForm();
-          $("#modalCategoria").modal("hide");
-          $(categoriaRegistradaModal).modal("show");
-        }
-      });
 
-    $("#confirmarCancelarGuardarCategoriaBtn")
-      .off()
-      .click(function () {
-        $("#modalCategoria").modal("hide");
-        resetForm();
-      });
-
-    $("#guardarEditCategoriaBtn")
-      .off()
-      .click(function () {
-        if (validateFormEdit()) {
-          resetFormEdit();
-          $("#modalEditarCategoria").modal("hide");
-          $(categoriaEditExitoModal).modal("show");
-        }
-      });
-
-    $("#cancelarEditarCategoriaBtn")
-      .off()
-      .click(function () {
-        resetFormEdit();
-        $("#modalEditarCategoria").modal("hide");
-      });
-  }
 
   $("#imagenCategoria").change(function () {
     let inputFile = this;
@@ -157,9 +191,9 @@ const nombreCategoria = /^[A-Za-z\s]{4,50}$/;
   }
 
   $("#modalCategoria").on("shown.bs.modal", function () {
-    resetForm();
+    //resetForm();
   });
 
   $("#modalEditarCategoria").on("shown.bs.modal", function () {
-    resetFormEdit();
+    //resetFormEdit();
   });
