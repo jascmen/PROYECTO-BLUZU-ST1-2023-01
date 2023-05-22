@@ -96,7 +96,7 @@
         <input type="text" class="form-control" placeholder="Buscar..." />
         <button class="btn btn-outline-secondary" type="button">Buscar</button>
       </div>
-      <div class="table-wrapper" id="tabla-servicios">
+      <div class="table-wrapper" >
         <div class="table-title">
           <div class="row align-items-center">
             <div class="col-12 col-sm-6">
@@ -104,8 +104,7 @@
             </div>
             <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
               <div class="button-container">
-                <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
-                  data-bs-target="#eliminarServicioModal">
+                <button type="button" class="btn btn-danger me-2" id="btnValidarServiciosEliminar">
                   <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
                   <span class="d-none d-sm-inline"><i class="ri-delete-bin-line me-1"></i>Eliminar</span>
                 </button>
@@ -119,11 +118,11 @@
           </div>
         </div>
 
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" id="tabla-servicios">
           <thead>
             <tr>
               <th></th>
-              <th>N°</th>
+              <th>Id</th>
               <th class="table-text-wrap">Nombre</th>
               <th class="descripcion-text-wrap">Descripción</th>
               <th>Imagen</th>
@@ -132,63 +131,7 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>
-                <div class="">
-                  <input class="form-check-input" type="checkbox" value="" id="" name="" />
-                </div>
-              </td>
-              <td>1</td>
-              <td class="table-text-wrap">Baño</td>
-              <td class="descripcion-text-wrap">Baño total de su mascota</td>
-              <td><img class="medium-image" src="images/perro1.jpg" alt="" /></td>
-              <th>
-                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarServicio">
-                  <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                </a>
-                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarServicioModal">
-                  <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
-                </a>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <div class="">
-                  <input class="form-check-input" type="checkbox" value="" id="" name="" />
-                </div>
-              </td>
-              <td>1</td>
-              <td class="table-text-wrap">Baño</td>
-              <td class="descripcion-text-wrap">Baño total de su mascota</td>
-              <td><img class="medium-image" src="images/perro1.jpg" alt="" /></td>
-              <th>
-                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarServicio">
-                  <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                </a>
-                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarServicioModal">
-                  <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
-                </a>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <div class="">
-                  <input class="form-check-input" type="checkbox" value="" id="" name="" />
-                </div>
-              </td>
-              <td>1</td>
-              <td class="table-text-wrap">Baño</td>
-              <td class="descripcion-text-wrap">Baño total de su mascota</td>
-              <td><img class="medium-image" src="images/perro1.jpg" alt="" /></td>
-              <th>
-                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarServicio">
-                  <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                </a>
-                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarServicioModal">
-                  <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
-                </a>
-              </th>
-            </tr>
+
           </tbody>
         </table>
       </div>
@@ -231,12 +174,6 @@
                   <label for="servicioDescripcion" class="col-form-label">Descripción:</label>
                   <textarea class="form-control" id="servicioDescripcion"></textarea>
                   <div class="error-message error-mensajito" id="servicioDescripcionError"></div>
-                </div>
-                <div class="mb-3">
-                  <label for="imagenServicio" class="form-label">Imagen</label>
-                  <input type="file" class="form-control-file" id="imagenServicio" name="productoImagen" />
-                  <div class="error-message error-mensajito" id="imagenServicioError"></div>
-                  <div class="imagenPreview" id="imagenServicioPreview"></div>
                 </div>
               </form>
             </div>
@@ -339,12 +276,6 @@
                   <textarea class="form-control" id="editServicioDescripcion"></textarea>
                   <div class="error-message error-mensajito" id="editServicioDescripcionError"></div>
                 </div>
-                <div class="mb-3">
-                  <label for="imagenServicioEdit" class="form-label">Imagen</label>
-                  <input type="file" class="form-control-file" id="imagenServicioEdit" name="productoImagen" />
-                  <div class="error-message error-mensajito" id="imagenServicioEditError"></div>
-                  <div class="imagenPreview" id="imagenServicioEditPreview"></div>
-                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -352,7 +283,7 @@
                 data-bs-target="#cancelarEditarServicioModal">
                 Cancelar
               </button>
-              <button type="button" class="btn btn-primary" id="guardarServicioEditBtn">
+              <button type="button" class="btn btn-primary" id="guardarServicioEditBtn" data-id-servicio="">
                 Guardar Cambios
               </button>
             </div>
@@ -422,7 +353,7 @@
 
 
 
-      <!-- Modal Eliminar -->
+      <!-- Modal Eliminar Servicio-->
       <div class="my-custom-modal modal fade" id="eliminarServicioModal" tabindex="-1"
         aria-labelledby="eliminarServicioModalLabel" aria-hidden="true" data-bs-backdrop="static"
         data-bs-keyboard="false">
@@ -443,16 +374,16 @@
                 Cancelar
               </button>
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
-                data-bs-target="#servicioEliminadoExitoModal">
+                data-bs-target="#servicioEliminadoExitoModal" id="btnEliminarServicio" data-id-servicio="">
                 Eliminar
               </button>
             </div>
           </div>
         </div>
       </div>
-      <!-- Modal Eliminar -->
+      <!-- Fin Modal Eliminar Servicio -->
 
-      <!-- modal elimicacion exitosa -->
+      <!-- modal Servicio eliminado exitoso -->
 
       <div class="my-custom-modal modal fade" id="servicioEliminadoExitoModal" tabindex="-1"
         aria-labelledby="servicioEliminadoExitoModalLabel" aria-hidden="true">
@@ -476,7 +407,90 @@
         </div>
       </div>
 
-      <!-- modal elimicacion exitosa -->
+      <!-- Fin modal Servicio eliminado exitoso -->
+
+      <!-- modal eliminar Servicios -->
+      <div class="my-custom-modal modal fade" id="eliminarServiciosModal" tabindex="-1"
+           aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">
+                Eliminar categorias
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>¿Está seguro de que desea
+              eliminar estas categorias?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancelar
+              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                      data-bs-target="#serviciosEliminadosExitoModal" id="btnEliminarServicios" data-id-servicio="">
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin modal eliminar Servicios -->
+
+      <!-- modal No se selecciono ninguna  Categoria  -->
+
+      <div class="my-custom-modal modal fade" id="serviciosEliminadosVacio" tabindex="-1"
+           aria-labelledby="serviciosEliminadosVacioLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >
+                No se selecciono ningun servicio
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>Debe seleccionar al menos 1 servicio para eliminar</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                Aceptar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin No se selecciono ninguna  Categoria  -->
+
+
+      <!-- modal elimicacion Servicios exitosa -->
+
+      <div class="my-custom-modal modal fade" id="serviciosEliminadosExitoModal" tabindex="-1"
+           aria-labelledby="serviciosEliminadosExitoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >
+                Servicios eliminados
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>Los servicios han sido eliminados exitosamente</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                Aceptar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin modal elimicacion Categorias exitosa -->
+
 
     </div>
 
@@ -487,7 +501,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script src="scripts/script.js"></script>
-  <script src="scripts/modalServicios.js"></script>
+<script src="scripts/servicios.js"></script>
 </body>
 
 </html>

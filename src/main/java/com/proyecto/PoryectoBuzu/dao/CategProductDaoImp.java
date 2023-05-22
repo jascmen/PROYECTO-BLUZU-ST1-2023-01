@@ -27,19 +27,9 @@ public class CategProductDaoImp  implements  CategProductoDao {
     private EntityManager entityManager;
 
 
-
-
-    public static void crearCarpeta(CategoriaProd categoriaProd) {
-        String carpetaNombre = categoriaProd.getName_categ_prod();
-        String ruta = "src/main/resources/static/images/Categorias/" + carpetaNombre;
-        File carpeta = new File(ruta);
-        carpeta.mkdirs();
-        categoriaProd.setRutimg_categ_prd(StringUtils.cleanPath(ruta));
-    }
-
     @Override
     public List<CategoriaProd> getCategoriasProductos() {
-        String query = "From categoria_productos";
+        String query = "From CategoriaProd";
         return entityManager.createQuery(query).getResultList();
     }
 
@@ -51,8 +41,8 @@ public class CategProductDaoImp  implements  CategProductoDao {
 
     @Override
     public void registrarCate(CategoriaProd categProd) {
-        crearCarpeta(categProd);
         entityManager.merge(categProd);
+
     }
 
 
@@ -67,13 +57,23 @@ public class CategProductDaoImp  implements  CategProductoDao {
         categProdExists.setRutimg_categ_prd(categProd.getRutimg_categ_prd());
 
         registrarCate(categProdExists);
+    }
+
+    /*
+    public static void crearCarpeta(Long id_Categoria) {
+        String carpetaNombre = String.valueOf(id_Categoria);
+        String ruta = "src/main/resources/static/images/Categorias/" + carpetaNombre;
+        File carpeta = new File(ruta);
+        carpeta.mkdirs();
+        String nuevaruta = "images/Categorias/" + carpetaNombre;
 
     }
+    */
 
     @Override
     public CategoriaProd obtenerDatosCategProd(Long idCategProd) {
-        CategoriaProd categoriaProd = entityManager.find(CategoriaProd.class, idCategProd);
-        return categoriaProd;
+        CategoriaProd categoria = entityManager.find(CategoriaProd.class, idCategProd);
+        return categoria;
     }
 
 

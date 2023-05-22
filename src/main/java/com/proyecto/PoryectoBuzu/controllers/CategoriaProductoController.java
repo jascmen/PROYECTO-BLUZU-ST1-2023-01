@@ -40,8 +40,8 @@ public class CategoriaProductoController {
     }
 
     @RequestMapping(value = "api/categorias/{id_categ_prod}", method = RequestMethod.GET)
-    public void obtenerCategProd(@PathVariable Long id_categ_prod){
-        categProdctDao.obtenerDatosCategProd(id_categ_prod);
+    public CategoriaProd obtenerCategProd(@PathVariable Long id_categ_prod){
+        return categProdctDao.obtenerDatosCategProd(id_categ_prod);
     }
 
 }

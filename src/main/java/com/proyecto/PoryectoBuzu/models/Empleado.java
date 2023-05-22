@@ -1,68 +1,40 @@
 package com.proyecto.PoryectoBuzu.models;
 
+
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name = "categoria_empleados")
+@ToString @EqualsAndHashCode
 public class Empleado {
 
-    private Long id;
-    private String nombre;
-    private String apellido;
-    private Integer dni;
-    private String email;
-    private Integer celular;
-    private String categoria;
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Getter @Setter @Column( name = "id_empleado")
+    private Long id_empleado;
 
-    public Long getId() {
-        return id;
-    }
+    @Getter @Setter @Column( name = "nombre_empl")
+    private String nombre_empleado;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Getter @Setter @Column( name = "apellido_empl")
+    private String apellidos_empleado;
 
-    public String getNombre() {
-        return nombre;
-    }
+    @Getter @Setter @Column( name = "dni_empl")
+    private Integer dni_empleado;
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    @Getter @Setter @Column( name = "correo_empl")
+    private String email_empleado;
 
-    public String getApellido() {
-        return apellido;
-    }
+    @Getter @Setter @Column( name = "celular_empl")
+    private Integer celular_empleado;
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
+    @Getter @Setter @Column( name = "cat_empl")
+    private int categoria_empleado;
 
-    public Integer getDni() {
-        return dni;
-    }
-
-    public void setDni(Integer dni) {
-        this.dni = dni;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getCelular() {
-        return celular;
-    }
-
-    public void setCelular(Integer celular) {
-        this.celular = celular;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+    @Getter @Setter @Column (name = "img_empl" )
+    private String img_empleado;
 }

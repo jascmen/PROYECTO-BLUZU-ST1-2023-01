@@ -1,5 +1,6 @@
 package com.proyecto.PoryectoBuzu.dao;
 
+import com.proyecto.PoryectoBuzu.models.CategoriaProd;
 import com.proyecto.PoryectoBuzu.models.Proveedor;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -53,6 +54,7 @@ public class ProveedorDaoImp implements ProveedorDao {
         Proveedor proveedor = entityManager.find(Proveedor.class, idProveedor );
         return proveedor;
     }
+
 
 
 

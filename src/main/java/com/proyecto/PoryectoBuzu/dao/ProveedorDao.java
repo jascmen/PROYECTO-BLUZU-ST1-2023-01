@@ -1,5 +1,6 @@
 package com.proyecto.PoryectoBuzu.dao;
 
+
 import com.proyecto.PoryectoBuzu.models.Proveedor;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface ProveedorDao {
     void editarProveedor(Long idProveedor, Proveedor proveedor);
 
     Proveedor obtenerDatosProveedor(Long idProveedor);
+
+
 }

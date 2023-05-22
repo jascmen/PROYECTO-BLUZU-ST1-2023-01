@@ -15,4 +15,5 @@ public interface CategProductoDao {
     void editarCategProduct(Long idCategProd, CategoriaProd categProd );
 
     CategoriaProd obtenerDatosCategProd(Long idCategProd);
+
 }

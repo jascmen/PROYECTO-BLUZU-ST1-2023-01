@@ -62,7 +62,9 @@ let listadoProveedoresHtml = '';
                       +proveedor.nombre_prov +'</td><td table-text-wrap>'
                       +proveedor.direccion_prov +'</td><td table-text-wrap>'
                       +proveedor.correo_prov +'</td><td table-text-wrap>'
-                      +proveedor.celular_prov +'</td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#editarProveedorModal" data-id-proveedor="' + proveedor.id_proveedor + '"><i class="ri-pencil-line"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProveedorModal" data-id-proveedor="' + proveedor.id_proveedor + '"><i class="ri-delete-bin-line"></i></a></th></tr>';
+                      +proveedor.celular_prov +'</td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#editarProveedorModal" data-id-proveedor="'
+                      + proveedor.id_proveedor + '"><i class="ri-pencil-line"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProveedorModal" data-id-proveedor="'
+                      + proveedor.id_proveedor + '"><i class="ri-delete-bin-line"></i></a></th></tr>';
     listadoProveedoresHtml += proveedorHtml;
 
   }
@@ -287,13 +289,6 @@ function asignarDatosProveedorModal(proveedor) {
     $(".error-message").text("");
   }
 
-  $("#modalAgregarProveedor").on("hidden.bs.modal", function () {
-    cargarProveedores();
-  });
-
-  $("#editarProveedorModal").on("hidden.bs.modal", function () {
-    cargarProveedores();
-  });
 
 
 async function registrarProveedor(){
@@ -315,6 +310,7 @@ async function registrarProveedor(){
   });
     const responseText = await request.text();
     const proveedores = responseText ? JSON.parse(responseText) : null;
+    cargarProveedores();
 
 }
 
@@ -341,5 +337,6 @@ async function editarProveedor(id_proveedor) {
   //const proveedores = await request.json();
   const responseText = await request.text();
     const proveedores = responseText ? JSON.parse(responseText) : null;
+    cargarProveedores();
 }
 

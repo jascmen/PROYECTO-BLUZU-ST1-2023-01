@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+  bindEventHandlers();
+});
   const nombreServicio = /^[A-Za-z\s]{4,50}$/;
 
   function validateForm() {
@@ -146,7 +149,7 @@ $(document).ready(function () {
     $("#servicioDescripcion").val("");
     $("#imagenServicio").val("");
     $("#imagenServicioPreview").empty();
-    
+
 
     $(".error-message").text("");
   }
@@ -168,6 +171,3 @@ $(document).ready(function () {
   $("#modalEditarServicio").on("shown.bs.modal", function () {
     resetFormEdit();
   });
-
-  bindEventHandlers();
-});

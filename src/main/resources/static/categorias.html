@@ -95,7 +95,7 @@
         <input type="text" class="form-control" placeholder="Buscar...">
         <button class="btn btn-outline-secondary" type="button">Buscar</button>
       </div>
-      <div class="table-wrapper" id="tabla-categorias">
+      <div class="table-wrapper" >
         <!-- tabla categorias -->
 
         <div class="table-title">
@@ -105,8 +105,7 @@
             </div>
             <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
               <div class="button-container">
-                <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
-                  data-bs-target="#eliminarCategoriaModal" id="btnValidarCategoriasEliminar">
+                <button type="button" class="btn btn-danger me-2" id="btnValidarCategoriasEliminar">
                   <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
                   <span class="d-none d-sm-inline"><i class="ri-delete-bin-line me-1"></i>Eliminar</span>
                 </button>
@@ -121,11 +120,11 @@
         </div>
 
 
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" id="tabla-categorias">
           <thead>
             <tr>
               <th></th>
-              <th>N°</th>
+              <th>ID</th>
               <th class="table-text-wrap">Nombre</th>
               <th class="descripcion-text-wrap">Descripción</th>
               <th>Imagen</th>
@@ -134,72 +133,6 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>
-                <div class="">
-                  <input class="form-check-input" type="checkbox" value="" name="">
-                </div>
-              </td>
-              <td>1</td>
-              <td class="table-text-wrap">Alimentos</td>
-              <td class="descripcion-text-wrap">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut nisi ab
-                architecto cum numquam velit et quisquam, exercitationem itaque voluptatibus voluptas vero illo
-                similique
-                ducimus sapiente perspiciatis autem. Voluptatum, velit.</td>
-              <td><img class="medium-image" src="images/perro1.jpg" alt=""></td>
-              <th>
-                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria">
-                  <i class="ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                </a>
-                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarCategoriaModal">
-                  <i class="ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
-                </a>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <div class="">
-                  <input class="form-check-input" type="checkbox" value=""  name="">
-                </div>
-              </td>
-              <td>1</td>
-              <td class="table-text-wrap">Alimentos</td>
-              <td class="descripcion-text-wrap">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut nisi ab
-                architecto cum numquam velit et quisquam, exercitationem itaque voluptatibus voluptas vero illo
-                similique
-                ducimus sapiente perspiciatis autem. Voluptatum, velit.</td>
-              <td><img class="medium-image" src="images/perro1.jpg" alt=""></td>
-              <th>
-                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria">
-                  <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                </a>
-                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarCategoriaModal">
-                  <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
-                </a>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <div class="">
-                  <input class="form-check-input" type="checkbox" value=""  name="">
-                </div>
-              </td>
-              <td>1</td>
-              <td class="table-text-wrap">Alimentos</td>
-              <td class="descripcion-text-wrap">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut nisi ab
-                architecto cum numquam velit et quisquam, exercitationem itaque voluptatibus voluptas vero illo
-                similique
-                ducimus sapiente perspiciatis autem. Voluptatum, velit.</td>
-              <td><img class="medium-image" src="images/perro1.jpg" alt=""></td>
-              <th>
-                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria">
-                  <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                </a>
-                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarCategoriaModal">
-                  <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i>
-                </a>
-              </th>
-            </tr>
 
 
           </tbody>
@@ -248,12 +181,6 @@
                   <label for="categoriaDescripcion" class="col-form-label">Descripción:</label>
                   <textarea class="form-control" id="categoriaDescripcion"></textarea>
                   <div class="error-message error-mensajito" id="categoriaDescripcionError"></div>
-                </div>
-                <div class="mb-3">
-                  <label for="imagenCategoria" class="form-label">Imagen</label>
-                  <input type="file" class="form-control-file" id="imagenCategoria" name="" />
-                  <div class="error-message error-mensajito" id="imagenCategoriaError"></div>
-                  <div class="imagenPreview" id="imagenCategoriaPreview"></div>
                 </div>
               </form>
             </div>
@@ -347,12 +274,6 @@
                   <textarea class="form-control" id="editCategoriaDescripcion"></textarea>
                   <div class="error-message error-mensajito" id="editCategoriaDescripcionError"></div>
                 </div>
-                <div class="mb-3">
-                  <label for="imagenCategoriaEdit" class="form-label">Imagen</label>
-                  <input type="file" class="form-control-file" id="imagenCategoriaEdit" name="" />
-                  <div class="error-message error-mensajito" id="imagenCategoriaEditError"></div>
-                  <div class="imagenPreview" id="imagenCategoriaEditPreview"></div>
-                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -366,7 +287,7 @@
       </div>
 
 
-      <!-- Modal Editar Categoría -->
+      <!-- Fin Modal Editar Categoría -->
 
       <!-- modal editado exitosa -->
 
