@@ -7,6 +7,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.List;
 
 @Repository
@@ -19,13 +20,21 @@ public class EmpleadoDaoImp implements EmpleadoDao {
 
     @Override
     public List<Empleado> getEmpleados() {
-        String query = "From Empleados";
+        String query = "From Empleado";
         return entityManager.createQuery(query).getResultList();
     }
 
     @Override
     public void eliminarEmpleado(Long id_empleado) {
         Empleado empleado = entityManager.find(Empleado.class, id_empleado);
+
+        String nombreImagen = empleado.getImg_empleado();
+
+        String rutaAbsoluta = "C://Empleados//recursos";
+        String rutaImagen = rutaAbsoluta + "//" + nombreImagen;
+        File archivoImagen = new File(rutaImagen);
+        archivoImagen.delete();
+
         entityManager.remove(empleado);
     }
 
@@ -36,19 +45,9 @@ public class EmpleadoDaoImp implements EmpleadoDao {
     }
 
     @Override
-    public void editarEmpleado(Long id_empleado, Empleado empleado) {
+    public void editarEmpleado(Empleado empleado) {
 
-        Empleado empleadoExistente = entityManager.find(Empleado.class, id_empleado);
-
-        empleadoExistente.setNombre_empleado(empleado.getNombre_empleado());
-        empleadoExistente.setApellidos_empleado(empleado.getApellidos_empleado());
-        empleadoExistente.setDni_empleado(empleado.getDni_empleado());
-        empleadoExistente.setEmail_empleado(empleado.getEmail_empleado());
-        empleadoExistente.setCelular_empleado(empleado.getCelular_empleado());
-        empleadoExistente.setImg_empleado(empleado.getImg_empleado());
-        empleadoExistente.setCategoria_empleado(empleado.getCategoria_empleado());
-
-        registrarEmpleado(empleadoExistente);
+        registrarEmpleado(empleado);
     }
 
     @Override

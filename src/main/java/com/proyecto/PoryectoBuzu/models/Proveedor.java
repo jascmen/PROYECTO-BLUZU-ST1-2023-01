@@ -19,12 +19,12 @@ public class Proveedor {
     @Getter @Setter @Column(name = "nombre_prov")
     private String nombre_prov;
 
-    @Getter @Setter @Column(name = "celular_prov")
+    @Getter @Setter @Column (name = "celular_prov")
     private Integer celular_prov;
 
-    @Getter @Setter @Column(name = "correo_prov")
+    @Getter @Setter @Column (name = "correo_prov")
     private String correo_prov;
 
-    @Getter @Setter @Column(name = "direccion_prov")
+    @Getter @Setter @Column (name = "direccion_prov")
     private String direccion_prov;
 }

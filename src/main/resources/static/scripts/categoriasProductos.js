@@ -124,7 +124,7 @@ document.getElementById('btnEliminarCategoria').addEventListener('click', functi
 document.getElementById('btnValidarCategoriasEliminar').addEventListener('click', function() {
   const checkboxesSeleccionados = Array.from(document.querySelectorAll('.checkbox-categoria:checked'));
   const ids_categorias = checkboxesSeleccionados.map(function(checkbox) {
-    return checkbox.getAttribute('data-id-id_categoria');
+    return checkbox.getAttribute('data-id-categoria');
   });
 
   if (ids_categorias.length > 0) {

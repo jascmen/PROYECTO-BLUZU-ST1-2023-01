@@ -13,7 +13,7 @@ public interface EmpleadoDao {
 
     void registrarEmpleado(Empleado empleado);
 
-    void editarEmpleado( Long id_empleado, Empleado empleado);
+    void editarEmpleado(Empleado empleado);
 
     Empleado obtenerDatosEmpleados(Long id_empleado);
 }

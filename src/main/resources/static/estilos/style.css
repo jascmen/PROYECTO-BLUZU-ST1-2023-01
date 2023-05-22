@@ -742,3 +742,10 @@ th.descripcion-productos-text-wrap{
     max-width: 300px;
     height: auto;
 }
+
+.imagen-media{
+    margin: auto;
+    object-fit: cover;
+    max-width: 300px;
+    height: auto;
+}

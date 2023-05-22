@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "categoria_empleados")
+@Table(name = "empleados")
 @ToString @EqualsAndHashCode
 public class Empleado {
 
@@ -33,7 +33,7 @@ public class Empleado {
     private Integer celular_empleado;
 
     @Getter @Setter @Column( name = "cat_empl")
-    private int categoria_empleado;
+    private String categoria_empleado;
 
     @Getter @Setter @Column (name = "img_empl" )
     private String img_empleado;

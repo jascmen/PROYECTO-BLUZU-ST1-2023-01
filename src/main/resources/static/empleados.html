@@ -104,8 +104,7 @@
             </div>
             <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
               <div class="button-container">
-                <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
-                  data-bs-target="#eliminarEmpleadoModal">
+                <button type="button" class="btn btn-danger me-2" id="validarEliminarEmpleados">
                   <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
                   <span class="d-none d-sm-inline"><i class="ri-delete-bin-line me-1"></i>Eliminar</span>
                 </button>
@@ -136,11 +135,7 @@
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody>
-
-
-
-          </tbody>
+          <tbody></tbody>
 
 
         </table>
@@ -168,8 +163,8 @@
 
 
       <!-- Modal agregar empleado-->
-      <div class="my-custom-modal modal fade" id="modalAgregarEmpleado" tabindex="-1"
-        aria-labelledby="modalEmpleadoLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="my-custom-modal modal fade" id="modalAgregarEmpleado" tabindex="-1" aria-labelledby="modalEmpleadoLabel"
+        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header d-flex flex-column align-items-center">
@@ -187,45 +182,46 @@
             </div>
 
             <div class="modal-body">
+              <form>
               <div id="paso1" class="step">
-                <form>
+
                   <div class="row mb-3">
                     <div class="col-md-12">
                       <label for="nombreEmpleadoInput" class="form-label">Nombre</label>
-                      <input type="text" class="form-control" id="nombreEmpleadoInput" placeholder="" />
+                      <input type="text" class="form-control" id="nombreEmpleadoInput" name="nombreEmpleadoInput" placeholder="" />
                       <div class="error-message error-mensajito" id="nombreEmpleadoInputError"></div>
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-md-12">
                       <label for="apellidoEmpleadoInput" class="form-label">Apellido</label>
-                      <input type="text" class="form-control" id="apellidoEmpleadoInput" placeholder="" />
+                      <input type="text" class="form-control" id="apellidoEmpleadoInput" name="apellidoEmpleadoInput" placeholder="" />
                       <div class="error-message error-mensajito" id="apellidoEmpleadoInputError"></div>
                     </div>
                   </div>
-
+      
                   <div class="row mb-3">
                     <div class="col-md-12">
                       <label for="dniEmpleadoInput" class="form-label">DNI</label>
-                      <input type="text" class="form-control" id="dniEmpleadoInput" placeholder="" />
+                      <input type="text" class="form-control" id="dniEmpleadoInput" name="dniEmpleadoInput" placeholder="" />
                       <div class="error-message error-mensajito" id="dniEmpleadoInputError"></div>
                     </div>
                   </div>
-                </form>
+
               </div>
               <div id="paso2" class="step" style="display: none">
-                <form>
+
                   <div class="row mb-3">
                     <div class="col-md-8">
                       <label for="correoEmpleadoInput" class="form-label">Correo</label>
-                      <input type="text" class="form-control" id="correoEmpleadoInput" placeholder="" />
+                      <input type="text" class="form-control" id="correoEmpleadoInput" name="correoEmpleadoInput" placeholder="" />
                       <div class="error-message error-mensajito" id="correoEmpleadoInputError"></div>
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-md-8">
                       <label for="celularEmpleadoInput" class="form-label">Celular</label>
-                      <input type="text" class="form-control" id="celularEmpleadoInput" placeholder="" />
+                      <input type="text" class="form-control" id="celularEmpleadoInput" name="celularEmpleadoInput" placeholder="" />
                       <div class="error-message error-mensajito" id="ccelularEmpleadoInputError"></div>
                     </div>
                   </div>
@@ -233,25 +229,25 @@
                   <div class="row mb-3">
                     <div class="col-md-6">
                       <label for="categoriaEmpleadoInput" class="form-label">Categoría</label>
-                      <select class="form-select" id="categoriaEmpleadoInput">
+                      <select class="form-select" id="categoriaEmpleadoInput" name="categoriaEmpleadoInput">
                         <option selected>Seleccionar categoría</option>
-                        <option>Seleccionar 1</option>
                       </select>
                       <div class="error-message error-mensajito" id="categoriaEmpleadoInputError"></div>
                     </div>
                   </div>
-                </form>
+
               </div>
               <div id="paso3" class="step" style="display: none">
-                <form>
+
                   <div class="mb-3">
                     <label for="imagenEmpleadoInput" class="form-label">Imagen</label>
                     <input type="file" class="form-control-file" id="imagenEmpleadoInput" name="empleadoImagen" />
                     <div class="error-message error-mensajito" id="imagenEmpleadoInputError"></div>
                     <div class="imagenPreview" id="imagenEmpleadoPreview"></div>
                   </div>
-                </form>
+
               </div>
+              </form>
             </div>
             <div class="modal-footer d-flex justify-content-between">
               <button type="button" class="btn btn-secondary" id="prevBtnEmpleado" style="display: none">
@@ -376,8 +372,6 @@
                     <select class="form-select" aria-label="Default select example" id="categoriaEmpleadoEditar"
                       name="">
                       <option selected>Seleccionar categoría</option>
-                      <option value="">Estilista</option>
-                      <option value="">Vendedor</option>
                     </select>
                     <div class="error-message error-mensajito" id="categoriaEmpleadoEditarError"></div>
                   </div>
@@ -392,11 +386,10 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                   data-bs-target="#cancelarEditarEmpleadoModal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnGuardarEditarEmpleado">
+                <button type="button" class="btn btn-primary" id="btnGuardarEditarEmpleado" data-id-empleado="">
                   Guardar Cambios
                 </button>
               </div>
-              <div data-bs-dismiss="modal"></div>
             </form>
           </div>
         </div>
@@ -479,7 +472,7 @@
                 <input type="hidden" name="id_empleado" value="1">
                 <!-- Cambiar el valor según el ID del empleado a eliminar -->
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
-                  data-bs-target="#empleadoEliminadoExitoModal">Eliminar</button>
+                  data-bs-target="#empleadoEliminadoExitoModal" id="btnEliminarEmpleado" data-id-empleado="">Eliminar</button>
               </form>
             </div>
           </div>
@@ -511,6 +504,89 @@
 
       <!-- modal elimicacion exitosa -->
 
+      <!-- modal eliminar empleados -->
+      <div class="my-custom-modal modal fade" id="eliminarEmpleadosModal" tabindex="-1"
+           aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"  >
+                Eliminar empleados
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>¿Está seguro de que desea
+              eliminar estos proveedores?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancelar
+              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                      data-bs-target="#empleadosEliminadosExitoModal" id="btnEliminarEmpleados" data-id-empleado="">
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin modal eliminar empleados -->
+
+      <!-- modal No se selecciono ningun proveedor Proveedores  -->
+
+      <div class="my-custom-modal modal fade" id="empleadosEliminadosVacio" tabindex="-1"
+           aria-labelledby="empleadosEliminadosVacioLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >
+                No se selecciono ningun empleados
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>Debe seleccionar al menos 1 empleado para eliminar</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                Aceptar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin No se selecciono ningun proveedor Proveedores  -->
+
+
+      <!-- modal elimicacion Empleados exitosa -->
+
+      <div class="my-custom-modal modal fade" id="empleadosEliminadosExitoModal" tabindex="-1"
+           aria-labelledby="empleadosEliminadosExitoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >
+                Empleados eliminados
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>Los empleados han sido eliminado exitosamente</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                Aceptar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin modal elimicacion Empleados exitosa -->
+
+
 
     </div>
 
@@ -522,8 +598,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script src="scripts/script.js"></script>
-  <script src="scripts/modalEmpleado.js"></script>
-  <script src="scripts/empleados.js"></script>
+  <script src="scripts/Empleados.js"></script>
 </body>
 
 </html>

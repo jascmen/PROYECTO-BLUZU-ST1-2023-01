@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="estilos/style.css" />
+    <link rel="stylesheet" href="estilos/style.css">
     <link rel="stylesheet" href="estilos/barra.css" />
 
     <title>Bluzul Pets</title>
@@ -97,7 +97,7 @@
                 <input type="text" class="form-control" placeholder="Buscar..." />
                 <button class="btn btn-outline-secondary" type="button">Buscar</button>
             </div>
-            <div class="table-wrapper" id="tabla-productos">
+            <div class="table-wrapper" >
                 <div class="table-title">
                     <div class="row align-items-center">
                         <div class="col-12 col-sm-6">
@@ -105,8 +105,7 @@
                         </div>
                         <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
                             <div class="button-container">
-                                <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
-                                    data-bs-target="#eliminarProductoModal">
+                                <button type="button" class="btn btn-danger me-2" id="btnValidarEliminacionModal">
                                     <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
                                     <span class="d-none d-sm-inline"><i
                                             class="ri-delete-bin-line me-1"></i>Eliminar</span>
@@ -122,7 +121,7 @@
                     </div>
                 </div>
 
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover " id="tabla-productos">
                     <thead>
                         <tr>
                             <th></th>
@@ -135,122 +134,12 @@
                             <th class="table-text-wrap">Precio compra</th>
                             <th class="table-text-wrap">Precio venta</th>
                             <th class="table-text-wrap">Descuento</th>
-                            <th class="table-text-wrap">Fecha</th>
                             <th class="table-text-wrap">Proveedor</th>
                             <th>Imagen</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div class="">
-                                    <input class="form-check-input" type="checkbox" value="" id="" name="" />
-                                </div>
-                            </td>
-                            <td>1</td>
-                            <td class="table-text-wrap">SKU123</td>
-                            <td class="table-text-wrap">Mimaskot 1kg</td>
-                            <td>
-                                <div class="descripcion-oculta">
-                                    ipsum dolor sit, amet consectetur adipisicing elit. Consectetur
-                                    fugiat nemo necessitatibus fuga beatae voluptates doloremque
-                                    voluptatum, reiciendis suscipit modi sit dolores perspiciatis
-                                    est neque dicta. A ea voluptates porro.
-                                </div>
-                                <a data-bs-toggle="modal" href="#descripcionModal">Mostrar más</a>
-                            </td>
-                            <td class="table-text-wrap">10</td>
-                            <td class="table-text-wrap">Alimentos</td>
-                            <td class="table-text-wrap">50.00</td>
-                            <td class="table-text-wrap">75.00</td>
-                            <td class="table-text-wrap">10%</td>
-                            <td class="table-text-wrap">01/01/2023</td>
-                            <td class="table-text-wrap">Proveedor 1</td>
-                            <td><img class="medium-image" src="" alt="" /></td>
-                            <th>
-                                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                    <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                                </a>
-                                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal">
-                                    <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip"
-                                        title="Eliminar"></i>
-                                </a>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="">
-                                    <input class="form-check-input" type="checkbox" value="" id="" name="" />
-                                </div>
-                            </td>
-                            <td>1</td>
-                            <td class="table-text-wrap">SKU123</td>
-                            <td class="table-text-wrap">Mimaskot 1kg</td>
-                            <td>
-                                <div class="descripcion-oculta">
-                                    ipsum dolor sit, amet consectetur adipisicing elit. Consectetur
-                                    fugiat nemo necessitatibus fuga beatae voluptates doloremque
-                                    voluptatum, reiciendis suscipit modi sit dolores perspiciatis
-                                    est neque dicta. A ea voluptates porro.
-                                </div>
-                                <a data-bs-toggle="modal" href="#descripcionModal">Mostrar más</a>
-                            </td>
-                            <td class="table-text-wrap">10</td>
-                            <td class="table-text-wrap">Alimentos</td>
-                            <td class="table-text-wrap">50.00</td>
-                            <td class="table-text-wrap">75.00</td>
-                            <td class="table-text-wrap">10%</td>
-                            <td class="table-text-wrap">01/01/2023</td>
-                            <td class="table-text-wrap">Proveedor 1</td>
-                            <td><img class="medium-image" src="images/perro1.jpg" alt="" /></td>
-                            <th>
-                                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                    <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                                </a>
-                                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal">
-                                    <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip"
-                                        title="Eliminar"></i>
-                                </a>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="">
-                                    <input class="form-check-input" type="checkbox" value="" id="" name="" />
-                                </div>
-                            </td>
-                            <td>1</td>
-                            <td class="table-text-wrap">SKU123</td>
-                            <td class="table-text-wrap">Mimaskot 1kg</td>
-                            <td>
-                                <div class="descripcion-oculta">
-                                    ipsum dolor sit, amet consectetur adipisicing elit. Consectetur
-                                    fugiat nemo necessitatibus fuga beatae voluptates doloremque
-                                    voluptatum, reiciendis suscipit modi sit dolores perspiciatis
-                                    est neque dicta. A ea voluptates porro.
-                                </div>
-                                <a data-bs-toggle="modal" href="#descripcionModal">Mostrar más</a>
-                            </td>
-                            <td class="table-text-wrap">10</td>
-                            <td class="table-text-wrap">Alimentos</td>
-                            <td class="table-text-wrap">50.00</td>
-                            <td class="table-text-wrap">75.00</td>
-                            <td class="table-text-wrap">10%</td>
-                            <td class="table-text-wrap">01/01/2023</td>
-                            <td class="table-text-wrap">Proveedor 1</td>
-                            <td><img class="medium-image" src="images/perro1.jpg" alt="" /></td>
-                            <th>
-                                <a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                    <i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i>
-                                </a>
-                                <a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal">
-                                    <i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip"
-                                        title="Eliminar"></i>
-                                </a>
-                            </th>
-                        </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -305,8 +194,10 @@
                         </div>
 
                         <div class="modal-body">
-                            <div id="paso1" class="step">
-                                <form>
+                            <form>
+
+                                <div id="paso1" class="step">
+
                                     <div class="row mb-3">
                                         <div class="col-md-12">
                                             <label for="codigoSKUInput" class="form-label">Codigo SKU</label>
@@ -320,15 +211,15 @@
                                             <label for="nombreProductoInput" class="form-label">Nombre</label>
                                             <input type="text" class="form-control" id="nombreProductoInput"
                                                 placeholder="" />
-                                            <div class="error-message error-mensajito" id="nombreProductoError"></div>
+                                            <div class="error-message error-mensajito" id="nombreProductoError">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <label for="categoriaProductoInput" class="form-label">Categoría</label>
-                                            <select class="form-select" id="categoriaProductoInput">
+                                            <select class="form-select" id="categoriaProductoInput" >
                                                 <option selected>Seleccionar categoría</option>
-                                                <option>Seleccionar 1</option>
                                             </select>
                                             <div class="error-message error-mensajito" id="categoriaProductoError">
                                             </div>
@@ -337,7 +228,6 @@
                                             <label for="proveedorProductoInput" class="form-label">Proveedor</label>
                                             <select class="form-select" id="proveedorProductoInput">
                                                 <option selected>Seleccionar proveedor</option>
-                                                <option>Seleccionar 1</option>
                                             </select>
                                             <div class="error-message error-mensajito" id="proveedorProductoError">
                                             </div>
@@ -352,10 +242,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                            <div id="paso2" class="step" style="display: none">
-                                <form>
+
+                                </div>
+                                <div id="paso2" class="step" style="display: none">
+
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <label for="precioCompraInput" class="form-label">Precio compra
@@ -385,358 +275,428 @@
                                             <div class="error-message error-mensajito" id="cantidadInputError"></div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <label for="fechaProductoAgregarInput" class="form-label">Fecha</label>
-                                            <input type="date" class="form-control" id="fechaProductoAgregarInput"">
-                    <div
-                      class=" error-message error-mensajito" id="fechaProductoAgregarInputError">
+
+                                </div>
+                                <div id="paso3" class="step" style="display: none">
+
+                                    <div class="mb-3">
+                                        <label for="imagenProductoAgregarInput" class="form-label">Imagen</label>
+                                        <input type="file" class="form-control-file" id="imagenProductoAgregarInput"
+                                            name="productoImagen" />
+                                        <div class="error-message error-mensajito" id="imagenProductoAgregarInputError">
                                         </div>
+                                        <div class="imagenPreview" id="imagenProductoPreview"></div>
                                     </div>
-                            </div>
-                            </form>
-                        </div>
-                        <div id="paso3" class="step" style="display: none">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="imagenProductoAgregarInput" class="form-label">Imagen</label>
-                                    <input type="file" class="form-control-file" id="imagenProductoAgregarInput"
-                                        name="productoImagen" />
-                                    <div class="error-message error-mensajito" id="imagenProductoAgregarInputError">
-                                    </div>
-                                    <div class="imagenPreview" id="imagenProductoPreview"></div>
+
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none">
-                            Anterior
-                        </button>
-                        <div>
-                            <button type="button" class="btn btn-danger" id="CloseAgregarProducto"
-                                data-bs-toggle="modal" data-bs-target="#CancelarGuardarModal">
-                                Cancelar
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none">
+                                Anterior
+                            </button>
+                            <div>
+                                <button type="button" class="btn btn-danger" id="CloseAgregarProducto"
+                                    data-bs-toggle="modal" data-bs-target="#CancelarGuardarModal">
+                                    Cancelar
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-primary" id="nextBtn">
+                                Siguiente
+                            </button>
+                            <button type="button" class="btn btn-success" id="guardarProductoBtn" style="display: none">
+                                Guardar
                             </button>
                         </div>
-                        <button type="button" class="btn btn-primary" id="nextBtn">
-                            Siguiente
-                        </button>
-                        <button type="button" class="btn btn-success" id="guardarProductoBtn" style="display: none">
-                            Guardar
-                        </button>
                     </div>
+                    <!-- <button type="button" data-bs-dismiss="modal"> </button> -->
                 </div>
-                <div data-bs-dismiss="modal"></div>
-                <!-- <button type="button" data-bs-dismiss="modal"> </button> -->
             </div>
-        </div>
-        <!-- Fin Modal para agregar Producto -->
+            <!-- Fin Modal para agregar Producto -->
 
-        <!-- Modal para Confirmacion Cancelacion de Agregar Producto -->
+            <!-- Modal para Confirmacion Cancelacion de Agregar Producto -->
 
-        <div class="my-custom-modal modal fade" id="CancelarGuardarModal" tabindex="-1"
-            aria-labelledby="CancelarGuardarModalLabel" aria-hidden="true" data-bs-backdrop="static"
-            data-bs-keyboard="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="CancelarGuardarModalLabel">
-                            Cancelar agregar producto
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Esta accion eliminara todos los datos ingresados ¿estas seguro?
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            No
-                        </button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                            id="confirmarCancelarGuardarBtn">
-                            Si
-                        </button>
+            <div class="my-custom-modal modal fade" id="CancelarGuardarModal" tabindex="-1"
+                aria-labelledby="CancelarGuardarModalLabel" aria-hidden="true" data-bs-backdrop="static"
+                data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="CancelarGuardarModalLabel">
+                                Cancelar agregar producto
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Esta accion eliminara todos los datos ingresados ¿estas seguro?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                No
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                id="confirmarCancelarGuardarBtn">
+                                Si
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Fin Modal para Confirmacion Cancelacion de Agregar Producto -->
+            <!-- Fin Modal para Confirmacion Cancelacion de Agregar Producto -->
 
-        <!-- Modal Producto registrado con exito -->
+            <!-- Modal Producto registrado con exito -->
 
-        <div class="my-custom-modal modal fade" id="agregarProductoExito" tabindex="-1" role="dialog"
-            aria-labelledby="agregarProductoExitoLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exitoModalLabel">Éxito</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">Producto registrado exitosamente.</div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                            Cerrar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Fin Modal Producto registrado con exito -->
-
-
-
-        <!-- modal eliminar -->
-        <div class="my-custom-modal modal fade" id="eliminarProductoModal" tabindex="-1"
-            aria-labelledby="eliminarProductoModalLabel" aria-hidden="true" data-bs-backdrop="static"
-            data-bs-keyboard="false">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="eliminarProductoModalModalLabel">
-                            Eliminar producto
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>
-                        <p>¿Estás seguro de que quieres eliminar este producto?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Cancelar
-                        </button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
-                            data-bs-target="#productoEliminadoExitoModal">
-                            Eliminar
-                        </button>
+            <div class="my-custom-modal modal fade" id="agregarProductoExito" tabindex="-1" role="dialog"
+                aria-labelledby="agregarProductoExitoLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exitoModalLabel">Éxito</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Producto registrado exitosamente.</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Fin modal eliminar -->
+            <!-- Fin Modal Producto registrado con exito -->
 
 
-        <!-- modal elimicacion exitosa -->
 
-        <div class="my-custom-modal modal fade" id="productoEliminadoExitoModal" tabindex="-1"
-            aria-labelledby="productoEliminadoExitoModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="productoEliminadoExitoModalLabel">
-                            Producto eliminado
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>El producto ha sido eliminado exitosamente</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                            Aceptar
-                        </button>
+            <!-- modal eliminar -->
+            <div class="my-custom-modal modal fade" id="eliminarProductoModal" tabindex="-1"
+                aria-labelledby="eliminarProductoModalLabel" aria-hidden="true" data-bs-backdrop="static"
+                data-bs-keyboard="false">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eliminarProductoModalModalLabel">
+                                Eliminar producto
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>
+                            <p>¿Estás seguro de que quieres eliminar este producto?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                                data-bs-target="#productoEliminadoExitoModal" id="btnEliminarProducto" data-id-producto="">
+                                Eliminar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Fin modal elimicacion exitosa -->
-
+            <!-- Fin modal eliminar -->
 
 
-        <!-- modal editar -->
+            <!-- modal elimicacion exitosa -->
 
-        <div class="my-custom-modal modal fade" id="modalEditarProducto" tabindex="-1"
-            aria-labelledby="modalEditarProductoLabel" aria-hidden="true" data-bs-backdrop="static"
-            data-bs-keyboard="false">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalEditarProductoLabel">
-                            Editar Producto
-                        </h5>
-                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            <div class="my-custom-modal modal fade" id="productoEliminadoExitoModal" tabindex="-1"
+                aria-labelledby="productoEliminadoExitoModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="productoEliminadoExitoModalLabel">
+                                Producto eliminado
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>El producto ha sido eliminado exitosamente</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                                Aceptar
+                            </button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="codigoSKUEdit" class="form-label">Código SKU</label>
-                                        <input type="text" class="form-control" id="codigoSKUEdit" />
-                                        <div class="error-message error-mensajito" id="codigoSKUEditError"></div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreEdit" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombreProductoEdit" />
-                                        <div class="error-message error-mensajito" id="nombreProductoEditError"></div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="descripcionEdit" class="form-label">Descripción</label>
-                                        <textarea class="form-control" id="descripcionProductoEdit"></textarea>
-                                        <div class="error-message error-mensajito" id="descripcionProductoEditError">
+                </div>
+            </div>
+
+            <!-- Fin modal elimicacion exitosa -->
+
+
+
+            <!-- modal editar -->
+
+            <div class="my-custom-modal modal fade" id="modalEditarProducto" tabindex="-1"
+                aria-labelledby="modalEditarProductoLabel" aria-hidden="true" data-bs-backdrop="static"
+                data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalEditarProductoLabel">
+                                Editar Producto
+                            </h5>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="codigoSKUEdit" class="form-label">Código SKU</label>
+                                            <input type="text" class="form-control" id="codigoSKUEdit" />
+                                            <div class="error-message error-mensajito" id="codigoSKUEditError"></div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nombreProductoEdit" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="nombreProductoEdit" />
+                                            <div class="error-message error-mensajito" id="nombreProductoEditError">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="descripcionProductoEdit" class="form-label">Descripción</label>
+                                            <textarea class="form-control" id="descripcionProductoEdit"></textarea>
+                                            <div class="error-message error-mensajito"
+                                                id="descripcionProductoEditError">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="cantidadProductoEdit" class="form-label">Cantidad</label>
+                                            <input type="text" class="form-control" id="cantidadProductoEdit" />
+                                            <div class="error-message error-mensajito" id="cantidadproductoEditError">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="categoriaProductoEdit" class="form-label">Categoría</label>
+                                            <select class="form-select" id="categoriaProductoEdit">
+                                                <option selected>
+                                                    Seleccionar categoría
+                                                </option>
+                                            </select>
+                                            <div class="error-message error-mensajito" id="categoriaProductoEditError">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="proveedorProductoEdit" class="form-label">Proveedor</label>
+                                            <select class="form-select" id="proveedorProductoEdit">
+                                                <option selected>Seleccionar proveedor</option>
+                                            </select>
+                                            <div class="error-message error-mensajito" id="proveedorProductoEditError">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="cantidadEdit" class="form-label">Cantidad</label>
-                                        <input type="text" class="form-control" id="cantidadProductoEdit" />
-                                        <div class="error-message error-mensajito" id="cantidadproductoEditError"></div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoriaEdit" class="form-label">Categoría</label>
-                                        <select class="form-select" id="categoriaProductoEdit">
-                                            <option selected>
-                                                Seleccionar categoría
-                                            </option>
-                                            <option value="ropa">Alimentos</option>
-                                            <option value="accesorios">Ropa</option>
-                                            <option value="electronica">Juguetes</option>
-                                        </select>
-                                        <div class="error-message error-mensajito" id="categoriaProductoEditError">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="precioCompraEdit" class="form-label">Precio compra (S/.)</label>
+                                            <input type="text" class="form-control" id="precioCompraEdit" />
+                                            <div class="error-message error-mensajito" id="precioCompraEditError"></div>
                                         </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="proveedorEdit" class="form-label">Proveedor</label>
-                                        <select class="form-select" id="proveedorProductoEdit">
-                                            <option selected>Seleccionar proveedor</option>
-                                            <option value="proveedor1">Proveedor 1</option>
-                                            <option value="proveedor2">Proveedor 2</option>
-                                            <option value="proveedor3">Proveedor 3</option>
-                                        </select>
-                                        <div class="error-message error-mensajito" id="proveedorProductoEditError">
+                                        <div class="mb-3">
+                                            <label for="precioVentaEdit" class="form-label">Precio venta (S/.)</label>
+                                            <input type="text" class="form-control" id="precioVentaEdit" />
+                                            <div class="error-message error-mensajito" id="precioVentaEditError"></div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="descuentoEdit" class="form-label">Descuento (%)</label>
+                                            <input type="text" class="form-control" id="descuentoEdit" />
+                                            <div class="error-message error-mensajito" id="descuentoEditError"></div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="productoImagenEdit">Imagen</label>
+                                            <input type="file" class="form-control-file" id="productoImagenEdit"
+                                                name="productoImagenEdit" />
+                                            <div class="error-message error-mensajito" id="productoImagenEditError">
+                                            </div>
+                                            <div class="imagenPreview" id="imagenProductoPreviewEdit"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="precioCompraEdit" class="form-label">Precio compra (S/.)</label>
-                                        <input type="text" class="form-control" id="precioCompraEdit" />
-                                        <div class="error-message error-mensajito" id="precioCompraEditError"></div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="precioVentaEdit" class="form-label">Precio venta (S/.)</label>
-                                        <input type="text" class="form-control" id="precioVentaEdit" />
-                                        <div class="error-message error-mensajito" id="precioVentaEditError"></div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="descuentoEdit" class="form-label">Descuento (%)</label>
-                                        <input type="text" class="form-control" id="descuentoEdit" />
-                                        <div class="error-message error-mensajito" id="descuentoEditError"></div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="fechaEdit" class="form-label">Fecha</label>
-                                        <input type="date" class="form-control" id="fechaProductoEdit" />
-                                        <div class="error-message error-mensajito" id="fechaProductoEditError">
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="productoImagenEdit">Imagen</label>
-                                        <input type="file" class="form-control-file" id="productoImagenEdit"
-                                            name="productoImagenEdit" />
-                                        <div class="error-message error-mensajito" id="productoImagenEditError"></div>
-                                        <div class="imagenPreview" id="imagenProductoPreviewEdit"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                            data-bs-target="#cancelarEditarModal">
-                            Cancelar
-                        </button>
-                        <button type="button" class="btn btn-primary" id="btnGuardarEditarProducto">
-                            Guardar
-                        </button>
-                    </div>
-                    <div data-bs-dismiss="modal"></div>
-                </div>
-            </div>
-        </div>
-        <!-- modal editar -->
-
-        <!-- Modal para Confirmacion Cancelacion de Editar Producto -->
-
-        <div class="my-custom-modal modal fade" id="cancelarEditarModal" tabindex="-1"
-            aria-labelledby="cancelarEditarModalLabel" aria-hidden="true" data-bs-backdrop="static"
-            data-bs-keyboard="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="cancelarEditarModalLabel">
-                            Cancelar editar producto
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Esta accion eliminara todos los datos ingresados ¿estas seguro?
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            No
-                        </button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                            id="cancelarEditarDatosBtn">
-                            Si
-                        </button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#cancelarEditarModal">
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn btn-primary" id="btnGuardarEditarProducto" data-id-producto="">
+                                Guardar
+                            </button>
+                        </div>
+                        <div data-bs-dismiss="modal"></div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- modal editar -->
 
-        <!-- Fin Modal para Confirmacion Cancelacion de Editar Producto -->
+            <!-- Modal para Confirmacion Cancelacion de Editar Producto -->
 
-        <!-- modal editado exitoso -->
-
-        <div class="my-custom-modal modal fade" id="ModalEditExito" tabindex="-1" aria-labelledby="ModalEditExitoLabel"
-            aria-hidden="true" data-bs-backdrop="static">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalEditExitoLabel">
-                            Producto editado
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>La informacion ha sido editada exitosamente</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                            Aceptar
-                        </button>
+            <div class="my-custom-modal modal fade" id="cancelarEditarModal" tabindex="-1"
+                aria-labelledby="cancelarEditarModalLabel" aria-hidden="true" data-bs-backdrop="static"
+                data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="cancelarEditarModalLabel">
+                                Cancelar editar producto
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Esta accion eliminara todos los datos ingresados ¿estas seguro?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                No
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                id="cancelarEditarDatosBtn">
+                                Si
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- fin modal editado exitoso -->
+            <!-- Fin Modal para Confirmacion Cancelacion de Editar Producto -->
+
+            <!-- modal editado exitoso -->
+
+            <div class="my-custom-modal modal fade" id="ModalEditExito" tabindex="-1"
+                aria-labelledby="ModalEditExitoLabel" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalEditExitoLabel">
+                                Producto editado
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>La informacion ha sido editada exitosamente</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- fin modal editado exitoso -->
 
 
-        <!-- paginacion -->
-        <div class="clearfix">
-            <div class="hint-text">showing <b>5</b> out of <b>25</b></div>
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                <li class="page-item"><a href="#" class="page-link">Next</a></li>
-            </ul>
-        </div>
 
-        <!-- paginacion -->
+            <!-- modal eliminar productos -->
+            <div class="my-custom-modal modal fade" id="eliminarProductosModal" tabindex="-1"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"  >
+                                Eliminar empleados
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>¿Está seguro de que desea
+                            eliminar estos proveedores?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                                    data-bs-target="#productosEliminadosExitoModal" id="btnEliminarProductos" data-id-empleado="">
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin modal eliminar productos -->
+
+            <!-- modal No se selecciono ningun producto  -->
+
+            <div class="my-custom-modal modal fade" id="productosEliminadosVacio" tabindex="-1"
+                 aria-labelledby="productosEliminadosVacioLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" >
+                                No se selecciono ningun empleados
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Debe seleccionar al menos 1 empleado para eliminar</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Fin No se selecciono ningun producto   -->
+
+
+            <!-- modal elimicacion productos exitosa -->
+
+            <div class="my-custom-modal modal fade" id="productosEliminadosExitoModal" tabindex="-1"
+                 aria-labelledby="productosEliminadosExitoModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" >
+                                Empleados eliminados
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Los empleados han sido eliminado exitosamente</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Fin modal elimicacion productos exitosa -->
+
+
+            <!-- paginacion -->
+            <div class="clearfix">
+                <div class="hint-text">showing <b>5</b> out of <b>25</b></div>
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </ul>
+            </div>
+
+            <!-- paginacion -->
 
         </div>
 
@@ -749,7 +709,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="scripts/script.js"></script>
-    <script src="scripts/modalProducto.js"></script>
+    <script src="scripts/Productos.js"></script>
 </body>
 
 </html>
