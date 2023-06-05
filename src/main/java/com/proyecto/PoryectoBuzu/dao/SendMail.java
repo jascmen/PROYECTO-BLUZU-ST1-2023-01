@@ -8,9 +8,9 @@ public class SendMail {
 
     private final String host = "smtp.gmail.com";
     private final int port = 587;
-    private final String username = "jascmen@gmail.com";
-    private final String password = "yqagsclolpcuaoox";
-    private final String senderEmail = "jascmen@gmail.com";
+    private final String username = "";
+    private final String password = "";
+    private final String senderEmail = "";
     private final String subject = "Registro en BLuzu Pets Spa";
 
     public void enviarCorreo(String recipientEmail) {
