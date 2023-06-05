@@ -79,7 +79,7 @@ let listadoEmpleadosHtml = '';
                     + empleado.dni_empleado +'</td><td class="table-text-wrap">'
                     +empleado.email_empleado +'</td><td class="table-text-wrap">'
                     + empleado.celular_empleado +'</td><td class="table-text-wrap">'
-                    + empleado.categoria_empleado +'</td><td><img class="imagen-media" src="/recursos/'
+                    + empleado.categoria_empleado +'</td><td><img class="imagen-media" src="/empleados/'
                     +empleado.img_empleado+'" alt=""></td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarEmpleado" data-id-empleado="'
                     + empleado.id_empleado + '"><i class="ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarEmpleadoModal" data-id-empleado="'
                     + empleado.id_empleado + '"><i class="ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a></th></tr>"';

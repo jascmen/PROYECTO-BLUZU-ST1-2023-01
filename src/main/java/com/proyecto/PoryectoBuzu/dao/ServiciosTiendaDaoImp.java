@@ -1,12 +1,14 @@
 package com.proyecto.PoryectoBuzu.dao;
 
 
+
 import com.proyecto.PoryectoBuzu.models.ServiciosTienda;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.List;
 
 @Repository
@@ -26,6 +28,15 @@ public class ServiciosTiendaDaoImp implements ServiciosTiendaDao {
     @Override
     public void eliminar(Long id_servicio) {
         ServiciosTienda serviciosTienda = entityManager.find(ServiciosTienda.class, id_servicio);
+
+
+        String nombreImagen = serviciosTienda.getImg_servicio();
+
+        String rutaAbsoluta = "images//Servicios//";
+        String rutaImagen = rutaAbsoluta + "//" + nombreImagen;
+        File archivoImagen = new File(rutaImagen);
+        archivoImagen.delete();
+
         entityManager.remove(serviciosTienda);
     }
 

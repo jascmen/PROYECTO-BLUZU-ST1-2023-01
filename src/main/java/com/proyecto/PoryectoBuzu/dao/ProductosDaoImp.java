@@ -30,7 +30,7 @@ public class ProductosDaoImp implements  ProductosDao{
 
         String nombreImagen = producto.getImg_prod();
 
-        String rutaAbsoluta = "C://Productos//recursitos";
+        String rutaAbsoluta = "images//Productos//";
         String rutaImagen = rutaAbsoluta + "//" + nombreImagen;
         File archivoImagen = new File(rutaImagen);
         archivoImagen.delete();

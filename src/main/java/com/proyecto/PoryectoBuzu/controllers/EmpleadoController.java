@@ -45,7 +45,7 @@ public class EmpleadoController {
 
 
 
-            String rutaAbsoluta = "C://Empleados//recursos";
+            String rutaAbsoluta = "images//Empleados//";
             String nuevoNombreImagen = apellido.replaceAll(" ","")+"-"+ dni.toString() + ".jpg";
 
             try {
@@ -84,19 +84,18 @@ public class EmpleadoController {
 
         String nombreImagen = empleadoExistente.getImg_empleado();
 
-        String rutaExistente = "C://Empleados//recursos";
+        String rutaExistente = "images//Empleados//";
         String rutaImagen = rutaExistente + "//" + nombreImagen;
         File archivoImagen = new File(rutaImagen);
         archivoImagen.delete();
 
         if (imagen != null && !imagen.isEmpty()) {
             // Procesar la nueva imagen solo si se proporciona una imagen válida
-            String rutaAbsoluta = "C://Empleados//recursos";
             String nuevoNombreImagen = apellido.replaceAll(" ", "") + "-" + dni.toString() + ".jpg";
 
             try {
                 byte[] bytesImg = imagen.getBytes();
-                Path rutacompleta = Paths.get(rutaAbsoluta + "//" + nuevoNombreImagen);
+                Path rutacompleta = Paths.get(rutaExistente + "//" + nuevoNombreImagen);
                 Files.write(rutacompleta, bytesImg);
                 empleadoExistente.setImg_empleado(nuevoNombreImagen);
             } catch (Exception e) {

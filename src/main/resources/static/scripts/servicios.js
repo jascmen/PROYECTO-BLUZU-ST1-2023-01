@@ -21,7 +21,7 @@ let listadoServiciosHtml = '';
                        + servicio.id_servicio +'"/></div></td><td> '
                        + servicio.id_servicio + '</td><td class="table-text-wrap">'
                        + servicio.name_servicio + '</td><td class="descripcion-text-wrap">'
-                       + servicio.descrip_servicio +'</td><td><img class="medium-image" src="" alt="" /></td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarServicio" data-id-servicio="'
+                       + servicio.descrip_servicio +'</td><td><img class="medium-image" src="/servicios/'+servicio.img_servicio+'" alt="" /></td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarServicio" data-id-servicio="'
                        + servicio.id_servicio +'"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarServicioModal" data-id-servicio="'
                        + servicio.id_servicio +'"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a></th></tr>';
 
@@ -88,23 +88,21 @@ document.getElementById('btnEliminarServicios').addEventListener('click', functi
 
 async function registrarServicio(){
 
-  let datos ={};
+  let nombre = document.getElementById('servicioNombre').value;
+  let descripcion = document.getElementById('servicioDescripcion').value;
+  let imagen = document.getElementById('imagenServicio').files[0];
 
-  datos.name_servicio = document.getElementById('servicioNombre').value;
-  datos.descrip_servicio = document.getElementById('servicioDescripcion').value;
 
-  const request = await fetch('api/servicios', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(datos)
-  });
-    const responseText = await request.text();
-    const servicios = responseText ? JSON.parse(responseText) : null;
+  const formData = new FormData();
+  formData.append('servicioImagen', imagen);
+  formData.append('nombre', nombre);
+  formData.append('descripcion', descripcion);
+
+   const request = await fetch('api/servicios', {
+      method: 'POST',
+      body: formData
+    });
     cargarServicios();
-
 }
 
 async function eliminarServicio(id_servicio) {
@@ -158,29 +156,26 @@ function asignarDatosServicioModal(servicio) {
 }
 
 async function editarServicio(id_servicio) {
+  let nombre = document.getElementById('editServicioNombre').value;
+  let descripcion = document.getElementById('editServicioDescripcion').value;
+  let imagen = document.getElementById('imagenServicioEdit').files[0];
 
 
-  let datos ={};
+  const formData = new FormData();
+  formData.append('id', id_servicio);
+  formData.append('servicioImagen', imagen);
+  formData.append('nombre', nombre);
+  formData.append('descripcion', descripcion);
 
-  datos.name_servicio = document.getElementById('editServicioNombre').value;
-  datos.descrip_servicio = document.getElementById('editServicioDescripcion').value;
-
-  const request = await fetch('api/servicios/' + id_servicio,  {
-    method: 'PUT',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(datos)
-  });
-
-  const responseText = await request.text();
-    const servicios = responseText ? JSON.parse(responseText) : null;
+   const request = await fetch('api/servicios/' + id_servicio, {
+      method: 'PUT',
+      body: formData
+    });
     cargarServicios();
 }
 
 
-  const nombreServicio = /^[A-Za-z\s]{4,50}$/;
+  const nombreServicio = /^[A-Za-z0-9ñÑ\s]{4,50}$/;
 
   function validateForm() {
     let isValid = true;
@@ -201,6 +196,13 @@ async function editarServicio(id_servicio) {
       $("#servicioDescripcionError").text("");
     }
 
+ let imagenInput = $("#imagenServicio").val();
+    if (imagenInput.trim() === "") {
+      isValid = false;
+      $("#imagenServicioError").text("Por favor, selecciona una imagen.");
+    } else {
+      $("#imagenServicioError").text("");
+    }
 
 
     return isValid;
@@ -227,6 +229,13 @@ async function editarServicio(id_servicio) {
        $("#editServicioDescripcionError").text("");
      }
 
+let imagenInput = $("#imagenServicioEdit").val();
+     if (imagenInput.trim() === "") {
+       isValid2 = false;
+       $("#imagenServicioEditError").text("Por favor, selecciona una imagen.");
+     } else {
+       $("#imagenServicioEditError").text("");
+     }
 
 
     return isValid2;
@@ -271,11 +280,45 @@ async function editarServicio(id_servicio) {
       });
   }
 
+ $("#imagenServicio").change(function () {
+    let inputFile = this;
+    if (inputFile.files && inputFile.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function (e) {
+        $("#imagenServicioPreview").html(
+          '<img src="' +
+            e.target.result +
+            '" class="img-fluid" alt="Preview" />'
+        );
+      };
+      reader.readAsDataURL(inputFile.files[0]);
+    } else {
+      $("#imagenServicioPreview").empty();
+    }
+  });
 
+  $("#imagenServicioEdit").change(function () {
+    let inputFile = this;
+    if (inputFile.files && inputFile.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function (e) {
+        $("#imagenServicioEditPreview").html(
+          '<img src="' +
+            e.target.result +
+            '" class="img-fluid" alt="Preview" />'
+        );
+      };
+      reader.readAsDataURL(inputFile.files[0]);
+    } else {
+      $("#imagenServicioEditPreview").empty();
+    }
+  });
 
   function resetForm() {
     $("#servicioNombre").val("");
     $("#servicioDescripcion").val("");
+    $("#imagenServicio").val("");
+    $("#imagenServicioPreview").empty();
 
     $(".error-message").text("");
   }
@@ -283,7 +326,8 @@ async function editarServicio(id_servicio) {
   function resetFormEdit() {
     $("#editServicioNombre").val("");
     $("#editServicioDescripcion").val("");
-
+    $("#imagenServicioEdit").val("");
+    $("#imagenServicioEditPreview").empty();
 
     $(".error-message").text("");
   }

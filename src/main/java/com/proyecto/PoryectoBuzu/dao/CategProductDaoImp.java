@@ -21,8 +21,6 @@ import java.util.List;
 public class CategProductDaoImp  implements  CategProductoDao {
 
 
-
-
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -59,16 +57,7 @@ public class CategProductDaoImp  implements  CategProductoDao {
         registrarCate(categProdExists);
     }
 
-    /*
-    public static void crearCarpeta(Long id_Categoria) {
-        String carpetaNombre = String.valueOf(id_Categoria);
-        String ruta = "src/main/resources/static/images/Categorias/" + carpetaNombre;
-        File carpeta = new File(ruta);
-        carpeta.mkdirs();
-        String nuevaruta = "images/Categorias/" + carpetaNombre;
 
-    }
-    */
 
     @Override
     public CategoriaProd obtenerDatosCategProd(Long idCategProd) {

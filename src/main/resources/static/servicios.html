@@ -32,7 +32,7 @@
 
     <div class="menu-elementos">
       <ul class="menu-links">
-        <li><a id="dashboard-inicio" href="index.html">
+        <li><a id="dashboard-inicio" href="dashboard.html">
             <i class="ri-home-8-line"></i>
             <span class="link-nombre">Dahsboard</span>
           </a></li>
@@ -52,7 +52,7 @@
             <i class="ri-service-line"></i>
             <span class="link-nombre">Servicios</span>
           </a></li>
-        <li><a id="opcion-productos" href="productos.html">
+        <li><a id="opcion-productos" href="productosDashboard.html">
             <i class="ri-shopping-bag-2-fill"></i>
             <span class="link-nombre">Productos</span>
           </a></li>
@@ -175,6 +175,12 @@
                   <textarea class="form-control" id="servicioDescripcion"></textarea>
                   <div class="error-message error-mensajito" id="servicioDescripcionError"></div>
                 </div>
+                <div class="mb-3">
+                  <label for="imagenServicio" class="form-label">Imagen</label>
+                  <input type="file" class="form-control-file" id="imagenServicio" name="productoImagen" />
+                  <div class="error-message error-mensajito" id="imagenServicioError"></div>
+                  <div class="imagenPreview" id="imagenServicioPreview"></div>
+                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -275,6 +281,12 @@
                   <label for="editServicioDescripcion" class="col-form-label">Descripción:</label>
                   <textarea class="form-control" id="editServicioDescripcion"></textarea>
                   <div class="error-message error-mensajito" id="editServicioDescripcionError"></div>
+                </div>
+                <div class="mb-3">
+                  <label for="imagenServicioEdit" class="form-label">Imagen</label>
+                  <input type="file" class="form-control-file" id="imagenServicioEdit" name="productoImagen" />
+                  <div class="error-message error-mensajito" id="imagenServicioEditError"></div>
+                  <div class="imagenPreview" id="imagenServicioEditPreview"></div>
                 </div>
               </form>
             </div>

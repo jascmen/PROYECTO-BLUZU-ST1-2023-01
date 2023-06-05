@@ -30,7 +30,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
 
         String nombreImagen = empleado.getImg_empleado();
 
-        String rutaAbsoluta = "C://Empleados//recursos";
+        String rutaAbsoluta = "images//Empleados//";
         String rutaImagen = rutaAbsoluta + "//" + nombreImagen;
         File archivoImagen = new File(rutaImagen);
         archivoImagen.delete();

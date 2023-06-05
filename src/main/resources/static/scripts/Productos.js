@@ -1,12 +1,11 @@
 $(document).ready(function () {
-
-  cargarProductos();
+ cargarProveedores();
+ cargarProductos();
   bindEventHandlers();
-  cargarProveedores();
   cargarCategproductos();
 });
 
-async function cargarProductos(){
+async function  cargarProductos(){
 
   const request = await fetch('api/productos', {
     method: 'GET',
@@ -21,44 +20,70 @@ let listadoProductosHtml = '';
 for( let producto of productos){
 
 let productoHtml = '<tr><td><div class=""><input class="form-check-input checkbox-producto" type="checkbox" data-id-producto="'
-                   + producto.id_producto +'" /></div></td><td>'
-                   + producto.id_producto +'</td><td class="table-text-wrap">'
-                   + producto.sku_prod +'</td><td class="table-text-wrap"> '+ producto.name_prod+ '</td><td><div class="descripcion-oculta">'
-                   + producto.descrip_prod +'</div><a data-bs-toggle="modal" href="#descripcionModal">Mostrar más</a></td><td class="table-text-wrap">'+
+                   + producto.idProd +'" /></div></td><td>'
+                   + producto.idProd +'</td><td class="table-text-wrap">'
+                   + producto.sku_prod +'</td><td class="table-text-wrap"> '+ producto.nom_prod + '</td><td><div class="descripcion-oculta">'
+                   + producto.descrp_prod +'</div><button class="boton-descripcion" >Mostrar más</button></td><td><div class="resumen-oculto">'
+                   + producto.resumen_product +'</div><button class="boton-resumen" >Mostrar más</button></td><td class="table-text-wrap">'
                    + producto.cantidad_prod +'</td><td class="table-text-wrap">'
                    + producto.categ_prod  +'</td><td class="table-text-wrap">'
-                   + producto.pCompra + '</td><td class="table-text-wrap">'
-                   + producto.precio_Venta +'</td><td class="table-text-wrap">'
-                   + producto.descuento +'</td><td class="table-text-wrap"> '+ producto.prov_prod+'</td><td><img class="imagen-media" src="/recursitos/'
-                   + producto.img_prod+'" alt="" /></td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarProducto" data-id-producto="'
-                   + producto.id_producto +'"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal" data-id-producto="'
-                   + producto.id_producto +'"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip"title="Eliminar"></i></a></th></tr>';
+                   + producto.compra + '</td><td class="table-text-wrap">'
+                   + producto.venta + '</td><td class="table-text-wrap">'
+                   + producto.descuento +'</td><td class="table-text-wrap"> '+ producto.proveedor+'</td><td><img class="imagen-media" src="/productos/'
+                   + producto.img_prod +'" alt="" /></td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarProducto" data-id-producto="'
+                   + producto.idProd +'"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal" data-id-producto="'
+                   + producto.idProd +'"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip"title="Eliminar"></i></a></th></tr>';
 
    listadoProductosHtml += productoHtml;
 }
-document.querySelector('#tabla-productos tbody').outerHTML = listadoProductosHtml;
+document.querySelector('#tabla-productos tbody').innerHTML = listadoProductosHtml;
 
-// Evento click para capturar el id_producto al eliminar
+
+// Evento click para capturar el idProd al eliminar
   const botonesEliminar = document.querySelectorAll('.delete');
   for (let boton of botonesEliminar) {
     boton.addEventListener('click', function() {
-      const id_producto = this.getAttribute('data-id-producto');
+      const idProd = this.getAttribute('data-id-producto');
       const botonEliminarProducto = document.querySelector('#btnEliminarProducto');
-      botonEliminarProducto.setAttribute('data-id-producto', id_producto);
+      botonEliminarProducto.setAttribute('data-id-producto', idProd);
     });
   }
-// Evento click para capturar el id_producto al editar
+// Evento click para capturar el idProd al editar
   const botonesEditar = document.querySelectorAll('.edit');
     for (let boton of botonesEditar) {
       boton.addEventListener('click', function() {
-        const id_producto = this.getAttribute('data-id-producto');
+        const idProd = this.getAttribute('data-id-producto');
         const botonEditarProducto = document.querySelector('#btnGuardarEditarProducto');
-        botonEditarProducto.setAttribute('data-id-producto', id_producto);
-        obtenerDatosProducto(id_producto);
+        botonEditarProducto.setAttribute('data-id-producto', idProd);
+        obtenerDatosProducto(idProd);
       });
     }
 
+const descripciónBoton = document.querySelectorAll('.boton-descripcion');
+for (let botoncito of descripciónBoton) {
+  botoncito.addEventListener('click', function() {
+    var descripcionOculta = this.parentNode.querySelector('.descripcion-oculta');
+    var texto = descripcionOculta.innerText;
+    $('#descripcionModalBody').html(texto);
+    $(descripcionModal).modal("show");
+  });
 }
+
+const resumenBoton = document.querySelectorAll('.boton-resumen');
+for (let botoncito of resumenBoton) {
+  botoncito.addEventListener('click', function() {
+    var resumenOculto = this.parentNode.querySelector('.resumen-oculto');
+    var texto = resumenOculto.innerText;
+    $('#resumenModalBody').html(texto);
+    $(resumenModal).modal("show");
+  });
+}
+
+
+
+
+}
+
 
 
 // Evento click para validar modal eliminar productos
@@ -78,8 +103,8 @@ document.getElementById('btnValidarEliminacionModal').addEventListener('click', 
 
 // Evento click para eliminar el producto
 document.getElementById('btnEliminarProducto').addEventListener('click', function() {
-  const id_producto = this.getAttribute('data-id-producto');
-  eliminarProducto(id_producto);
+  const idProd = this.getAttribute('data-id-producto');
+  eliminarProducto(idProd);
 });
 
 // Evento click para eliminar  productos
@@ -100,10 +125,10 @@ async function registrarProducto(){
   const sku = document.getElementById('codigoSKUInput').value;
   const nombre = document.getElementById('nombreProductoInput').value;
   const descripcion = document.getElementById('descripcionProductoInput').value;
+  const resumen = document.getElementById('ResumenProducto').value;
   const cantidad = document.getElementById('cantidadInput').value;
   const categoria = document.getElementById('categoriaProductoInput').value;
   const precioCompra = document.getElementById('precioCompraInput').value;
-  const precioVenta = document.getElementById('precioVentaInput').value;
   const descuento = document.getElementById('descuentoInput').value;
   const proveedor = document.getElementById('proveedorProductoInput').value;
   const productoImagen = document.getElementById('imagenProductoAgregarInput').files[0];
@@ -112,11 +137,11 @@ async function registrarProducto(){
   formData.append('productoImagen', productoImagen);
   formData.append('sku', sku);
    formData.append('descripcion', descripcion);
+   formData.append('resumen_prod', resumen);
   formData.append('nombre', nombre);
   formData.append('cantidad', cantidad);
   formData.append('categoria', categoria);
   formData.append('precioCompra', precioCompra);
-  formData.append('precioVenta', precioVenta);
   formData.append('descuento', descuento);
   formData.append('proveedor', proveedor);
 
@@ -128,32 +153,28 @@ cargarProductos();
 
 }
 
-async function editarProducto(id_producto){
-  const sku = document.getElementById('codigoSKUEdit').value;
+async function editarProducto(idProd){
   const nombre = document.getElementById('nombreProductoEdit').value;
-   const descripcion = document.getElementById('descripcionProductoEdit').valueL;
-   const cantidad = document.getElementById('cantidadProductoEdit').value;
-    const categoria = document.getElementById('categoriaProductoEdit').value;
-   const proveedor = document.getElementById('proveedorProductoEdit').value;
-   const precioCompra = document.getElementById('precioCompraEdit').value;
-   const precioVenta = document.getElementById('precioVentaEdit').value;
-   const descuento = document.getElementById('descuentoEdit').value;
-    const productoImagen = document.getElementById('productoImagenEdit').files[0];
+  const descripcion = document.getElementById('descripcionProductoEdit').value;
+  const resumen = document.getElementById('ResumenProductoEdit').value;
+  const categoria = document.getElementById('categoriaProductoEdit').value;
+  const proveedor = document.getElementById('proveedorProductoEdit').value;
+  const precioCompra = document.getElementById('precioCompraEdit').value;
+  const descuento = document.getElementById('descuentoEdit').value;
+  const productoImagen = document.getElementById('productoImagenEdit').files[0];
 
    const formData = new FormData();
-   formData.append('id', id_producto);
+   formData.append('id', idProd);
     formData.append('productoImagen', productoImagen);
-    formData.append('sku', sku);
      formData.append('descripcion', descripcion);
     formData.append('nombre', nombre);
-    formData.append('cantidad', cantidad);
     formData.append('categoria', categoria);
     formData.append('precioCompra', precioCompra);
-    formData.append('precioVenta', precioVenta);
     formData.append('descuento', descuento);
     formData.append('proveedor', proveedor);
+    formData.append('resumen_prod', resumen);
 
-  const request = await fetch('api/productos/' + id_producto, {
+  const request = await fetch('api/productos/' + idProd, {
     method: 'PUT',
     body: formData
   });
@@ -162,10 +183,10 @@ async function editarProducto(id_producto){
 
 
 
-async function eliminarProducto(id_producto) {
+async function eliminarProducto(idProd) {
   // Lógica para eliminar el categoria con el id_categoria correspondiente
 
-  const request = await fetch('api/productos/' + id_producto, {
+  const request = await fetch('api/productos/' + idProd, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -177,8 +198,8 @@ async function eliminarProducto(id_producto) {
 
 async function eliminarProductos(ids_productos) {
   // Lógica para eliminar los productos con los IDs proporcionados
-  for (let id_producto of ids_productos) {
-    const request = await fetch('api/producto/' + id_producto, {
+  for (let idProd of ids_productos) {
+    const request = await fetch('api/productos/' + idProd, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -194,8 +215,8 @@ async function eliminarProductos(ids_productos) {
 
 
 
-async function obtenerDatosProducto(id_producto) {
-  const request = await fetch('api/productos/' + id_producto, {
+async function obtenerDatosProducto(idProd) {
+  const request = await fetch('api/productos/' + idProd, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -208,14 +229,12 @@ async function obtenerDatosProducto(id_producto) {
 }
 
 function asignarDatosProducto(producto){
-document.getElementById('codigoSKUEdit').value = producto.sku_prod ;
-document.getElementById('nombreProductoEdit').value = producto.name_prod ;
-document.getElementById('descripcionProductoEdit').value = producto.descrip_prod ;
-document.getElementById('cantidadProductoEdit').value = producto.cantidad_prod ;
+document.getElementById('nombreProductoEdit').value = producto.nom_prod ;
+document.getElementById('descripcionProductoEdit').value = producto.descrp_prod ;
+document.getElementById('ResumenProductoEdit').value = producto.resumen_product ;
 document.getElementById('categoriaProductoEdit').value = producto.categ_prod ;
-document.getElementById('proveedorProductoEdit').value = producto.prov_prod ;
-document.getElementById('precioCompraEdit').value = producto.pCompra ;
-document.getElementById('precioVentaEdit').value = producto.precio_Venta ;
+document.getElementById('proveedorProductoEdit').value = producto.proveedor ;
+document.getElementById('precioCompraEdit').value = producto.compra ;
 document.getElementById('descuentoEdit').value = producto.descuento ;
 
 }
@@ -290,9 +309,9 @@ for (let proveedor of proveedores) {
 let currentStep = 1;
 let totalSteps = $(".step").length;
 
-  const nombrePattern = /^[A-Za-z\s]{10,50}$/;
+  const nombrePattern = /^[A-Za-z0-9\s]{10,120}$/;
   const cantidadPattern = /^(?!0+$)\d{1,3}$/;
-  const codigoSKUPattern = /^[0-9A-Z]{6}$/;
+  const codigoSKUPattern = /^\d{5,}$/;
   const precioCompraPattern = /^\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/;
   const precioVentaPattern = /^\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/;
   const descuentoPattern = /^([0-9]|[1-8][0-9]|90)$/;
@@ -342,6 +361,16 @@ let totalSteps = $(".step").length;
       } else {
         $("#descripcionProductoError").text("");
       }
+      // Validar el campo "Resumen"
+               if ($("#ResumenProducto").val().trim() === "") {
+                 isValid = false;
+                 $("#ResumenProductoError").text(
+                 "Por favor, ingresa un resumen del producto."
+                 );
+                 } else {
+                 $("#ResumenProductoError").text("");
+               }
+
     }
     if (step === 2) {
       // Validación para el segundo formulario
@@ -354,13 +383,6 @@ let totalSteps = $(".step").length;
         $("#precioCompraInputError").text("");
       }
 
-      if (!precioVentaPattern.test($("#precioVentaInput").val())) {
-        isValid = false;
-        $("#precioVentaInputError")
-          .text("Por favor, ingresa un precio de venta válido.");
-      } else {
-        $("#precioVentaInputError").text("");
-      }
 
       if (!descuentoPattern.test($("#descuentoInput").val())) {
         isValid = false;
@@ -397,12 +419,6 @@ let totalSteps = $(".step").length;
     }
 
     if(step === 4) {
-        if (!codigoSKUPattern.test($("#codigoSKUEdit").val())) {
-          isValid = false;
-          $("#codigoSKUEditError").text("Por favor, ingresa un codigo valido.");
-        } else {
-          $("#codigoSKUEditError").text("");
-        }
 
         if (!nombrePattern.test($("#nombreProductoEdit").val())) {
           isValid = false;
@@ -443,6 +459,16 @@ let totalSteps = $(".step").length;
           $("#descripcionProductoEditError").text("");
         }
 
+        // Validar el campo "Resumen"
+         if ($("#ResumenProductoEdit").val().trim() === "") {
+           isValid = false;
+           $("#ResumenProductoEditError").text(
+           "Por favor, ingresa un resumen del producto."
+           );
+           } else {
+           $("#ResumenProductoEditError").text("");
+         }
+
          if (!precioCompraPattern.test($("#precioCompraEdit").val())) {
            isValid = false;
            $("#precioCompraEditError").text(
@@ -450,15 +476,6 @@ let totalSteps = $(".step").length;
            );
          } else {
            $("#precioCompraEditError").text("");
-         }
-
-         if (!precioVentaPattern.test($("#precioVentaEdit").val())) {
-           isValid = false;
-           $("#precioVentaEditError").text(
-             "Por favor, ingresa un precio de venta válido."
-           );
-         } else {
-           $("#precioVentaEditError").text("");
          }
 
          if (!descuentoPattern.test($("#descuentoEdit").val())) {
@@ -470,21 +487,16 @@ let totalSteps = $(".step").length;
            $("#descuentoEditError").text("");
          }
 
-         if (
-           !cantidadPattern.test($("#cantidadProductoEdit").val()) ||
-           $("#cantidadProductoEdit").val() <= 0 ||
-           $("#cantidadProductoEdit").val() >= 1000
-         ) {
-           isValid = false;
-           $("#cantidadproductoEditError").text(
-             "Por favor, ingresa una cantidad válida."
-           );
-         } else {
-           $("#cantidadproductoEditError").text("");
-         }
 
-
-
+          let imagenInput = $("#productoImagenEdit").val();
+                  if (imagenInput.trim() === "") {
+                    isValid = false;
+                    $("#productoImagenEditError").text(
+                      "Por favor, selecciona una imagen."
+                    );
+                  } else {
+                    $("#productoImagenEditError").text("");
+                  }
     }
     return isValid;
   }
@@ -563,8 +575,8 @@ let totalSteps = $(".step").length;
       .off()
       .click(function () {
         if (validateForm(4)) {
-        const id_producto = this.getAttribute('data-id-producto');
-       editarProducto(id_producto);
+        const idProd = this.getAttribute('data-id-producto');
+       editarProducto(idProd);
           resetFormEdit();
           $("#modalEditarProducto").modal("hide");
           $(ModalEditExito).modal("show");
@@ -621,6 +633,7 @@ let totalSteps = $(".step").length;
     $("#categoriaProductoInput").val("Seleccionar categoría");
     $("#proveedorProductoInput").val("Seleccionar proveedor");
     $("#descripcionProductoInput").val("");
+    $("#ResumenProducto").val("");
     $("#precioCompraInput").val("");
     $("#precioVentaInput").val("");
     $("#descuentoInput").val("");
@@ -628,6 +641,7 @@ let totalSteps = $(".step").length;
     $("#fechaProductoAgregarInput").val("");
     $("#imagenProductoAgregarInput").val("");
     $("#imagenProductoPreview").empty();
+
 
     $(".error-message").text("");
   }
@@ -638,6 +652,7 @@ let totalSteps = $(".step").length;
      $("#categoriaProductoEdit").val("Seleccionar categoría");
      $("#proveedorProductoEdit").val("Seleccionar proveedor");
      $("#descripcionProductoEdit").val("");
+     $("#ResumenProductoEdit").val("");
      $("#precioCompraEdit").val("");
      $("#precioVentaEdit").val("");
      $("#descuentoEdit").val("");

@@ -11,9 +11,12 @@ public class imgConfig implements WebMvcConfigurer {
   public void addResourceHandlers(ResourceHandlerRegistry registry){
       WebMvcConfigurer.super.addResourceHandlers(registry);
 
-      registry.addResourceHandler("/recursos/**").addResourceLocations("file:/C:/Empleados/recursos/");
 
-     registry.addResourceHandler("/recursitos/**").addResourceLocations("file:/C:/Productos/recursitos/");
+     registry.addResourceHandler("/empleados/**").addResourceLocations("file:images/Empleados/");
+
+     registry.addResourceHandler("/servicios/**").addResourceLocations("file:images/Servicios/");
+
+     registry.addResourceHandler("/productos/**").addResourceLocations("file:images/Productos/");
 
   }
 }

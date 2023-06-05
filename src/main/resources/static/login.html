@@ -1,103 +1,269 @@
 <!DOCTYPE html>
-
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Responsive Login and Signup Form </title>
-  
-  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-   <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+<html lang="en">
+  <head>
+    <title>BLUZU Pets Spa</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-  <link rel="stylesheet" href="estilos/loginRegistro.css" />
-  <link rel="stylesheet" href="estilos/style.css" />
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
-<body>
-  <section class="containerGeneral_loginRegistro formularios_LoginRegistro">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+    <link rel="stylesheet" href="css/animate.css">
     
-    <div class="containerFormularios login">
-      <div class="loguito-img"><img  src="images/logo.png"></div>
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="css/style-login.css">
+
+  </head>
+  <body>
+
+    <div class="wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 d-flex align-items-center">
+						<p class="mb-0 phone pl-md-2">
+              <a href="login.html" class="mr-5"><span class="fa fa-sign-in mr-1"></span> Iniciar Sesión</a> 
+							<a href="https://wa.link/fhwqld" class="mr-2"><span class="fa fa-phone mr-1"></span> +51 923 464 405</a> 
+							<a href="#"><span class="fa fa-paper-plane mr-1"></span> bluzupets@gmail.com</a>
+						</p>
+					</div>
+					<div class="col-md-6 d-flex justify-content-md-end">
+						<div class="social-media">
+			    		<p class="mb-0 d-flex">
+			    			<a href="https://www.facebook.com/bluzupets/" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+			    			<a href="https://www.instagram.com/bluzu_pets/?hl=es-la" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+			    		</p>
+		        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>BLUZU Pets Spa</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	        	<li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+	        	<li class="nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
+	        	<li class="nav-item"><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+	          <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+    
+    <div class="form">
       
-      <div class="formulario-contenido">
+      <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Regístrate</a></li>
+        <li class="tab"><a href="#login">Inicia Sesión</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>"Lo mejor para tu mascota. Regístrate y descubre."</h1>
+          
+          <form>
+          
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                Primer nombre<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" id="nombre"/>
+                <div class="error-message error-mensajito" id="nombreError">
+                </div>
+            </div>
         
-        <header class="TituloLoginRegistro">Iniciar Sesion</header>
-        <form class="camposLOginRegistro" >
-          <div class="LoginRegistrofield input-field">
-            <input type="email" placeholder="Usuario" class="input" name="email">
+            <div class="field-wrap">
+              <label>
+                Apellidos<span class="req">*</span>
+              </label>
+              <input type="text"required autocomplete="off" id="apellido"/>
+                <div class="error-message error-mensajito" id="apellidoError">
+                </div>
+            </div>
           </div>
 
-          <div class="LoginRegistrofield input-field">
-            <input type="password" placeholder="Contraseña" class="password" name="password">
-            <i class='bx bx-hide eye-icon'></i>
+          <div class="field-wrap">
+            <label>
+              DNI<span class="req">*</span>
+            </label>
+            <input type="text" maxlength="8" required autocomplete="off" id="dni"/>
+              <div class="error-message error-mensajito" id="dniError">
+              </div>
           </div>
 
-          <div class="links-LoginRegistro">
-            <a href="#" class="forgot-pass">Olvido su contraseña?</a>
+          <div class="field-wrap">
+            <label>
+              Correo Electrónico<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off" id="email"/>
+              <div class="error-message error-mensajito" id="emailError">
+              </div>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Crear una contraseña<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off" id="password"/>
+              <div class="error-message error-mensajito" id="passwordError">
+              </div>
           </div>
 
-          <div class="LoginRegistrofield button-field">
-            <div class="nombrecito" ><a href="index.html">Ingresar</a></div>
-          </div>
-        </form>
+              <div class="field-wrap">
+                  <label>
+                      Confirme contraseña<span class="req">*</span>
+                  </label>
+                  <input type="password"required autocomplete="off" id="password2"/>
+                  <div class="error-message error-mensajito" id="password2Error">
+                  </div>
 
+              </div>
 
+          <button type="button" class="button button-block" id="btnRegistarCliente"/>Registrar</button>
+          
+          </form>
 
-
-    </div>
-
-    <!-- Signup Form -->
-    
-    <script src="js/validar.js"></script>
-    <div class="containerFormularios signup">
-      <div class="form-content">
-        <header class="TituloLoginRegistro">Ingrese datos</header>
-        <form class="camposLOginRegistro" id="formLogin">
-
-          <div class="LoginRegistrofield input-field">
-            <input type="text" id="nombres" placeholder="Nombre" class="input" name="nombres">
-          </div>
-
-          <div class="LoginRegistrofield input-field">
-            <input type="text" id="email" placeholder="Email" class="input" name="email">
-          </div>
-
-          <div class="LoginRegistrofield input-field">
-            <input type="text" id="celular" placeholder="Ingrese su celular" class="input" name="celular">
-          </div>
-
-          <div class="LoginRegistrofield input-field">
-            <input type="password" id="password" placeholder="Crear contraseña" class="password" name="password">
-          </div>
-
-          <div class="LoginRegistrofield input-field">
-            <input type="password" id="password2" placeholder="Confirmar contraseña" class="password" name="password2">
-            <i class='bx bx-hide eye-icon'></i>
-          </div>
-
-          <div class="LoginRegistrofield button-field">
-            <button type="button" name="registro">Registrese</button>
-          </div>
-        </form>
-
-        <div class="links-LoginRegistro">
-          <span>Ya tiene una cuenta? <a href="#" class="enlace-LoginRegistro login-link">Inciar sesion</a></span>
         </div>
-      </div>
+        
+        <div id="login">
+          <h1>Bienvenido</h1>
+          
+          <form >
+          
+            <div class="field-wrap">
+            <label>
+              Correo Electrónico<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off" id="emailIniciar"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Contraseña<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off" id="passwordIniciar"/>
+          </div>
+          
+          <p class="forgot"><a href="#">¿Has olvidado tu contraseña?</a></p>
 
-      <div class="linea-Or"></div>
+              <a href="#"><button type="button" class="button button-block"  id="btnIniciarSesion" onclick="iniciarSesion()"/>Iniciar Sesion</button></a>
+
+          
+          </form>
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->
+<!-- partial -->
+
+    <footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+						<h2 class="footer-heading">BLUZU Pets Spa</h2>
+						<p>Cuidando el bienestar de nuestras mascotas, cosechamos amor y alegría en cada latido de sus patitas.</p>
+						<ul class="ftco-footer-social p-0">
+              <li class="ftco-animate"><a href="https://www.facebook.com/bluzupets/" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="https://www.instagram.com/bluzu_pets/?hl=es-la" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+            </ul>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+						<h2 class="footer-heading">Últimas Noticias</h2>
+						<div class="block-21 mb-4 d-flex">
+              <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
+              <div class="text">
+                <h3 class="heading"><a href="https://www.infobae.com/perros-y-gatos/2023/03/27/cuales-son-los-beneficios-para-la-salud-de-convivir-con-un-perro-o-un-gato/">Beneficios para la salud de convivir con un perro o un gato</a></h3>
+                <div class="meta">
+                  <div><a href="https://www.infobae.com/perros-y-gatos/2023/03/27/cuales-son-los-beneficios-para-la-salud-de-convivir-con-un-perro-o-un-gato/"><span class="icon-calendar"></span> Marzo 27, 2023</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="block-21 mb-4 d-flex">
+              <a class="img mr-4 rounded" style="background-image: url(images/image_7.jpg);"></a>
+              <div class="text">
+                <h3 class="heading"><a href="#">Can Fest 2023</a></h3>
+                <div class="meta">
+                  <div><a href="#"><span class="icon-calendar"></span> Mayo 26, 2023</a></div>
+                </div>
+              </div>
+            </div>
+					</div>
+					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+						<h2 class="footer-heading">Enlaces</h2>
+						<ul class="list-unstyled">
+							<li><a href="index.html" class="py-2 d-block">Inicio</a></li>
+							<li><a href="about.html" class="py-2 d-block">Nosotros</a></li>
+							<li><a href="catalogo.html" class="py-2 d-block">Catálogo</a></li>
+							<li><a href="contact.html" class="py-2 d-block">Contacto</a></li>
+            </ul>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+						<h2 class="footer-heading">Consultas</h2>
+						<div class="block-23 mb-3">
+              <ul>
+                <li><span class="icon fa fa-map"></span><span class="text">Jr. Guillermo Morre 220 Urb. Antares, Los Olivos, Peru</span></li>
+                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text"> +51 923 464 405</span></a></li>
+                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">bluzupets@gmail.com</span></a></li>
+              </ul>
+            </div>
+					</div>
+				</div>
+				<div class="row mt-5">
+          <div class="col-md-12 text-center">
+
+            <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | BLUZU Pets Spa
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+			</div>
+		</footer>
+
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-
-    </div>
-  </section>
-
-  <script src="scripts/LoginRegistro.js"></script>
-</body>
-
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script-login.js"></script>
+  <script src="scripts/login.js"></script>
+    
+  </body>
 </html>

@@ -16,6 +16,9 @@ import java.util.List;
 @RestController
 public class ProductosController {
 
+
+
+
     @Autowired
     private ProductosDao productoDao;
 
@@ -27,21 +30,22 @@ public class ProductosController {
 
     @RequestMapping(value = "api/productos", method = RequestMethod.POST)
     public void registrarEmpleado(@RequestParam("productoImagen") MultipartFile imagen,
-                                  @RequestParam("sku") String sku,
+                                  @RequestParam("sku") Long sku,
                                   @RequestParam("nombre") String nombre,
                                   @RequestParam("descripcion") String descripcion,
                                   @RequestParam("cantidad") int cantidad,
                                   @RequestParam("categoria") String categoria,
                                   @RequestParam("precioCompra") double precioCompra,
-                                  @RequestParam("precioVenta") double precioVenta,
-                                 @RequestParam("descuento") double descuento,
-                                  @RequestParam("proveedor") String proveedor) {
+                                  @RequestParam("descuento") double descuento,
+                                  @RequestParam("proveedor") String proveedor,
+                                  @RequestParam("resumen_prod") String resumen){
+
 
         if(!imagen.isEmpty()){
 
 
-            String rutaAbsoluta = "C://Productos//recursitos";
-            String nuevoNombreImagen = nombre.replaceAll(" ","") + ".jpg";
+            String rutaAbsoluta = "images//Productos//";
+            String nuevoNombreImagen = sku.toString().replaceAll(" ","") + ".jpg";
 
             try {
                 byte[] bytesImg = imagen.getBytes();
@@ -50,6 +54,11 @@ public class ProductosController {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+
+
+
+            double precioVenta = precioCompra -  (precioCompra*descuento/100);
+
 
             // Crear un objeto Empleado con los demás datos del formulario
             Productos producto = new Productos();
@@ -63,6 +72,7 @@ public class ProductosController {
             producto.setDescuento(descuento);
             producto.setProveedor(proveedor);
             producto.setImg_prod(nuevoNombreImagen);
+            producto.setResumen_product(resumen);
 
             productoDao.registrarProducto(producto);
 
@@ -74,33 +84,31 @@ public class ProductosController {
     @RequestMapping(value = "api/productos/{id}", method = RequestMethod.PUT)
     public void editarEmpleado(   @PathVariable("id") Long id,
                                  @RequestParam("productoImagen") MultipartFile imagen,
-                                  @RequestParam("sku") String sku,
                                   @RequestParam("nombre") String nombre,
                                   @RequestParam("descripcion") String descripcion,
-                                  @RequestParam("cantidad") Integer cantidad,
                                   @RequestParam("categoria") String categoria,
                                   @RequestParam("precioCompra") double precioCompra,
-                                  @RequestParam("precioVenta") double precioVenta,
                                   @RequestParam("descuento") double descuento,
-                                  @RequestParam("proveedor") String proveedor) {
+                                  @RequestParam("proveedor") String proveedor,
+                                  @RequestParam("resumen_prod") String resumen){
 
         Productos productoExistente = productoDao.obtenerDatosProducto(id);
 
         String nombreImagen = productoExistente.getImg_prod();
 
-        String rutaExistente = "C://Productos//recursos";
+        String rutaExistente = "images//Productos//";
         String rutaImagen = rutaExistente + "//" + nombreImagen;
         File archivoImagen = new File(rutaImagen);
         archivoImagen.delete();
 
         if(imagen != null && !imagen.isEmpty()) {
             // Procesar la nueva imagen solo si se proporciona una imagen válida
-            String rutaAbsoluta = "C://Productos//recursos";
-            String nuevoNombreImagen = nombre.replaceAll(" ", "")+ ".jpg";
+
+            String nuevoNombreImagen = productoExistente.getSku_prod()+".jpg";
 
             try {
                 byte[] bytesImg = imagen.getBytes();
-                Path rutacompleta = Paths.get(rutaAbsoluta + "//" + nuevoNombreImagen);
+                Path rutacompleta = Paths.get(rutaExistente + "//" + nuevoNombreImagen);
                 Files.write(rutacompleta, bytesImg);
                 productoExistente.setImg_prod(nuevoNombreImagen);
             } catch (Exception e) {
@@ -108,27 +116,34 @@ public class ProductosController {
             }
         }
 
+
+        double precioVenta = precioCompra -  (precioCompra*descuento/100);
+
+
         productoExistente.setNom_prod(nombre);
-        productoExistente.setSku_prod(sku);
         productoExistente.setDescrp_prod(descripcion);
-        productoExistente.setCantidad_prod(cantidad);
         productoExistente.setCateg_prod(categoria);
         productoExistente.setCompra(precioCompra);
         productoExistente.setVenta(precioVenta);
         productoExistente.setDescuento(descuento);
         productoExistente.setProveedor(proveedor);
+        productoExistente.setResumen_product(resumen);
 
-            productoDao.registrarProducto(productoExistente);
+        productoDao.editarProducto(productoExistente);
 
         }
 
 
-        @RequestMapping(value = "api/productos/{id_empleado}", method = RequestMethod.GET)
-    public Productos obtenetrDatosProductps(@PathVariable Long id_empleado){
-        return productoDao.obtenerDatosProducto(id_empleado);
+        @RequestMapping(value = "api/productos/{idProd}", method = RequestMethod.GET)
+    public Productos obtenetrDatosProductps(@PathVariable Long idProd){
+        return productoDao.obtenerDatosProducto(idProd);
         }
 
+    @RequestMapping(value = "api/productos/{idProd}", method = RequestMethod.DELETE)
+    public void eliminarProducto(@PathVariable Long idProd){
 
+         productoDao.eliminarProducto(idProd);
+    }
 
     }
 

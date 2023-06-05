@@ -8,11 +8,11 @@ public interface ProductosDao {
 
     List<Productos> getProductos();
 
-    void eliminarProducto(Long id_producto);
+    void eliminarProducto(Long idProd);
 
     void registrarProducto(Productos producto);
 
     void editarProducto(Productos producto);
 
-    Productos obtenerDatosProducto(Long id_producto);
+    Productos obtenerDatosProducto(Long idProd);
 }
