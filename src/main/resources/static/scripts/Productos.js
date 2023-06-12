@@ -16,27 +16,32 @@ async function  cargarProductos(){
   });
   const productos = await request.json();
 
-let listadoProductosHtml = '';
-for( let producto of productos){
+  const table = $('#tabla-productos').DataTable();
 
-let productoHtml = '<tr><td><div class=""><input class="form-check-input checkbox-producto" type="checkbox" data-id-producto="'
-                   + producto.idProd +'" /></div></td><td>'
-                   + producto.idProd +'</td><td class="table-text-wrap">'
-                   + producto.sku_prod +'</td><td class="table-text-wrap"> '+ producto.nom_prod + '</td><td><div class="descripcion-oculta">'
-                   + producto.descrp_prod +'</div><button class="boton-descripcion" >Mostrar más</button></td><td><div class="resumen-oculto">'
-                   + producto.resumen_product +'</div><button class="boton-resumen" >Mostrar más</button></td><td class="table-text-wrap">'
-                   + producto.cantidad_prod +'</td><td class="table-text-wrap">'
-                   + producto.categ_prod  +'</td><td class="table-text-wrap">'
-                   + producto.compra + '</td><td class="table-text-wrap">'
-                   + producto.venta + '</td><td class="table-text-wrap">'
-                   + producto.descuento +'</td><td class="table-text-wrap"> '+ producto.proveedor+'</td><td><img class="imagen-media" src="/productos/'
-                   + producto.img_prod +'" alt="" /></td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarProducto" data-id-producto="'
-                   + producto.idProd +'"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal" data-id-producto="'
-                   + producto.idProd +'"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip"title="Eliminar"></i></a></th></tr>';
+  table.clear(); // Limpiar la tabla existente
 
-   listadoProductosHtml += productoHtml;
-}
-document.querySelector('#tabla-productos tbody').innerHTML = listadoProductosHtml;
+
+
+
+   for (let producto of productos) {
+     table.row.add([
+       '<div class=""><input class="form-check-input checkbox-producto" type="checkbox" data-id-producto="' + producto.idProd + '" /></div>',
+       producto.idProd,
+       producto.sku_prod,
+       producto.nom_prod,
+       '<div class="descripcion-oculta">' + producto.descrp_prod + '</div><button class="boton-descripcion">Mostrar más</button>',
+       '<div class="resumen-oculto">' + producto.resumen_product + '</div><button class="boton-resumen">Mostrar más</button>',
+       producto.cantidad_prod,
+       producto.categ_prod,
+       producto.compra,
+       producto.venta,
+       producto.descuento,
+       producto.proveedor,
+       '<img class="imagen-media" src="/productos/' + producto.img_prod + '" alt="" />',
+       '<a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarProducto" data-id-producto="' + producto.idProd + '"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal" data-id-producto="' + producto.idProd + '"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip"title="Eliminar"></i></a>'
+     ]);
+   }
+table.draw(); // Redibujar la tabla con los nuevos datos
 
 
 // Evento click para capturar el idProd al eliminar
@@ -81,9 +86,7 @@ for (let botoncito of resumenBoton) {
 
 
 
-
 }
-
 
 
 // Evento click para validar modal eliminar productos
@@ -149,9 +152,35 @@ async function registrarProducto(){
     method: 'POST',
     body: formData
   });
-cargarProductos();
+
+ respuesta = await request.json();
+
+
+    if (respuesta.exito === "OK") {
+      resetModal();
+      $(agregarProductoModal).modal("hide");
+      $(agregarProductoExito).modal("show");
+      cargarProductos();
+    } else {
+      $(fallaOcurrida).modal("show");
+      mostrarErrores(respuesta);
+    }
 
 }
+
+function mostrarErrores(respuesta){
+$("#codigoSKUError").text(respuesta.codigoSKU);
+$("#nombreProductoError").text(respuesta.nombre);
+$("#categoriaProductoError").text(respuesta.categoria);
+$("#proveedorProductoError").text(respuesta.proveedor);
+$("#descripcionProductoError").text(respuesta.descripcion);
+$("#ResumenProductoError").text(respuesta.resumen);
+$("#precioCompraInputError").text(respuesta.precioCompra);
+$("#descuentoInputError").text(respuesta.descuento);
+$("#cantidadInputError").text(respuesta.cantidad);
+$("#imagenProductoAgregarInputError").text(respuesta.imagen);
+}
+
 
 async function editarProducto(idProd){
   const nombre = document.getElementById('nombreProductoEdit').value;
@@ -309,9 +338,9 @@ for (let proveedor of proveedores) {
 let currentStep = 1;
 let totalSteps = $(".step").length;
 
-  const nombrePattern = /^[A-Za-z0-9\s]{10,120}$/;
+  const nombrePattern = /^[A-Za-z0-9\s]{5,120}$/;
   const cantidadPattern = /^(?!0+$)\d{1,3}$/;
-  const codigoSKUPattern = /^\d{5,}$/;
+  const codigoSKUPattern = /^[a-zA-Z0-9]{5,}$/;
   const precioCompraPattern = /^\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/;
   const precioVentaPattern = /^\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/;
   const descuentoPattern = /^([0-9]|[1-8][0-9]|90)$/;
@@ -557,9 +586,6 @@ let totalSteps = $(".step").length;
     $("#guardarProductoBtn").off().click(function () {
         if (validateForm(currentStep)) {
           registrarProducto();
-          resetModal();
-          $("#agregarProductoModal").modal("hide");
-            $(agregarProductoExito).modal("show");
         }
       });
 

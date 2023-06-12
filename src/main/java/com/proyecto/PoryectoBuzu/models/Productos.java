@@ -21,7 +21,7 @@ public class Productos {
 
 
         @Getter @Setter @Column( name = "sku_prod")
-        private Long sku_prod;
+        private String sku_prod;
 
         @Getter @Setter @Column( name = "nom_prod")
         private String nom_prod;

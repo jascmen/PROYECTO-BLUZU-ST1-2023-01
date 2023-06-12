@@ -15,19 +15,22 @@ async function cargarServicios(){
   });
   const servicios = await request.json();
 
-let listadoServiciosHtml = '';
- for( let servicio of servicios){
-    let servicioHtml = '<tr><td><div class=""><input class="form-check-input checkbox-servicio" type="checkbox" data-id-servicio="'
-                       + servicio.id_servicio +'"/></div></td><td> '
-                       + servicio.id_servicio + '</td><td class="table-text-wrap">'
-                       + servicio.name_servicio + '</td><td class="descripcion-text-wrap">'
-                       + servicio.descrip_servicio +'</td><td><img class="medium-image" src="/servicios/'+servicio.img_servicio+'" alt="" /></td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarServicio" data-id-servicio="'
-                       + servicio.id_servicio +'"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarServicioModal" data-id-servicio="'
-                       + servicio.id_servicio +'"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a></th></tr>';
+   const table = $('#tabla-servicios ').DataTable();
 
-    listadoServiciosHtml += servicioHtml;
- }
-document.querySelector('#tabla-servicios tbody').outerHTML= listadoServiciosHtml;
+    table.clear(); // Limpiar la tabla existente
+
+
+for (let servicio of servicios) {
+  table.row.add([
+    '<div class=""><input class="form-check-input checkbox-servicio" type="checkbox" data-id-servicio="' + servicio.id_servicio + '"/></div>',
+    servicio.id_servicio,
+    '<td class="table-text-wrap">' + servicio.name_servicio + '</td>',
+    '<td class="descripcion-text-wrap">' + servicio.descrip_servicio + '</td>',
+    '<img class="medium-image" src="/servicios/' + servicio.img_servicio + '" alt="" />',
+    '<a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarServicio" data-id-servicio="' + servicio.id_servicio + '"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarServicioModal" data-id-servicio="' + servicio.id_servicio + '"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a>'
+  ]);
+}
+table.draw(); // Redibujar la tabla con los nuevos datos
 
 // Evento click para capturar el id_servicio para eliminar
   const botonesEliminar = document.querySelectorAll('.delete');

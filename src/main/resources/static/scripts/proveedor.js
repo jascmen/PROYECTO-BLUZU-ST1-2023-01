@@ -55,20 +55,27 @@ function bindEventHandlers() {
   });
   const proveedores = await request.json();
 
-let listadoProveedoresHtml = '';
-  for( let proveedor of proveedores){
-  let proveedorHtml= '<tr><td><div class=""><input class="form-check-input checkbox-proveedor" type="checkbox" data-id-proveedor="' + proveedor.id_proveedor + '" /></div></td><td>'
-                      +proveedor.id_proveedor+'</td><td table-text-wrap>'
-                      +proveedor.nombre_prov +'</td><td table-text-wrap>'
-                      +proveedor.direccion_prov +'</td><td table-text-wrap>'
-                      +proveedor.correo_prov +'</td><td table-text-wrap>'
-                      +proveedor.celular_prov +'</td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#editarProveedorModal" data-id-proveedor="'
-                      + proveedor.id_proveedor + '"><i class="ri-pencil-line"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProveedorModal" data-id-proveedor="'
-                      + proveedor.id_proveedor + '"><i class="ri-delete-bin-line"></i></a></th></tr>';
-    listadoProveedoresHtml += proveedorHtml;
+     const table = $('#tabla-proveedores').DataTable();
 
-  }
-document.querySelector('#tabla-proveedores tbody').outerHTML= listadoProveedoresHtml;
+      table.clear(); // Limpiar la tabla existente
+
+
+
+for (let proveedor of proveedores) {
+  table.row.add([
+    '<div class=""><input class="form-check-input checkbox-proveedor" type="checkbox" data-id-proveedor="' + proveedor.id_proveedor + '" /></div>',
+    proveedor.id_proveedor,
+    '<td class="table-text-wrap">' + proveedor.nombre_prov + '</td>',
+    '<td class="table-text-wrap">' + proveedor.direccion_prov + '</td>',
+    '<td class="table-text-wrap">' + proveedor.correo_prov + '</td>',
+    '<td class="table-text-wrap">' + proveedor.celular_prov + '</td>',
+    '<a class="edit" data-bs-toggle="modal" data-bs-target="#editarProveedorModal" data-id-proveedor="' + proveedor.id_proveedor + '"><i class="ri-pencil-line"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarProveedorModal" data-id-proveedor="' + proveedor.id_proveedor + '"><i class="ri-delete-bin-line"></i></a>'
+  ]);
+}
+
+
+
+table.draw(); // Redibujar la tabla con los nuevos datos
 
 // Evento click para capturar el id_proveedor al eliminar
   const botonesEliminar = document.querySelectorAll('.delete');

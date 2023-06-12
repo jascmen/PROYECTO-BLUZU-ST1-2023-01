@@ -76,21 +76,26 @@ const request = await fetch('api/categorias', {
     },
   });
   const categorias = await request.json();
-let listadoCategoriasHtml = '';
-
-  for( let categoria of categorias){
-
-  let categoriaHtml = '<tr><td><div class=""><input class="form-check-input checkbox-categoria" type="checkbox" data-id-categoria="'
-                              + categoria.id_categ_prod +'"</div></td><td>'
-                              + categoria.id_categ_prod +'</td><td class="table-text-wrap">'+categoria.name_categ_prod+'</td><td class="descripcion-text-wrap">'
-                              + categoria.descrip_categ_pro +'</td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria" data-id-categoria="'
-                              + categoria.id_categ_prod +'"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarCategoriaModal" data-id-categoria="'
-                              + categoria.id_categ_prod +'"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a></th></tr>';
- listadoCategoriasHtml += categoriaHtml;
-  }
 
 
-document.querySelector('#tabla-categorias tbody').outerHTML= listadoCategoriasHtml;
+     const table = $('#tabla-categorias').DataTable();
+
+      table.clear(); // Limpiar la tabla existente
+
+
+ for (let categoria of categorias) {
+   table.row.add([
+     '<div class=""><input class="form-check-input checkbox-categoria" type="checkbox" data-id-categoria="' + categoria.id_categ_prod + '" /></div>',
+     categoria.id_categ_prod,
+     '<td class="table-text-wrap">' + categoria.name_categ_prod + '</td>',
+     '<td class="descripcion-text-wrap">' + categoria.descrip_categ_pro + '</td>',
+     '<a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria" data-id-categoria="' + categoria.id_categ_prod + '"><i class="material-icons ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarCategoriaModal" data-id-categoria="' + categoria.id_categ_prod + '"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a>'
+   ]);
+ }
+
+
+table.draw(); // Redibujar la tabla con los nuevos datos
+
 
 // Evento click para capturar el id_categoria al eliminar
   const botonesEliminar = document.querySelectorAll('.delete');

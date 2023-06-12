@@ -1,5 +1,6 @@
 package com.proyecto.PoryectoBuzu.dao;
 
+import com.proyecto.PoryectoBuzu.models.Errores;
 import com.proyecto.PoryectoBuzu.models.Productos;
 
 import java.util.List;
@@ -15,4 +16,8 @@ public interface ProductosDao {
     void editarProducto(Productos producto);
 
     Productos obtenerDatosProducto(Long idProd);
+
+    Boolean verificarVacio(Errores errores);
+
+    String verificarCodigo(String sku);
 }

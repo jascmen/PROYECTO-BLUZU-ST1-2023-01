@@ -1,6 +1,7 @@
 package com.proyecto.PoryectoBuzu.dao;
 
 
+import com.proyecto.PoryectoBuzu.models.Errores;
 import com.proyecto.PoryectoBuzu.models.Productos;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -54,5 +55,61 @@ public class ProductosDaoImp implements  ProductosDao{
     public Productos obtenerDatosProducto(Long id_producto) {
         Productos producto = entityManager.find(Productos.class, id_producto);
         return producto;
+    }
+
+
+    @Override
+    public String verificarCodigo(String sku) {
+        List<Productos> productos = entityManager.createQuery("FROM Productos").getResultList();
+
+        for (Productos producto : productos) {
+            if (sku.equals(producto.getSku_prod())) {
+                return "FAIL";
+            }
+        }
+
+        return "OK";
+    }
+
+
+    @Override
+    public Boolean verificarVacio(Errores errores) {
+        if (errores.getNombre() != null && !errores.getNombre().isEmpty()) {
+            return false;
+        }
+        if (errores.getApellido() != null && !errores.getApellido().isEmpty()) {
+            return false;
+        }
+        if (errores.getEmail() != null && !errores.getEmail().isEmpty()) {
+            return false;
+        }
+        if (errores.getCodigoSKU() != null) {
+            return false;
+        }
+        if (errores.getImagen() != null) {
+            return false;
+        }
+        if (errores.getDescripcion() != null && !errores.getDescripcion().isEmpty()) {
+            return false;
+        }
+        if (errores.getResumen() != null && !errores.getResumen().isEmpty()) {
+            return false;
+        }
+        if (errores.getDescuento() != null) {
+            return false;
+        }
+        if (errores.getCantidad() != null) {
+            return false;
+        }
+        if (errores.getPrecioCompra() != null) {
+            return false;
+        }
+        if (errores.getProveedor() != null && !errores.getProveedor().isEmpty()) {
+            return false;
+        }
+        if (errores.getCategoria() != null && !errores.getCategoria().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

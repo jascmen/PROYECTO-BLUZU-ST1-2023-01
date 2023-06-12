@@ -69,25 +69,31 @@ async function cargarEmpleados(){
   });
   const empleados = await request.json();
 
+   const table = $('#tabla-empleados').DataTable();
+
+    table.clear(); // Limpiar la tabla existente
+
+
 let listadoEmpleadosHtml = '';
-  for( let empleado of empleados){
-  let empleadoHtml='<tr><td><div class=""><input class="form-check-input checkbox-empleado" type="checkbox" data-id-empleado="'
-                    + empleado.id_empleado + '"></div></td><td>'
-                    +empleado.id_empleado + '</td><td class="table-text-wrap">'
-                    + empleado.nombre_empleado +'</td><td class="table-text-wrap">'
-                    + empleado.apellidos_empleado +'</td><td class="table-text-wrap">'
-                    + empleado.dni_empleado +'</td><td class="table-text-wrap">'
-                    +empleado.email_empleado +'</td><td class="table-text-wrap">'
-                    + empleado.celular_empleado +'</td><td class="table-text-wrap">'
-                    + empleado.categoria_empleado +'</td><td><img class="imagen-media" src="/empleados/'
-                    +empleado.img_empleado+'" alt=""></td><th><a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarEmpleado" data-id-empleado="'
-                    + empleado.id_empleado + '"><i class="ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarEmpleadoModal" data-id-empleado="'
-                    + empleado.id_empleado + '"><i class="ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a></th></tr>"';
-    listadoEmpleadosHtml += empleadoHtml;
 
-  }
+for (let empleado of empleados) {
+  table.row.add([
+    '<div class=""><input class="form-check-input checkbox-empleado" type="checkbox" data-id-empleado="' + empleado.id_empleado + '"></div>',
+    empleado.id_empleado,
+    '<td class="table-text-wrap">' + empleado.nombre_empleado + '</td>',
+    '<td class="table-text-wrap">' + empleado.apellidos_empleado + '</td>',
+    '<td class="table-text-wrap">' + empleado.dni_empleado + '</td>',
+    '<td class="table-text-wrap">' + empleado.email_empleado + '</td>',
+    '<td class="table-text-wrap">' + empleado.celular_empleado + '</td>',
+    '<td class="table-text-wrap">' + empleado.categoria_empleado + '</td>',
+    '<img class="imagen-media" src="/empleados/' + empleado.img_empleado + '" alt="">',
+    '<a class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarEmpleado" data-id-empleado="' + empleado.id_empleado + '"><i class="ri-edit-2-fill" data-toggle="tooltip" title="Editar"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarEmpleadoModal" data-id-empleado="' + empleado.id_empleado + '"><i class="ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a>'
+  ]);
+}
 
-document.querySelector('#tabla-empleados tbody').outerHTML = listadoEmpleadosHtml;
+
+table.draw(); // Redibujar la tabla con los nuevos datos
+
 
 // Evento click para capturar el id_empleado al eliminar
   const botonesEliminar = document.querySelectorAll('.delete');
