@@ -31,7 +31,7 @@ public class SendMail {
             message.setFrom(new InternetAddress(senderEmail));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
             message.setSubject(subject);
-            message.setText("Felicidades, acabas de registrar en BLuzu Pets Spa.");
+            message.setText("Felicidade, acabas de registrar en BLuzu Pets Spa.");
 
             Transport.send(message);
 
