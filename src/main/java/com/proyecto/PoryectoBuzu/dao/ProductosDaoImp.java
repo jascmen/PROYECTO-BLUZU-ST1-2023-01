@@ -26,6 +26,15 @@ public class ProductosDaoImp implements  ProductosDao{
     }
 
     @Override
+    public List<Productos> getProductosPorNombre(String nombre) {
+        String query = "FROM Productos p WHERE p.nom_prod LIKE CONCAT('%', :nombre, '%')";
+        return entityManager.createQuery(query)
+                .setParameter("nombre", nombre)
+                .getResultList();
+    }
+
+
+    @Override
     public void eliminarProducto(Long id_producto) {
         Productos producto = entityManager.find(Productos.class, id_producto);
 

@@ -1,49 +1,4 @@
 
-// $(document).ready(function () {
-//   $("#principal").load("inicio.html");
-
-//   $("#dashboard-inicio").click(function (event) {
-//     event.preventDefault();
-//     cargarPagina("inicio");
-//   });
-
-//   $("#opcion-empleados").click(function (event) {
-//     event.preventDefault();
-//     cargarPagina("empleados");
-//   });
-
-//   $("#opcion-productos").click(function (event) {
-//     event.preventDefault();
-//     cargarPagina("productos");
-//   });
-
-//   $("#opcion-categorias").click(function (event) {
-//     event.preventDefault();
-//     cargarPagina("categorias");
-//   });
-
-//   $("#opcion-proveedores").click(function (event) {
-//     event.preventDefault();
-//     cargarPagina("proveedores");
-//   });
-
-//   $("#opcion-servicios").click(function (event) {
-//     event.preventDefault();
-//     cargarPagina("servicios");
-//   });
-
-//   // Capturar el evento de cambio de hash
-//   $(window).on("hashchange", function () {
-//     var hash = window.location.hash.substring(1);
-//     cargarPagina(hash);
-//   });
-
-//   // Función para cargar la página correspondiente al hash
-//   function cargarPagina(pagina) {
-//     $("#principal").load(pagina + ".html");
-//   }
-// });
-
 
 
   let bodito = document.querySelector("body"),

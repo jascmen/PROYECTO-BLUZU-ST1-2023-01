@@ -9,6 +9,8 @@ public interface ProductosDao {
 
     List<Productos> getProductos();
 
+    List<Productos> getProductosPorNombre(String nombre);
+
     void eliminarProducto(Long idProd);
 
     void registrarProducto(Productos producto);
@@ -20,4 +22,8 @@ public interface ProductosDao {
     Boolean verificarVacio(Errores errores);
 
     String verificarCodigo(String sku);
+
+
+
+
 }

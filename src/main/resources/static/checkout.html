@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Checkout - BLUZU Pets Spa</title>
+    <!-- Required meta tags always come first -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="dist/font-awesome/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="css_checkout/main.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 d-flex align-items-center">
+						<p class="mb-0 phone pl-md-2">
+							<a href="https://wa.link/fhwqld" class="mr-2"><span class="fa fa-phone mr-1"></span> +51 923 464 405</a>
+							<a href="#"><span class="fa fa-paper-plane mr-1"></span> bluzupets@gmail.com</a>
+						</p>
+					</div>
+					<div class="col-md-6 d-flex justify-content-md-end">
+						<div class="social-media">
+			    		<p class="mb-0 d-flex">
+			    			<a href="https://www.facebook.com/bluzupets/" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+			    			<a href="https://www.instagram.com/bluzu_pets/?hl=es-la" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+			    		</p>
+		        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>BLUZU Pets Spa</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	        	<li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+	        	<li class="nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
+	        	<li class="nav-item active"><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+	          <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
+            <li class="nav-item"><a href="mi_cuenta.html" class="nav-link">Hola, Dickinson</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+
+
+    <div class="loader"></div>
+    <main id="main" role="main">
+        <section id="checkout-container">
+            <div class="container">
+                <div class="row py-5">
+                    <div class="col-md-4 order-md-2 mb-4">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Tu carro de compras</span>
+                            <span class="badge badge-secondary badge-pill">3</span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Canbo super premium</h6>
+                                    <small class="text-muted">Alimento</small>
+                                </div>
+                                <span class="text-muted">S/12.40</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Juguete Frisbie</h6>
+                                    <small class="text-muted">Accesorio</small>
+                                </div>
+                                <span class="text-muted">S/29.50</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Fitwarm Abrigo Fuzzy</h6>
+                                    <small class="text-muted">Ropa</small>
+                                </div>
+                                <span class="text-muted">S/69.00</span>
+                            </li>
+                            <!--<li class="list-group-item d-flex justify-content-between bg-light">
+                                <div class="text-success">
+                                    <h6 class="my-0">CUPÓN</h6>
+                                    <small>EXAMPLE CODE</small>
+                                </div>
+                                <span class="text-success">-$5</span>
+                            </li>!-->
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (PEN)</span>
+                                <strong>S/100.00</strong>
+                            </li>
+                        </ul>
+                        <form class="card p-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Código promocional">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary">Canjear</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-8 order-md-1">
+                        <h4 class="mb-3">Direccion de envio</h4>
+                        <form class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName">Nombres</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresar solo letras.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName">Apellidos</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresar solo letras.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="username">Nombre de usuario</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="username" placeholder="Username" required>
+                                    <div class="invalid-feedback" style="width: 100%;">
+                                        Su nombre de usuario es requerido.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label >Correo Electrónico</label>
+                                <input type="email" class="form-control"  placeholder="you@example.com" required>
+                                <div class="invalid-feedback">
+                                    Ingrese una dirección de correo electrónico válida.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address">Dirección</label>
+                                <input type="text" class="form-control" id="address" placeholder="Calle principal 1234" required>
+                                <div class="invalid-feedback">
+                                    Por favor, introduzca su direccion de envio.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address2">Dirección 2
+                                    <span class="text-muted">(Opcional)</span>
+                                </label>
+                                <input type="text" class="form-control" id="address2" placeholder="Apartamento o suite">
+                            </div>
+                            <div class="mb-3">
+                                <label for="zip">Código Postal</label>
+                                <input type="text" class="form-control" id="zip" placeholder="Ejem. 15201" pattern="[0-9]+" required autocomplete="off">
+                                <div class="invalid-feedback">
+                                    Código postal requerido.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="country">Departamento</label>
+                                    <select class="custom-select d-block w-100" id="country" required>
+                                        <option value="">Elegir...</option>
+                                        <option>Lima</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Seleccione un departamento.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state">Distrito</label>
+                                    <select class="custom-select d-block w-100" id="state" required>
+                                        <option value="">Elegir...</option>
+                                        <option value="Ancón">Ancón</option>
+									<option value="Ate">Ate</option>
+									<option value="Barranco">Barranco</option>
+									<option value="Breña">Breña</option>
+									<option value="Carabayllo">Carabayllo</option>
+									<option value="Chaclacayo">Chaclacayo</option>
+									<option value="Chorrillos">Chorrillos</option>
+									<option value="Cieneguilla">Cieneguilla</option>
+									<option value="Comas">Comas</option>
+									<option value="El Agustino">El Agustino</option>
+									<option value="Independencia">Independencia</option>
+									<option value="Jesús María">Jesús María</option>
+									<option value="La Molina">La Molina</option>
+									<option value="La Victoria">La Victoria</option>
+									<option value="Lince">Lince</option>
+									<option value="Los Olivos">Los Olivos</option>
+									<option value="Lurigancho">Lurigancho</option>
+									<option value="Lurín">Lurín</option>
+									<option value="Magdalena del Mar">Magdalena del Mar</option>
+									<option value="Miraflores">Miraflores</option>
+									<option value="Pachacámac">Pachacámac</option>
+									<option value="Pucusana">Pucusana</option>
+									<option value="Pueblo Libre">Pueblo Libre</option>
+									<option value="Puente Piedra">Puente Piedra</option>
+									<option value="Punta Hermosa">Punta Hermosa</option>
+									<option value="Punta Negra">Punta Negra</option>
+									<option value="Rímac">Rímac</option>
+									<option value="San Bartolo">San Bartolo</option>
+									<option value="San Borja">San Borja</option>
+									<option value="San Isidro">San Isidro</option>
+									<option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+									<option value="San Juan de Miraflores">San Juan de Miraflores</option>
+									<option value="San Luis">San Luis</option>
+									<option value="San Martín de Porres">San Martín de Porres</option>
+									<option value="San Miguel">San Miguel</option>
+									<option value="Santa Anita">Santa Anita</option>
+									<option value="Santa María del Mar">Santa María del Mar</option>
+									<option value="Santa Rosa">Santa Rosa</option>
+									<option value="Santiago de Surco">Santiago de Surco</option>
+									<option value="Surquillo">Surquillo</option>
+									<option value="Villa El Salvador">Villa El Salvador</option>
+									<option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Seleccione un Distrito.
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mb-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="same-address">
+                                <label class="custom-control-label" for="same-address">La dirección de envío es la misma que mi dirección de facturación</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="save-info">
+                                <label class="custom-control-label" for="save-info">Guarda esta información para la próxima vez</label>
+                            </div>
+                            <hr class="mb-4">
+
+                            <h4 class="mb-3">Pago</h4>
+
+                            <div class="d-block my-3">
+                                <div class="custom-control custom-radio">
+                                    <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" value="paypal" checked required onclick="showPaymentForm()">
+                                    <label class="custom-control-label" for="paypal">PayPal</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" value="credit" required onclick="showPaymentForm()">
+                                    <label class="custom-control-label" for="credit">Tarjeta de crédito</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" value="debit" required onclick="showPaymentForm()">
+                                    <label class="custom-control-label" for="debit">Tarjeta de débito</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="pago" name="paymentMethod" type="radio" class="custom-control-input" value="pago" required onclick="showPaymentForm()">
+                                    <label class="custom-control-label" for="pago">Pago contra entrega</label>
+                                </div>
+                            </div>
+                            <div id="paypalForm" style="display: none;">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label >Correo Electrónico</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">@</span>
+                                        </div>
+                                        <input type="text" class="form-control"  placeholder="your@example.com" required>
+                                        <div class="invalid-feedback" style="width: 100%;">
+                                                Su correo electrónico es requerido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="password">Contraseña de PayPal</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="password"required>
+                                        <div class="invalid-feedback" style="width: 100%;">
+                                                Su contraseña es requerida.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div id="creditCardForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-name">Titular de la tarjeta</label>
+                                    <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                                    <small class="text-muted">Nombres y Apellidos completos</small>
+                                    <div class="invalid-feedback">
+                                        Ingresar solo letras.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-number">Número de Tarjeta de Crédito</label>
+                                    <input type="text" class="form-control" id="cc-number" placeholder="Ingrese su número de tarjeta" oninput="formatCreditCardNumber(this)" required>
+                                    <div class="invalid-feedback">
+                                        Ingresar solo números.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-expiration">Vencimiento</label>
+                                    <input type="text" class="form-control" id="cc-expiration" placeholder="MM/AA" oninput="formatExpirationDate(this)" required>
+                                    <div class="invalid-feedback">
+                                        Fecha de vencimiento requerida
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-expiration">CVV</label>
+                                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Código de seguridad requerido
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pagoForm" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="username">¿Con cuánto pagará?</label>
+                                    <div class="custom-control custom-radio">
+                                        <input id="exacto" name="paymentOption" type="radio" class="custom-control-input" value="exacto" onclick="showExactoInput()">
+                                        <label class="custom-control-label" for="exacto">Exacto</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="inexacto" name="paymentOption" type="radio" class="custom-control-input" value="inexacto" onclick="showInexactoInput()">
+                                        <label class="custom-control-label" for="inexacto">Inexacto (Especificar monto)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="inexactoForm" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cantidad">Ingresar monto</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">S/</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="cantidad" placeholder="Monto" required>
+                                    <div class="invalid-feedback" style="width: 100%;">
+                                            Su monto es requerido.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="exactoForm" style="display: none;">
+                            <hr class="mb-4">
+                            <a href="confirmacion.html">
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar compra</button>
+                            </a>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            <a href="#" class="btn btn-primary scrollUp">
+                <i class="fa fa-arrow-circle-o-up"></i>
+            </a>
+                </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                    <h2 class="footer-heading">BLUZU Pets Spa</h2>
+                    <p>Cuidando el bienestar de nuestras mascotas, cosechamos amor y alegría en cada latido de sus patitas.</p>
+                    <ul class="ftco-footer-social p-0">
+          <li class="ftco-animate"><a href="https://www.facebook.com/bluzupets/" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+          <li class="ftco-animate"><a href="https://www.instagram.com/bluzu_pets/?hl=es-la" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+        </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                    <h2 class="footer-heading">Últimas Noticias</h2>
+                    <div class="block-21 mb-4 d-flex">
+          <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
+          <div class="text">
+            <h3 class="heading"><a href="https://www.infobae.com/perros-y-gatos/2023/03/27/cuales-son-los-beneficios-para-la-salud-de-convivir-con-un-perro-o-un-gato/">Beneficios para la salud de convivir con un perro o un gato</a></h3>
+            <div class="meta">
+              <div><a href="https://www.infobae.com/perros-y-gatos/2023/03/27/cuales-son-los-beneficios-para-la-salud-de-convivir-con-un-perro-o-un-gato/"><span class="icon-calendar"></span> Marzo 27, 2023</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="block-21 mb-4 d-flex">
+          <a class="img mr-4 rounded" style="background-image: url(images/image_7.jpg);"></a>
+          <div class="text">
+            <h3 class="heading"><a href="#">Can Fest 2023</a></h3>
+            <div class="meta">
+              <div><a href="#"><span class="icon-calendar"></span> Mayo 26, 2023</a></div>
+            </div>
+          </div>
+        </div>
+                </div>
+                <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+                    <h2 class="footer-heading">Enlaces</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="py-2 d-block">Inicio</a></li>
+                        <li><a href="about.html" class="py-2 d-block">Nosotros</a></li>
+                        <li><a href="catalogo.html" class="py-2 d-block">Catálogo</a></li>
+                        <li><a href="contact.html" class="py-2 d-block">Contacto</a></li>
+        </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                    <h2 class="footer-heading">Consultas</h2>
+                    <div class="block-23 mb-3">
+          <ul>
+            <li><span class="icon fa fa-map"></span><span class="text">Jr. Guillermo Morre 220 Urb. Antares, Los Olivos, Peru</span></li>
+            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text"> +51 923 464 405</span></a></li>
+            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">bluzupets@gmail.com</span></a></li>
+          </ul>
+        </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+      <div class="col-md-12 text-center">
+
+        <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | BLUZU Pets Spa
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+      </div>
+    </div>
+        </div>
+    </footer>
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script-login.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="dist/jquery/jquery.min.js"></script>
+    <script src="dist/popper/popper.min.js" integrity=""></script>
+    <script src="dist/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js_checkout/main.min.js"></script>
+</body>
+
+</html>

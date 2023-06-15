@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!----======== CSS ======== -->
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
+
+
+
+    <link rel="stylesheet" href="estilos/style.css" />
+
+    <title>Bluzul Pets</title>
+</head>
+
+<body>
+
+<nav class="sidebar">
+    <div class="logo-nombre">
+        <div class="logo-imagen">
+            <img src="images/logo.png" alt="">
+        </div>
+
+        <span class="logo_name">BluzuPetsSpa</span>
+    </div>
+
+    <div class="menu-elementos">
+        <ul class="menu-links">
+            <li><a id="dashboard-inicio" href="dashboard.html">
+                <i class="ri-home-8-line"></i>
+                <span class="link-nombre">Dahsboard</span>
+            </a></li>
+            <li><a id="opcion-empleados" href="empleados.html">
+                <i class="ri-team-fill"></i>
+                <span class="link-nombre">Empleados</span>
+            </a></li>
+            <li><a id="opcion-proveedores" href="proveedores.html">
+                <i class="ri-luggage-cart-fill"></i>
+                <span class="link-nombre">Proveedores</span>
+            </a></li>
+            <li><a id="opcion-categorias" href="categorias.html">
+                <i class="ri-article-line"></i>
+                <span class="link-nombre">Categorias</span>
+            </a></li>
+            <li><a id="opcion-servicios" href="servicios.html">
+                <i class="ri-service-line"></i>
+                <span class="link-nombre">Servicios</span>
+            </a></li>
+            <li><a id="opcion-productos" href="productosDashboard.html">
+                <i class="ri-shopping-bag-2-fill"></i>
+                <span class="link-nombre">Productos</span>
+            </a></li>
+            <li><a href="ventas.html">
+                <i class="ri-user-2-fill"></i>
+                <span class="link-nombre">Ventas</span>
+            </a></li>
+        </ul>
+
+
+        <ul class="logout-mode">
+            <li><a href="login.html">
+                <i class="ri-logout-box-r-line"></i>
+                <span class="link-nombre">Logout</span>
+            </a></li>
+
+            <li class="mode">
+                <a href="#">
+                    <i class="ri-moon-fill"></i>
+                    <span class="link-nombre">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section class="dashboard-principal">
+    <div class="top">
+        <i class="ri-bar-chart-horizontal-fill sidebar-toggle"></i>
+        <img src="images/logo.png" alt="">
+    </div>
+
+
+    <div id="principal" class="dash-content">
+
+        <div class="table-wrapper" >
+            <div class="table-title">
+                <div class="row align-items-center">
+                    <div class="col-12 col-sm-6">
+                        <h2 class="ml-lg-2">Ventas</h2>
+                    </div>
+                    <div class="col-12 col-sm-6 text-start text-sm-end mt-2 mt-sm-0">
+                        <div class="button-container">
+                            <button type="button" class="btn btn-danger me-2" id="btnValidarServiciosEliminar">
+                                <span class="d-sm-none"><i class="ri-delete-bin-line me-1"></i></span>
+                                <span class="d-none d-sm-inline"><i class="ri-delete-bin-line me-1"></i>Eliminar</span>
+                            </button>
+                            <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
+                                    data-bs-target="#modalRegistrarVenta">
+                                <span class="d-sm-none"><i class="ri-add-circle-line me-1"></i></span>
+                                <span class="d-none d-sm-inline"><i class="ri-add-circle-line me-1"></i>Agregar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <table class="table table-striped table-hover" id="tabla-ventas">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Id</th>
+                    <th class="table-text-wrap">DNI</th>
+                    <th class="table-text-wrap">Cliente</th>
+                    <th>Total</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <!-- Modal Agregar Venta -->
+
+        <div class="my-custom-modal modal fade" id="modalRegistrarVenta" tabindex="-1" aria-labelledby="modalRegistrarVentaLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalRegistrarVentaLabel">Registrar Venta</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="ventaNombre" class="col-form-label">Nombre:</label>
+                                        <input type="text" class="form-control" id="ventaNombre" />
+                                        <div class="error-message error-mensajito" id="ventaNombreError"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="ventaDNI" class="col-form-label">DNI:</label>
+                                        <input type="text" class="form-control" id="ventaDNI" />
+                                        <div class="error-message error-mensajito" id="ventaDNIError"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="ventaEmail" class="col-form-label">Email:</label>
+                                        <input type="email" class="form-control" id="ventaEmail" />
+                                        <div class="error-message error-mensajito" id="ventaEmailError"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="ventaCelular" class="col-form-label">Celular:</label>
+                                        <input type="text" class="form-control" id="ventaCelular" />
+                                        <div class="error-message error-mensajito" id="ventaCelularError"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="ventaTipoPago" class="col-form-label">Tipo de Pago:</label>
+                                        <select class="form-select" id="ventaTipoPago">
+                                            <option selected >Seleccionar tipo de pago</option>
+                                            <option value="efectivo">Efectivo</option>
+                                            <option value="tarjeta">Tarjeta de Crédito</option>
+                                            <option value="transferencia">Transferencia Bancaria</option>
+                                        </select>
+                                        <div class="error-message error-mensajito" id="ventaTipoPagoError"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="ventaDescripcion" class="col-form-label">Descripción:</label>
+                                        <textarea class="form-control" id="ventaDescripcion" rows="3"></textarea>
+                                        <div class="error-message error-mensajito" id="descripcionProductoError">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-9">
+                                <label for="buscarProducto" class="col-form-label">Buscar Productos:</label>
+                                <div class="col-sm-9 position-relative">
+                                    <input type="text" class="form-control" name="buscarProducto" id="buscarProducto">
+                                    <div id="sugerencias" class="sugerencias dropdown-menu" aria-labelledby="buscarProducto" style="width: 100%"></div>
+                                </div>
+
+                            </div><br><br>
+                            <table class="table table-striped table-hover" id="productos-venta">
+                                <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- Aquí se agregarán las filas de la tabla dinámicamente -->
+                                </tbody>
+                                <tfoot>
+                                <br>
+                                <tr>
+                                    <td class="text-lg font-weight-bold fs-5">Total</td>
+                                    <td class="total bg-light"></td>
+                                </tr>
+
+
+                                </tfoot>
+
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#CancelarGuardarVentaModal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="guardarVentaBtn">Guardar</button>
+                    </div>
+                    <div data-bs-dismiss="modal"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fin Modal Agregar Venta -->
+
+
+        <!-- modal venta registrada exitoso-->
+
+        <div class="my-custom-modal modal fade" id="ventaRegistradaModal" tabindex="-1"
+             aria-labelledby="ventaRegistradaModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="servicioRegistradoModalLabel">
+                            Venta registrado
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>La venta ha sido registrada exitosamente.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fin modal venta registrada exitoso-->
+
+
+        <!-- Modal  Mostrar Detalles Venta-->
+
+        <div class="my-custom-modal modal fade" id="modalMostrarDetalles" tabindex="-1" aria-labelledby="modalRegistrarVentaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalMostrarDetallesLabel">Detalles de la Venta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="nombreDetalles" class="col-form-label">Nombre:</label>
+                                        <input type="text" class="form-control" id="nombreDetalles" readonly/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="dniDetalles" class="col-form-label">DNI:</label>
+                                        <input type="text" class="form-control" id="dniDetalles" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="emailDetalles" class="col-form-label">Email:</label>
+                                        <input type="email" class="form-control" id="emailDetalles" readonly/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="celularDetalles" class="col-form-label">Celular:</label>
+                                        <input type="text" class="form-control" id="celularDetalles" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="tipoPagoDetalles" class="col-form-label">Tipo de Pago:</label>
+                                        <input type="text" class="form-control" id="tipoPagoDetalles" readonly/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label for="descripcionDetalles" class="col-form-label">Descripción:</label>
+                                        <textarea class="form-control" id="descripcionDetalles" rows="3" readonly></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="fechaDetalles" class="col-form-label">Fecha:</label>
+                                        <input type="text" class="form-control" id="fechaDetalles" readonly />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <table class="table table-striped table-hover" id="detalles-venta">
+                                <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- Aquí se agregarán las filas de la tabla dinámicamente -->
+                                </tbody>
+                                <tfoot>
+                                <br>
+                                <tr>
+                                    <td class="text-lg font-weight-bold fs-5">Total</td>
+                                    <td class="total bg-light"><input type="number" class="form-control" id="totalVenta" readonly /></td>
+                                </tr>
+
+                                </tfoot>
+
+                            </table>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnCerrarDetalles">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Fin Modal Mostrar Detalles Venta -->
+
+
+        <!-- Modal para Confirmacion Cancelacion de Agregar Proveedor -->
+
+        <div class="my-custom-modal modal fade" id="CancelarGuardarServicioModal" tabindex="-1"
+             aria-labelledby="CancelarGuardarServicioModalLabel" aria-hidden="true" data-bs-backdrop="static"
+             data-bs-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="CancelarGuardarServicioModalLabel">
+                            Cancelar agregar proveedor
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Esta accion eliminara todos los datos ingresados ¿estas seguro?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            No
+                        </button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                id="confirmarCancelarGuardarServicioBtn">
+                            Si
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fin Modal para Confirmacion Cancelacion de Agregar Proveedor -->
+
+
+        <!-- Modal editar servicio -->
+        <div class="my-custom-modal modal fade" id="modalEditarServicio" tabindex="-1"
+             aria-labelledby="modalEditarServicioLabel" aria-hidden="true" data-bs-backdrop="static"
+             data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditarServicioLabel">
+                            Editar Servicio
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="editServicioNombre" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="editServicioNombre" />
+                                <div class="error-message error-mensajito" id="editServicioNombreError"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editServicioDescripcion" class="col-form-label">Descripción:</label>
+                                <textarea class="form-control" id="editServicioDescripcion"></textarea>
+                                <div class="error-message error-mensajito" id="editServicioDescripcionError"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imagenServicioEdit" class="form-label">Imagen</label>
+                                <input type="file" class="form-control-file" id="imagenServicioEdit" name="productoImagen" />
+                                <div class="error-message error-mensajito" id="imagenServicioEditError"></div>
+                                <div class="imagenPreview" id="imagenServicioEditPreview"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#cancelarEditarServicioModal">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-primary" id="guardarServicioEditBtn" data-id-servicio="">
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIn Modal Editar Servicio -->
+
+        <!-- modal Servicio editado exitosa -->
+
+        <div class="my-custom-modal modal fade" id="servicioEditarExitoModal" tabindex="-1"
+             aria-labelledby="servicioEditarExitoModallLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="servicioEditarExitoModalLabel">
+                            Servicio editada
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>La informacion ha sido editada exitosamente</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fin modal Servicio editado exitosa -->
+
+        <!-- Modal para Confirmacion Cancelacion de Editar Empleado -->
+
+        <div class="my-custom-modal modal fade" id="cancelarEditarServicioModal" tabindex="-1"
+             aria-labelledby="cancelarEditarServicioModalLabel" aria-hidden="true" data-bs-backdrop="static"
+             data-bs-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cancelarEditarServicioModalLabel">
+                            Cancelar editar servicio
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Esta accion eliminara todos los datos ingresados ¿estas seguro?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            No
+                        </button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancelarEditarServicioBtn">
+                            Si
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fin Modal para Confirmacion Cancelacion de Agregar Empleado -->
+
+
+
+        <!-- Modal Eliminar Servicio-->
+        <div class="my-custom-modal modal fade" id="eliminarServicioModal" tabindex="-1"
+             aria-labelledby="eliminarServicioModalLabel" aria-hidden="true" data-bs-backdrop="static"
+             data-bs-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eliminarServicioModalLabel">
+                            Eliminar servicio
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>
+                        <p>¿Estás seguro de que quieres eliminar este servicio?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                                data-bs-target="#servicioEliminadoExitoModal" id="btnEliminarServicio" data-id-servicio="">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Modal Eliminar Servicio -->
+
+        <!-- modal Servicio eliminado exitoso -->
+
+        <div class="my-custom-modal modal fade" id="servicioEliminadoExitoModal" tabindex="-1"
+             aria-labelledby="servicioEliminadoExitoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="servicioEliminadoExitoModalLabel">
+                            Servicio eliminado
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>El servicio ha sido eliminado exitosamente</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fin modal Servicio eliminado exitoso -->
+
+        <!-- modal eliminar Servicios -->
+        <div class="my-custom-modal modal fade" id="eliminarServiciosModal" tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Eliminar categorias
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <b class="alerta-delete">Esta acción eliminará permanentemente los datos</b>¿Está seguro de que desea
+                        eliminar estas categorias?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
+                                data-bs-target="#serviciosEliminadosExitoModal" id="btnEliminarServicios" data-id-servicio="">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin modal eliminar Servicios -->
+
+        <!-- modal No se selecciono ninguna  Categoria  -->
+
+        <div class="my-custom-modal modal fade" id="serviciosEliminadosVacio" tabindex="-1"
+             aria-labelledby="serviciosEliminadosVacioLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" >
+                            No se selecciono ningun servicio
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Debe seleccionar al menos 1 servicio para eliminar</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Fin No se selecciono ninguna  Categoria  -->
+
+
+        <!-- modal elimicacion Servicios exitosa -->
+
+        <div class="my-custom-modal modal fade" id="serviciosEliminadosExitoModal" tabindex="-1"
+             aria-labelledby="serviciosEliminadosExitoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" >
+                            Servicios eliminados
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Los servicios han sido eliminados exitosamente</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Fin modal elimicacion Categorias exitosa -->
+
+
+    </div>
+
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+<script src="scripts/script.js"></script>
+
+<script src="scripts/registrarVentas.js"></script>
+</body>
+
+</html>

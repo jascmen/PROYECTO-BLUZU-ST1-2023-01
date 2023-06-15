@@ -1,0 +1,83 @@
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
+
+    .input-container {
+        position: relative;
+    }
+    
+    .input-container input {
+        padding-right: 30px; /* Espacio para el ícono de validación */
+    }
+    
+    .input-container span {
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
+        font-size: 18px;
+    }
+
+        .input-wrapper {
+            position: relative;
+        }
+        
+        #nombre-validation {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+
+        #apellido-validation {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+
+        #dni-validation {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+
+        #email-validation {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+
+        #password-validation {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+
+        #password2-validation {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+
+
+        .invalid-border {
+            border: 1px solid red !important;
+        }
+
+
+        .error-message {
+            color: red;
+            position: absolute;
+            top: 50px;
+            margin-top: -10px;
+            font-size: 10px;
+        }

@@ -1,0 +1,51 @@
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input,
+.input-container textarea {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.input-container input:focus,
+.input-container textarea:focus {
+    outline: none;
+    border-bottom-color: #ccc; /* Color de borde original */
+}
+
+.input-container .invalid-line {
+    border-bottom-color: red !important; /* Color de borde en caso de validación incorrecta */
+}
+
+.input-container input.invalid,
+.input-container textarea.invalid,
+.input-container input.invalid-line:focus,
+.input-container textarea.invalid-line:focus {
+    border-bottom-color: red !important; /* Color de borde en caso de validación incorrecta al tener el foco */
+}
+
+#name-validation,
+#email-validation,
+#subject-validation,
+#message-validation {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.error-message {
+    color: red;
+    font-size: small;
+}

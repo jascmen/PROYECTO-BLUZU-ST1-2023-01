@@ -30,6 +30,11 @@ public class ProductosController {
         return productoDao.getProductos();
     }
 
+    @RequestMapping(value = "api/productosNombre/{nombre}", method = RequestMethod.GET)
+    public List<Productos> getProductosPorNombre(@PathVariable String nombre){
+        return productoDao.getProductosPorNombre(nombre);
+    }
+
 
     @RequestMapping(value = "api/productos", method = RequestMethod.POST)
     public Errores registrarEmpleado(@RequestParam("productoImagen") MultipartFile imagen,

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
+
     <link rel="stylesheet" href="css/animate.css">
     
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -23,7 +23,8 @@
     <link rel="stylesheet" href="css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="css/style-login.css">
+    <link rel="stylesheet" href="css/style-login.css">
+    <link rel="stylesheet" href="css/login_validation.css">
 
   </head>
   <body>
@@ -70,107 +71,106 @@
     <div class="form">
       
       <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Regístrate</a></li>
-        <li class="tab"><a href="#login">Inicia Sesión</a></li>
+        <li class="tab active"><a href="#login">Inicia Sesión</a></li>
+        <li class="tab"><a href="#signup">Regístrate</a></li>
       </ul>
-      
-      <div class="tab-content">
-        <div id="signup">   
-          <h1>"Lo mejor para tu mascota. Regístrate y descubre."</h1>
           
           <form>
-          
+
+            <div class="tab-content">
+
+            <div id="login">
+              <h1>Bienvenido</h1>
+              
+              <form >
+                <div class="field-wrap">
+                <label for="emailIniciar" id="emailIniciar-label">
+                  Correo Electrónico<span class="req">*</span>
+                </label>
+                <input type="email"required autocomplete="off" id="emailIniciar"/>
+                <span id="emailIniciar-validation"></span>
+              </div>
+              
+              <div class="field-wrap">
+                <label for="passwordIniciar" id="passwordIniciar-label">
+                  Contraseña<span class="req">*</span>
+                </label>
+                <input type="password"required autocomplete="off" id="passwordIniciar"/>
+                <span id="passwordIniciar-validation"></span>
+              </div>
+              
+              <p class="forgot"><a href="#">¿Has olvidado tu contraseña?</a></p>
+    
+                  <a href="#"><button type="button" class="button button-block"  id="btnIniciarSesion" onclick="iniciarSesion()"/>Iniciar Sesion</button></a>
+              </form>
+
+            </div>
+
+              <div id="signup">   
+                <h1>"Lo mejor para tu mascota. Regístrate y descubre."</h1>
           <div class="top-row">
             <div class="field-wrap">
-              <label>
+              <label for="nombre" id="nombre-label">
                 Primer nombre<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" id="nombre"/>
-                <div class="error-message error-mensajito" id="nombreError">
-                </div>
+              <input type="text" required autocomplete="off" id="nombre" />
+              <span id="nombre-validation"></span>
+              <div class="error-message error-mensajito" id="nombreError"></div>
             </div>
-        
+
             <div class="field-wrap">
-              <label>
+              <label for="apellido" id="apellido-label">
                 Apellidos<span class="req">*</span>
               </label>
               <input type="text"required autocomplete="off" id="apellido"/>
-                <div class="error-message error-mensajito" id="apellidoError">
-                </div>
+              <span id="apellido-validation"></span>
+              <div class="error-message error-mensajito" id="apellidoError"></div>
             </div>
           </div>
 
           <div class="field-wrap">
-            <label>
+            <label for="dni" id="dni-label">
               DNI<span class="req">*</span>
             </label>
             <input type="text" maxlength="8" required autocomplete="off" id="dni"/>
+            <span id="dni-validation"></span>
               <div class="error-message error-mensajito" id="dniError">
               </div>
           </div>
 
           <div class="field-wrap">
-            <label>
+            <label for="email" id="email-label">
               Correo Electrónico<span class="req">*</span>
             </label>
             <input type="email"required autocomplete="off" id="email"/>
+            <span id="email-validation"></span>
               <div class="error-message error-mensajito" id="emailError">
               </div>
           </div>
           
           <div class="field-wrap">
-            <label>
+            <label for="password" id="password-label">
               Crear una contraseña<span class="req">*</span>
             </label>
             <input type="password"required autocomplete="off" id="password"/>
+            <span id="password-validation"></span>
               <div class="error-message error-mensajito" id="passwordError">
               </div>
           </div>
 
-              <div class="field-wrap">
-                  <label>
-                      Confirme contraseña<span class="req">*</span>
-                  </label>
-                  <input type="password"required autocomplete="off" id="password2"/>
-                  <div class="error-message error-mensajito" id="password2Error">
-                  </div>
-
-              </div>
+          <div class="field-wrap">
+            <label for="password2" id="password2-label">
+              Confirmar contraseña<span class="req">*</span>
+            </label>
+            <input type="password" required autocomplete="off" id="password2" />
+            <span id="password2-validation"></span>
+            <div class="error-message error-mensajito" id="password2Error"></div>
+          </div>
 
           <button type="button" class="button button-block" id="btnRegistarCliente"/>Registrar</button>
           
           </form>
-
         </div>
-        
-        <div id="login">
-          <h1>Bienvenido</h1>
-          
-          <form >
-          
-            <div class="field-wrap">
-            <label>
-              Correo Electrónico<span class="req">*</span>
-            </label>
-            <input type="email"required autocomplete="off" id="emailIniciar"/>
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Contraseña<span class="req">*</span>
-            </label>
-            <input type="password"required autocomplete="off" id="passwordIniciar"/>
-          </div>
-          
-          <p class="forgot"><a href="#">¿Has olvidado tu contraseña?</a></p>
-
-              <a href="#"><button type="button" class="button button-block"  id="btnIniciarSesion" onclick="iniciarSesion()"/>Iniciar Sesion</button></a>
-
-          
-          </form>
-
-        </div>
-        
       </div><!-- tab-content -->
       
 </div> <!-- /form -->
@@ -264,6 +264,7 @@
   <script src="js/main.js"></script>
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script-login.js"></script>
   <script src="scripts/login.js"></script>
+  <script src="scripts/validacion_front_login.js"></script>
     
   </body>
 </html>
