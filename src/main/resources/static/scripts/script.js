@@ -1,4 +1,14 @@
+$(document).ready(function(){
 
+  actualizarEmailUsuario();
+
+
+  });
+
+
+function actualizarEmailUsuario(){
+  document.getElementById('userEmail').outerHTML = localStorage.email;
+}
 
 
   let bodito = document.querySelector("body"),

@@ -65,7 +65,7 @@ public class ProductosController {
         errores.setResumen(resumen.isEmpty() ? "Debe ingresar un resumen válido" : null);
         errores.setProveedor(proveedor.isEmpty() ? "Debe ingresar un proveedor válido" : null);
         errores.setCantidad(cantidad <= 0 ? "La cantidad debe ser mayor que 0" : null);
-        errores.setDescuento(descuento <= 0 ? "El descuento debe ser mayor que 0" : (descuento > 90 ? "El descuento no puede superar el 90%" : null));
+        errores.setDescuento(descuento < 0 ? "El descuento no puede ser negativo" : (descuento > 90 ? "El descuento no puede superar el 90%" : null));
 
         if (!productoDao.verificarVacio(errores)) {
             return errores;

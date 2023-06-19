@@ -3,6 +3,7 @@ package com.proyecto.PoryectoBuzu.controllers;
 import com.proyecto.PoryectoBuzu.dao.ClienteDao;
 import com.proyecto.PoryectoBuzu.dao.SendMail;
 import com.proyecto.PoryectoBuzu.models.Clientes;
+import com.sun.jna.WString;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,27 @@ public class ClientesController {
     SendMail sendamail = new SendMail();
 
     @RequestMapping(value = "api/clientes", method = RequestMethod.POST)
-    public void registrarCLiente(@RequestBody Clientes cliente){
+    public String registrarCLiente(@RequestBody Clientes cliente){
 
-        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        String hash = argon2.hash(1, 1024, 1, cliente.getPassword());
-        cliente.setPassword(hash);
+        boolean respuesta = false;
 
-        clienteDao.registrarCLiente(cliente);
+        respuesta = clienteDao.verificarCorreo(cliente);
 
-        sendamail.enviarCorreo(cliente.getEmail());
+        if(respuesta){
+            Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+            String hash = argon2.hash(1, 1024, 1, cliente.getPassword());
+            cliente.setPassword(hash);
+
+            clienteDao.registrarCLiente(cliente);
+
+            sendamail.enviarCorreo(cliente.getEmail());
+
+            return  "OK";
+        } else {
+            return "FAIL";
+        }
+
+
     }
 
 

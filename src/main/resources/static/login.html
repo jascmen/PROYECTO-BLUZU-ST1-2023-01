@@ -4,6 +4,9 @@
     <title>BLUZU Pets Spa</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
@@ -62,6 +65,7 @@
 	        	<li class="nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
 	        	<li class="nav-item"><a href="catalogo.html" class="nav-link">Catálogo</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
+                <li class="nav-item"><a href="mi_cuenta.html" class="nav-link" >Hola, <span id="nombreCuenta"></span></a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -168,13 +172,70 @@
           </div>
 
           <button type="button" class="button button-block" id="btnRegistarCliente"/>Registrar</button>
-          
+              </div>
+            </div>
           </form>
         </div>
       </div><!-- tab-content -->
       
 </div> <!-- /form -->
 <!-- partial -->
+
+
+    <!-- modal Usuario guardado exitoso-->
+
+    <div class="my-custom-modal modal fade" id="correoRegistradoModal" tabindex="-1"
+         aria-labelledby="correoRegistradoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >
+                        Usuario registrado
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Se ha registrado exitosamente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin modal Usuario guardado exitoso-->
+
+    <!-- modal Usuario guardado exitoso-->
+
+    <div class="my-custom-modal modal fade" id="correoRegistradoError" tabindex="-1"
+         aria-labelledby="correoRegistradoErrorLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Correo existente
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>El correo ingresado ya se encuentra registrado.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin modal Usuario guardado exitoso-->
+
+
+
 
     <footer class="footer">
 			<div class="container">
@@ -244,7 +305,9 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -265,6 +328,7 @@
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script-login.js"></script>
   <script src="scripts/login.js"></script>
   <script src="scripts/validacion_front_login.js"></script>
+    <script src="scripts/general.js"></script>
     
   </body>
 </html>

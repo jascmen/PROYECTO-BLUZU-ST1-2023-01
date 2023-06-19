@@ -66,10 +66,12 @@
 
 
       <ul class="logout-mode">
-        <li><a href="login.html">
+        <li>
+          <a onclick="cerrarSesion()">
             <i class="ri-logout-box-r-line"></i>
             <span class="link-nombre">Logout</span>
-          </a></li>
+          </a>
+        </li>
 
         <li class="mode">
           <a href="#">
@@ -88,7 +90,15 @@
   <section class="dashboard-principal">
     <div class="top">
       <i class="ri-bar-chart-horizontal-fill sidebar-toggle"></i>
-      <img src="images/logo.png" alt="">
+      <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="userEmail" data-bs-toggle="dropdown" aria-expanded="false">
+
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+          <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+        </ul>
+      </div>
     </div>
 
 

@@ -12,6 +12,4 @@ public interface DetalleVentaDao {
 
     void registrarDetallesVenta(DetalleVenta detalleVenta);
 
-
-
 }

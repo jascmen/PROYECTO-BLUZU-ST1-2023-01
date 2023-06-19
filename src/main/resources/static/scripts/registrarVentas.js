@@ -1,8 +1,38 @@
 
 $(document).ready(function () {
+obtenerAcceso();
 bindEventHandlers();
 cargarVentas();
 });
+
+ async function obtenerAcceso(){
+
+     token = localStorage.token;
+
+      const request = await fetch('api/dashboard/' + token, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      });
+
+        const respuesta = await request.text();
+        if(respuesta !== "dashboard"){
+           window.location.href = 'index.html';
+        } else {
+
+        }
+
+
+   }
+
+    function cerrarSesion() {
+          localStorage.removeItem('token');
+          localStorage.removeItem('email');
+          window.location.href = 'login.html';
+      }
+
 
 $('#buscarProducto').keyup(function() {
 
@@ -200,21 +230,30 @@ for (let venta of ventas) {
     '<td class="descripcion-text-wrap">' + venta.datos_cliente + '</td>',
     '<td class="table-text-wrap">' + venta.total_venta + '</td>',
     '<td class="table-text-wrap">' + venta.fecha_venta + '</td>',
-    '<a class="edit" data-bs-toggle="modal" data-bs-target="#modalMostrarDetalles" data-id-venta="' + venta.id_venta + '"><i class="material-icons ri-article-line" data-toggle="tooltip" title="Detalles"></i></a><a class="delete" data-bs-toggle="modal" data-bs-target="#eliminarVentaModal" data-id-venta="' + venta.id_venta + '"><i class="material-icons ri-delete-bin-5-line" data-toggle="tooltip" title="Eliminar"></i></a>'
+    '<a class="edit" data-bs-toggle="modal" data-bs-target="#modalMostrarDetalles" data-id-venta="' + venta.id_venta + '"><i class="material-icons ri-article-line" data-toggle="tooltip" title="Detalles"></i></a><a class="pdf" data-id-venta="' +
+     venta.id_venta + '"><i class="material-icons ri-file-pdf-line" data-toggle="tooltip" title="PDF"></i></a><a class="excel" data-id-venta="' + venta.id_venta + '"><i class="material-icons ri-file-excel-line" data-toggle="tooltip" title="Excel"></i></a>'
   ]);
 }
 table.draw(); // Redibujar la tabla con los nuevos datos
 
-// Evento click para capturar el id_servicio para eliminar
-  const botonesEliminar = document.querySelectorAll('.delete');
-  for (let boton of botonesEliminar) {
+
+  const botonPDF = document.querySelectorAll('.pdf');
+  for (let boton of botonPDF) {
     boton.addEventListener('click', function() {
-      const id_servicio = this.getAttribute('data-id-servicio');
-      const botonEliminarServicio = document.querySelector('#btnEliminarServicio');
-      botonEliminarServicio.setAttribute('data-id-servicio', id_servicio);
+      const id_venta = this.getAttribute('data-id-venta');
+      reportePDF(id_venta);
     });
   }
-// Evento click para capturar el id_servicio al editar
+
+    const botonExcel = document.querySelectorAll('.excel');
+    for (let boton of botonExcel) {
+      boton.addEventListener('click', function() {
+        const id_venta = this.getAttribute('data-id-venta');
+        reporteExcel(id_venta);
+      });
+    }
+
+// Evento click para capturar el id_venta y mostrarDetalles
   const botonesMostrar = document.querySelectorAll('.edit');
     for (let boton of botonesMostrar) {
       boton.addEventListener('click', function() {
@@ -225,6 +264,55 @@ table.draw(); // Redibujar la tabla con los nuevos datos
     }
 
 }
+
+async function reportePDF(id_venta) {
+  const response = await fetch('api/reportePdf/' + id_venta, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/pdf'
+    },
+    responseType: 'blob' // Indicar que se espera una respuesta de tipo Blob (archivo)
+  });
+
+  const blob = await response.blob();
+
+ // Opción 1: Descargar el archivo
+   const url = URL.createObjectURL(blob);
+   const fileName = 'reporte.pdf'; // Nombre del archivo
+
+   const link = document.createElement('a');
+   link.href = url;
+   link.target = '_blank';
+   link.download = fileName; // Establecer el nombre del archivo para descargar
+   link.click();
+
+     // Opción 2: Abrir en una nueva ventana o pestaña
+     //const url = URL.createObjectURL(blob);
+     //window.open(url, '_blank');
+}
+
+async function reporteExcel(id_venta) {
+  const response = await fetch('api/reporteExcel/' + id_venta, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/octet-stream' // Cambiar el tipo MIME a application/octet-stream para indicar que se espera un archivo binario
+    },
+    responseType: 'blob' // Indicar que se espera una respuesta de tipo Blob (archivo)
+  });
+
+  const blob = await response.blob();
+
+  // Opción 1: Descargar el archivo
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'reporte.xlsx'; // Cambiar la extensión del archivo a .xlsx
+  link.click();
+
+}
+
+
+
 
 async function obtenerDatosVenta(id_venta) {
   const request = await fetch('api/ventas/' + id_venta, {

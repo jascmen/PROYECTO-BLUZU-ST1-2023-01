@@ -20,12 +20,13 @@ public class ClienteDaoImp implements ClienteDao {
 
     @Override
     public void registrarCLiente(Clientes cliente) {
+        cliente.setRol("USER");
         entityManager.merge(cliente);
 
     }
 
     @Override
-    public boolean verificarCredenciales(Clientes cliente){
+    public Clientes obtenerUsuarioPorCredenciales(Clientes cliente){
         String query = "FROM Clientes WHERE email = :email";
 
         List<Clientes> lista = entityManager.createQuery(query)
@@ -33,12 +34,42 @@ public class ClienteDaoImp implements ClienteDao {
                 .getResultList();
 
         if(lista.isEmpty()){
-            return false;
+            return null;
         }
         String passwordHashed = lista.get(0).getPassword();
 
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        return argon2.verify(passwordHashed,cliente.getPassword());
+        if( argon2.verify(passwordHashed,cliente.getPassword())){
+            return lista.get(0);
+        };
+        return null;
 
+    }
+
+    @Override
+    public boolean verificarCorreo(Clientes cliente) {
+        String query = "FROM Clientes WHERE email = :email";
+
+        List<Clientes> resultados = entityManager.createQuery(query, Clientes.class)
+                .setParameter("email", cliente.getEmail())
+                .getResultList();
+
+        if (resultados.isEmpty()) {
+            return true; // El correo no existe en la tabla
+        } else {
+            return false; // El correo ya existe en la tabla
+        }
+    }
+
+    @Override
+    public String obtenerRol(Long id) {
+       Clientes cliente = entityManager.find(Clientes.class, id);
+       return  cliente.getRol();
+    }
+
+    @Override
+    public Clientes obtenerDatos(Long id) {
+        Clientes cliente = entityManager.find(Clientes.class, id );
+        return cliente;
     }
 }

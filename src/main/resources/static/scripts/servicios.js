@@ -1,8 +1,37 @@
 $(document).ready(function () {
-
+obtenerAcceso();
 cargarServicios();
   bindEventHandlers();
 });
+
+ async function obtenerAcceso(){
+
+     token = localStorage.token;
+
+      const request = await fetch('api/dashboard/' + token, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      });
+
+        const respuesta = await request.text();
+        if(respuesta !== "dashboard"){
+           window.location.href = 'index.html';
+        } else {
+
+        }
+
+
+   }
+
+    function cerrarSesion() {
+          localStorage.removeItem('token');
+          localStorage.removeItem('email');
+          window.location.href = 'login.html';
+      }
+
 
 async function cargarServicios(){
 

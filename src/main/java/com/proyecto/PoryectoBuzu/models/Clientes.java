@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @Table (name = "clientes")
 @ToString @EqualsAndHashCode
@@ -30,6 +32,9 @@ public class Clientes {
 
     @Getter @Setter @Column(name = "correo")
     private String email;
+
+    @Getter @Setter @Column(name = "rol")
+    private String rol;
 
 
 

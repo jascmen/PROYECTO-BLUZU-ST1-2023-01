@@ -1,9 +1,34 @@
 $(document).ready(function () {
+obtenerAcceso();
 cargarEmpleados();
   bindEventHandlers();
   cargarCategEmpleados();
 
 });
+
+ async function obtenerAcceso(){
+
+     token = localStorage.token;
+
+      const request = await fetch('api/dashboard/' + token, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      });
+
+        const respuesta = await request.text();
+        if(respuesta !== "dashboard"){
+           window.location.href = 'index.html';
+        } else {
+
+        }
+
+
+   }
+
+
 
 async function registrarEmpleado(){
   const nombre = document.getElementById('nombreEmpleadoInput').value;
@@ -31,6 +56,11 @@ cargarEmpleados();
 
 }
 
+ function cerrarSesion() {
+       localStorage.removeItem('token');
+       localStorage.removeItem('email');
+       window.location.href = 'login.html';
+   }
 
 async function editarEmpleado(id_empleado){
   const nombre = document.getElementById('nombreEditarEmpleado').value;

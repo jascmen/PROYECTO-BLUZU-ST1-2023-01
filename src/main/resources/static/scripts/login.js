@@ -2,6 +2,7 @@ $(document).ready(function(){
 
   bindEventHandlers();
 
+
   });
 
 
@@ -38,10 +39,17 @@ $(document).ready(function(){
       },
       body: JSON.stringify(datos)
     });
+
       const responseText = await request.text();
-      const cliente = responseText ? JSON.parse(responseText) : null;
-      alert("La cuenta fue creada con exito")
-      window.location.href = "login.html";
+
+       if(responseText == 'OK'){
+                window.location.href = 'login.html';
+
+            } else{
+            $(correoRegistradoError).modal("show");
+
+            }
+
   }
 
   async function iniciarSesion(){
@@ -63,13 +71,43 @@ $(document).ready(function(){
 
       const respuesta = await request.text();
 
-      if(respuesta == 'OK'){
-      window.location.href = 'index.html'
+      if(respuesta != 'FAIL'){
+      localStorage.token = respuesta;
+      localStorage.email = datos.email;
+      let token = localStorage.token;
+
+      await obtenerAcceso(token);
+      console.log(token);
       } else{
       alert ("Las credenciales son incorrectas");
       }
 
+
   }
+
+   async function obtenerAcceso(token){
+
+      const request = await fetch('api/dashboard/' + token, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      });
+
+        const respuesta = await request.text();
+        if(respuesta === "dashboard"){
+           window.location.href = 'dashboard.html';
+        } else {
+           window.location.href = 'index.html';
+        }
+
+
+
+   }
+
+
+
 
 
 

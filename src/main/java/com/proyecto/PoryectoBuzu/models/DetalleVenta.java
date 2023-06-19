@@ -1,6 +1,7 @@
 package com.proyecto.PoryectoBuzu.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class DetalleVenta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
     @Getter @Setter
+    @JsonIgnore
     private Productos producto;
 
     public double calcularImporte(){
