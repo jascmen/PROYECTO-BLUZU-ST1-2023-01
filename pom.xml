@@ -112,9 +112,6 @@
 		</dependency>
 
 
-
-
-
 	</dependencies>
 
 	<build>
@@ -122,6 +119,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.0.7</version>
+				<configuration>
+					<mainClass>com.proyecto.PoryectoBuzu.PoryectoBuzuApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -5,6 +5,8 @@ import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +19,8 @@ public class ClienteDaoImp implements ClienteDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private HttpServletRequest request;
 
     @Override
     public void registrarCLiente(Clientes cliente) {

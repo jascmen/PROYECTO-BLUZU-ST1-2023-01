@@ -35,7 +35,4 @@ public class Clientes {
 
     @Getter @Setter @Column(name = "rol")
     private String rol;
-
-
-
 }

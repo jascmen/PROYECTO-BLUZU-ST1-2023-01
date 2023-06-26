@@ -107,18 +107,10 @@ $(document).ready(function(){
    }
 
 
-
-
-
-
-  const nombreApePattern = /^[A-Za-z\s]{5,30}$/;
+  const nombreApePattern = /^[A-Za-zÁÉÍÓÚáéíóúÜü\s]+$/;
   const correoPattern = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
   const dniPattern = /^[0-9]{8}$/;
   const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,10}$/;
-
-
-
-
 
     function validateForm() {
       let isValid = true;

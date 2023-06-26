@@ -4,7 +4,6 @@ import com.proyecto.PoryectoBuzu.dao.ClienteDao;
 import com.proyecto.PoryectoBuzu.models.Clientes;
 import com.proyecto.PoryectoBuzu.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -53,7 +52,7 @@ public class AuthController {
         if (jwtUtil.validateToken(token)) {
             Long id = Long.valueOf(jwtUtil.getKey(token));
 
-           return clienteDao.obtenerDatos(id);
+            return clienteDao.obtenerDatos(id);
 
         } else {
             Clientes cliente = new Clientes();
