@@ -7,9 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,9 +23,14 @@ public class Ventas {
     @Getter @Setter @Column( name = "id_venta")
     private Long id_venta;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Getter @Setter @Column ( name = "fecha_venta")
-    private LocalDateTime fecha_venta;
+    private LocalDate fecha_venta;
+
+    @Temporal(TemporalType.TIME)
+    @Getter @Setter @Column ( name = "hora_venta")
+    private LocalTime hora_venta;
+
 
     @Getter @Setter @Column ( name = "dni_cliente")
     private String dni_cliente;

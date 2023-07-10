@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,6 +48,7 @@ public class VentaController {
             temporal.setDatos_cliente(venta.getDatos_cliente());
             temporal.setTotal_venta(venta.getTotal());
             temporal.setFecha_venta(venta.getFecha_venta());
+            temporal.setHora_venta(venta.getHora_venta());
             nuevaLista.add(temporal);
 
         }
@@ -83,7 +85,8 @@ public class VentaController {
             }
 
             venta.setTotal_venta(venta.getTotal());
-            venta.setFecha_venta(LocalDateTime.now());
+            venta.setFecha_venta(LocalDate.now());
+            venta.setHora_venta(LocalTime.now());
             venta.setEstado("PAGADO");
             ventasDao.registrarVenta(venta);
 

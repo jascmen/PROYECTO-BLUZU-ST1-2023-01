@@ -230,6 +230,7 @@ for (let venta of ventas) {
     '<td class="descripcion-text-wrap">' + venta.datos_cliente + '</td>',
     '<td class="table-text-wrap">' + venta.total_venta + '</td>',
     '<td class="table-text-wrap">' + venta.fecha_venta + '</td>',
+      '<td class="table-text-wrap">' + venta.hora_venta + '</td>',
     '<a class="edit" data-bs-toggle="modal" data-bs-target="#modalMostrarDetalles" data-id-venta="' + venta.id_venta + '"><i class="material-icons ri-article-line" data-toggle="tooltip" title="Detalles"></i></a><a class="pdf" data-id-venta="' +
      venta.id_venta + '"><i class="material-icons ri-file-pdf-line" data-toggle="tooltip" title="PDF"></i></a><a class="excel" data-id-venta="' + venta.id_venta + '"><i class="material-icons ri-file-excel-line" data-toggle="tooltip" title="Excel"></i></a>'
   ]);
