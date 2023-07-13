@@ -6,13 +6,13 @@ import lombok.Setter;
 public class VentasCompletadas {
 
     @Getter @Setter
-    private String mes;
+    private String semana;
 
     @Getter @Setter
     private double cantidad;
 
-    public VentasCompletadas(String mes, double cantidad) {
-        this.mes = mes;
+    public VentasCompletadas(String semana, double cantidad) {
+        this.semana = semana;
         this.cantidad = cantidad;
     }
 }

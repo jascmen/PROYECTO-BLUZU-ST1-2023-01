@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Repository
 @Transactional
@@ -38,71 +38,74 @@ public class GraficosDaoImp implements GraficosDao{
 
 
     @Override
-    public List<ProductoMasVendido> getProductosVendidos() {
-        String query = "SELECT d.producto.idProd, SUM(d.cantidad) "
-                + "FROM DetalleVenta d  "
-                + "GROUP BY d.producto.idProd "
-                + "ORDER BY SUM(d.cantidad) DESC";
+    public List<ProductoMasVendido> getProductosVendidos(LocalDate startDate, LocalDate endDate) {
+        List<Ventas> listaVentas = ventasDao.getVentas();
+        List<Ventas> ventasCompletadas = new ArrayList<>();
 
-        List<Object[]> temporal = entityManager.createQuery(query).setMaxResults(10).getResultList();
-        //List<ProductoMasVendido> listaTemporal = new ArrayList<>();
+        for (Ventas venta : listaVentas) {
+            LocalDate fechaVenta = venta.getFecha_venta();
+
+            if ((fechaVenta.isAfter(startDate) || fechaVenta.equals(startDate)) && (fechaVenta.isBefore(endDate) || fechaVenta.equals(endDate))) {
+                ventasCompletadas.add(venta);
+            }
+        }
+
         List<ProductoMasVendido> productosMasVendidos = new ArrayList<>();
 
-        /*
-        for (Object[] result : temporal) {
-            int id = ((Long) result[0]).intValue();
-            int cantidad = ((Long) result[1]).intValue();
+        for (Ventas venta : ventasCompletadas) {
+            List<DetalleVenta> itemsVenta = venta.getItemsVenta();
+            for (DetalleVenta detalleVenta : itemsVenta) {
+                String nombreProducto = detalleVenta.getProducto().getNom_prod();
+                int cantidad = detalleVenta.getCantidad();
 
-            ProductoMasVendido productoMasVendido = new ProductoMasVendido(id, cantidad);
-            listaTemporal.add(productoMasVendido);
+                // Verificar si el producto ya existe en la lista
+                boolean productoExistente = false;
+                for (ProductoMasVendido productoMasVendido : productosMasVendidos) {
+                    if (productoMasVendido.getNombre().equals(nombreProducto)) {
+                        productoMasVendido.setCantidad(productoMasVendido.getCantidad() + cantidad);
+                        productoExistente = true;
+                        break;
+                    }
+                }
+
+                // Si el producto no existe, agregarlo a la lista
+                if (!productoExistente) {
+                    ProductoMasVendido productoMasVendido = new ProductoMasVendido(nombreProducto, cantidad);
+                    productosMasVendidos.add(productoMasVendido);
+                }
+            }
         }
 
-         */
+// Ordenar la lista de productosMasVendidos según la cantidad de ventas en orden descendente
+        Collections.sort(productosMasVendidos, Comparator.comparingInt(ProductoMasVendido::getCantidad).reversed());
+
+// Obtener los primeros 10 productos más vendidos
+        List<ProductoMasVendido> top10Productos = productosMasVendidos.subList(0, Math.min(10, productosMasVendidos.size()));
 
 
-        for (Object[] result : temporal) {
-            int idProducto =  ((Long) result[0]).intValue();
-            int cantidadVendida = ((Long) result[1]).intValue();
-
-
-
-            Productos producto = new Productos();
-            producto = productosDao.obtenerDatosProducto((long) idProducto);
-
-                String nombreProducto = producto.getNom_prod();
-
-                ProductoMasVendido productoMasVendido = new ProductoMasVendido(nombreProducto, cantidadVendida);
-                productosMasVendidos.add(productoMasVendido);
-
-        }
-        return productosMasVendidos;
+        return top10Productos;
     }
 
     @Override
-    public List<CategoriaVendida> getCategoriasVendidas() {
-        String query = "SELECT d.producto.idProd, SUM(d.cantidad) "
-                + "FROM DetalleVenta d "
-                + "GROUP BY d.producto.idProd "
-                + "ORDER BY SUM(d.cantidad) DESC";
-        List<Object[]> temporal = entityManager.createQuery(query).getResultList();
+    public List<CategoriaVendida> getCategoriasVendidas(LocalDate startDate, LocalDate endDate) {
+
+        List<Ventas> listaVentas = ventasDao.getVentas();
+        List<Ventas> ventasCompletadas = new ArrayList<>();
         List<CategoriaVendida> categoriasVendidas = new ArrayList<>();
 
-        List<CategoriaProd> categorias = categProductoDao.getCategoriasProductos();
+        for (Ventas venta : listaVentas) {
+            LocalDate fechaVenta = venta.getFecha_venta();
 
+            if ((fechaVenta.isAfter(startDate) || fechaVenta.equals(startDate)) && (fechaVenta.isBefore(endDate) || fechaVenta.equals(endDate))) {
+                ventasCompletadas.add(venta);
+            }
+        }
 
-
-        for (Object[] result : temporal) {
-            int idProducto =  ((Long) result[0]).intValue();
-            int cantidadVendida = ((Long) result[1]).intValue();
-
-            Productos producto = new Productos();
-            producto = productosDao.obtenerDatosProducto((long) idProducto);
-
-            String categoria = producto.getCateg_prod();
-
-            // Buscar la categoría en la lista de categorías
-            for (CategoriaProd categoriaProd : categorias) {
-                if (categoriaProd.getName_categ_prod().equals(categoria)) {
+        for (Ventas venta: ventasCompletadas){
+            List<DetalleVenta> itemsVenta = venta.getItemsVenta();
+            for (DetalleVenta detalleVenta : itemsVenta){
+                String categoria = detalleVenta.getProducto().getCateg_prod();
+                int cantidadVendida = detalleVenta.getCantidad();
                     // Verificar si la categoría ya existe en la lista de categorías vendidas
                     boolean categoriaExistente = false;
                     for (CategoriaVendida categoriaVendida : categoriasVendidas) {
@@ -118,85 +121,113 @@ public class GraficosDaoImp implements GraficosDao{
                         CategoriaVendida categoriaVendida = new CategoriaVendida(categoria, cantidadVendida);
                         categoriasVendidas.add(categoriaVendida);
                     }
-                    break;
-                }
             }
-
-
         }
 
         return categoriasVendidas;
     }
 
     @Override
-    public List<VentasCompletadas> getVentasCompletadas() {
+    public List<VentasCompletadas> getVentasCompletadas(LocalDate startDate, LocalDate endDate) {
+        long totalSemanas = ChronoUnit.WEEKS.between(startDate, endDate);
+        long diasRestantes = ChronoUnit.DAYS.between(startDate, endDate) % 7;
+
         List<Ventas> listaVentas = ventasDao.getVentas();
-        List<VentasCompletadas> ventasCompletadas = new ArrayList<>();
+        List<Ventas> ventasCompletadas = new ArrayList<>();
+        List<VentasCompletadas> ventasCompletadasPorSemana = new ArrayList<>();
 
+        for (Ventas venta : listaVentas) {
+            LocalDate fechaVenta = venta.getFecha_venta();
 
-        // Filtrar y agrupar las ventas por mes y sumar las cantidades
-        Map<Integer, Double> ventasPorMes = listaVentas.stream()
-                .filter(venta -> {
-                    // Obtener la fecha de venta y extraer el año
-                    LocalDate fechaVenta = venta.getFecha_venta();
-                    int yearVenta = fechaVenta.getYear();
-
-                    // Filtrar las ventas que corresponden al año actual
-                    return yearVenta == yearActual;
-                })
-                .collect(Collectors.groupingBy(venta -> {
-                    // Obtener el número del mes
-                    LocalDate fechaVenta = venta.getFecha_venta();
-                    return fechaVenta.getMonthValue();
-                }, Collectors.summingDouble(Ventas::getTotal_venta)));
-
-        // Recorrer los meses del año actual y crear objetos VentasCompletadas
-        for (int mes = 1; mes <= 12; mes++) {
-            String nombreMes = obtenerNombreMes(mes);
-            Double cantidad = ventasPorMes.getOrDefault(mes, 0.0);
-            VentasCompletadas ventaCompleta = new VentasCompletadas(nombreMes, cantidad);
-            ventasCompletadas.add(ventaCompleta);
+            if ((fechaVenta.isAfter(startDate) || fechaVenta.equals(startDate)) && (fechaVenta.isBefore(endDate) || fechaVenta.equals(endDate))) {
+                ventasCompletadas.add(venta);
+            }
         }
 
-        return ventasCompletadas;
+        for (int i = 0; i < totalSemanas; i++) {
+            LocalDate semanaInicio = startDate.plusWeeks(i);
+            LocalDate semanaFin = semanaInicio.plusDays(6);
+
+            double totalSemana = 0.0;
+
+            for (Ventas venta : ventasCompletadas) {
+                LocalDate fechaVenta = venta.getFecha_venta();
+
+                if (!fechaVenta.isBefore(semanaInicio) && !fechaVenta.isAfter(semanaFin)) {
+                    totalSemana += venta.getTotal_venta();
+                }
+            }
+
+            VentasCompletadas ventasSemana = new VentasCompletadas("Semana " + (i + 1) + ": " + semanaInicio + " -- " + semanaFin, totalSemana);
+            ventasCompletadasPorSemana.add(ventasSemana);
+        }
+
+        // Procesar días restantes
+        if (diasRestantes > 0) {
+            LocalDate ultimaSemanaInicio = startDate.plusWeeks(totalSemanas);
+            LocalDate ultimaSemanaFin = endDate;
+
+            double totalUltimaSemana = 0.0;
+
+            for (Ventas venta : ventasCompletadas) {
+                LocalDate fechaVenta = venta.getFecha_venta();
+
+                if (!fechaVenta.isBefore(ultimaSemanaInicio) && !fechaVenta.isAfter(ultimaSemanaFin)) {
+                    totalUltimaSemana += venta.getTotal_venta();
+                }
+            }
+
+            VentasCompletadas ultimaSemana = new VentasCompletadas("Semana " + (totalSemanas + 1) + ": " + ultimaSemanaInicio + " -- " + ultimaSemanaFin, totalUltimaSemana);
+            ventasCompletadasPorSemana.add(ultimaSemana);
+        }
+
+        return ventasCompletadasPorSemana;
     }
 
 
     @Override
-    public List<ProductosVendidosMesActual> getVentasMesActual() {
-        List<Ventas> ventas = ventasDao.getVentas();
-        Map<String, ProductosVendidosMesActual> mapaProductos = new HashMap<>();
+    public List<CategoriaVendida> getVentasCategoriasTotal(LocalDate startDate, LocalDate endDate) {
+        List<Ventas> listaVentas = ventasDao.getVentas();
+        List<Ventas> ventasCompletadas = new ArrayList<>();
+        List<CategoriaVendida> ventasCompletadasCategoria= new ArrayList<>();
 
-        for (Ventas venta : ventas) {
-            if (venta.getFecha_venta().getYear() == yearActual && venta.getFecha_venta().getMonthValue() == mesActual) {
-                List<DetalleVenta> itemsVenta = venta.getItemsVenta();
-                for (DetalleVenta detalleVenta : itemsVenta) {
-                    String nombreProducto = detalleVenta.getProducto().getNom_prod();
-                    double cantidad = detalleVenta.getCantidad();
-                    double totalVenta = detalleVenta.getTotal();
+        for (Ventas venta : listaVentas) {
+            LocalDate fechaVenta = venta.getFecha_venta();
 
-                    if (mapaProductos.containsKey(nombreProducto)) {
-                        ProductosVendidosMesActual producto = mapaProductos.get(nombreProducto);
-                        producto.setCantidad(producto.getCantidad() + cantidad);
-                        producto.setTotalVenta(producto.getTotalVenta() + totalVenta);
-                    } else {
-                        ProductosVendidosMesActual productoExistente = mapaProductos.get(nombreProducto);
-                        if (productoExistente != null) {
-                            productoExistente.setCantidad(productoExistente.getCantidad() + cantidad);
-                            productoExistente.setTotalVenta(productoExistente.getTotalVenta() + totalVenta);
-                        } else {
-                            ProductosVendidosMesActual producto = new ProductosVendidosMesActual();
-                            producto.setNombre(nombreProducto);
-                            producto.setCantidad(cantidad);
-                            producto.setTotalVenta(totalVenta);
-                            mapaProductos.put(nombreProducto, producto);
-                        }
-                    }
-                }
+            if ((fechaVenta.isAfter(startDate) || fechaVenta.equals(startDate)) && (fechaVenta.isBefore(endDate) || fechaVenta.equals(endDate))) {
+                ventasCompletadas.add(venta);
             }
         }
 
-        return new ArrayList<>(mapaProductos.values());
+
+        for (Ventas venta: ventasCompletadas){
+            List<DetalleVenta> itemsVenta = venta.getItemsVenta();
+
+            for (DetalleVenta detalleVenta : itemsVenta){
+                String categoria = detalleVenta.getProducto().getCateg_prod();
+                double totalVendido = detalleVenta.getTotal();
+
+                    // Verificar si la categoría ya existe en la lista de categorías vendidas
+                    boolean categoriaExistente = false;
+                    for (CategoriaVendida categoriaVendida : ventasCompletadasCategoria) {
+                        if (categoriaVendida.getCategoria().equals(categoria)) {
+                            // Si la categoría ya existe, sumar la cantidad vendida
+                            categoriaVendida.setTotalVenta(categoriaVendida.getTotalVenta() + totalVendido);
+                            categoriaExistente = true;
+                            break;
+                        }
+                    }
+                    // Si la categoría no existe, agregarla a la lista de categorías vendidas
+                    if (!categoriaExistente) {
+                        CategoriaVendida categoriaVendida = new CategoriaVendida(categoria, totalVendido);
+                        ventasCompletadasCategoria.add(categoriaVendida);
+                    }
+
+
+            }
+        }
+
+        return ventasCompletadasCategoria;
     }
 
 

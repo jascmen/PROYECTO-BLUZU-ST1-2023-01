@@ -14,13 +14,17 @@ public class CategoriaVendida {
     @Getter @Setter
     private int cantidad;
 
-    public CategoriaVendida(int id, int cantidad) {
-        this.id = id;
-        this.cantidad = cantidad;
-    }
+    @Getter @Setter
+    private double totalVenta;
+
 
     public CategoriaVendida(String categoria, int cantidad) {
         this.categoria = categoria;
         this.cantidad = cantidad;
+    }
+
+    public CategoriaVendida(String categoria, double totalVenta) {
+        this.categoria = categoria;
+        this.totalVenta = totalVenta;
     }
 }
